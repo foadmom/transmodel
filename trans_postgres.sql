@@ -1,6 +1,8 @@
 -- sudo apt install postgresql-18 postgresql-client-18 postgis -y
--- ===============================================================
-DROP DATABASE IF EXISTS transmodel;
+-- sudo -u postgres psql -U postgres -f ./trans_postgres.sql 
+-- ===============================================================================
+--\c postgres;
+DROP DATABASE IF EXISTS transmodel WITH (FORCE);
 
 CREATE DATABASE transmodel OWNER postgres;
 \c transmodel
@@ -11,153 +13,284 @@ CREATE EXTENSION IF NOT EXISTS postgis;
 CREATE EXTENSION IF NOT EXISTS btree_gist;
 CREATE EXTENSION IF NOT EXISTS pg_trgm;
 
+--drop schema if exists network cascade;
+--drop schema if exists naptan cascade;
+--drop schema if exists tracking cascade;
+
 CREATE SCHEMA network;
 
 ALTER ROLE postgres IN DATABASE transmodel SET search_path TO network;
 
-
-
--- =========================================
+-- =========================================================
 -- ENUM Types
--- =========================================
-CREATE TYPE transport_mode AS ENUM ('BUS','COACH','TRAIN');
-CREATE TYPE stop_place_type AS ENUM ('STATION','TERMINAL','STOP');
-CREATE TYPE route_direction AS ENUM ('OUTBOUND','INBOUND');
+-- =========================================================
+CREATE TYPE TRANSPORT_MODE AS ENUM ('BUS','COACH','TRAIN');
+CREATE TYPE STOP_TYPE AS ENUM ('STATION','TERMINAL','STOP');
+CREATE TYPE ROUTE_DIRECTION AS ENUM ('OUTBOUND','INBOUND');
+CREATE TYPE COMPASS_DIRECTION AS ENUM ('N','NE','E','SE','S','SW','W','NW');
 CREATE TYPE exception_type AS ENUM ('ADDED','REMOVED');
 CREATE TYPE realtime_status AS ENUM ('ON_TIME','DELAYED','CANCELLED','SKIPPED');
 CREATE TYPE journey_status AS ENUM ('PLANNED','IN_PROGRESS','COMPLETED','CANCELLED');
 
--- =========================================
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- =========================================================
 -- Operator & Network
--- =========================================
-CREATE TABLE operator (
-    id BIGSERIAL PRIMARY KEY,
-    name TEXT NOT NULL,
-    short_name TEXT,
-    transport_mode transport_mode NOT NULL,
-    country_code CHAR(2),
-    created_at TIMESTAMPTZ DEFAULT now()
-);
-
--- =========================================
---    
--- =========================================
-CREATE TABLE network (
-    id BIGSERIAL PRIMARY KEY,
-    name TEXT NOT NULL,
-    operator_id BIGINT REFERENCES operator(id)
-);
-
--- =========================================
--- Stops (Transmodel compliant)
--- =========================================
-CREATE TABLE stop_place (
-    id BIGSERIAL PRIMARY KEY,
-    name TEXT NOT NULL,
-    type stop_place_type NOT NULL,
-    timezone TEXT NOT NULL,
-    geom GEOGRAPHY(Point, 4326) NOT NULL
-);
-CREATE INDEX idx_stopplace_geom ON stop_place USING GIST (geom);
-CREATE INDEX idx_stopplace_name_trgm ON stop_place USING GIN (name gin_trgm_ops);
-
--- =========================================
+-- =========================================================
+-- =========================================================
 -- 
--- =========================================
-CREATE TABLE scheduled_stop_point (
+-- =========================================================
+CREATE TABLE network.operator (
     id BIGSERIAL PRIMARY KEY,
-    stop_place_id BIGINT NOT NULL REFERENCES stop_place(id),
-    code TEXT,
-    platform TEXT
+    code TEXT UNIQUE NOT NULL, 
+    name TEXT,                   -- long name or company name
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now(),
+    updated_by TEXT DEFAULT CURRENT_USER
+);
+CREATE INDEX idx_operator_code ON network.operator (code);
+CREATE INDEX idx_operator_name ON network.operator (name);
+
+-- =========================================================
+-- 
+-- =========================================================
+CREATE TABLE network.network (
+    id BIGSERIAL PRIMARY KEY,
+    code TEXT UNIQUE NOT NULL,
+    name TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now(),
+    updated_by TEXT DEFAULT CURRENT_USER
+);
+CREATE INDEX idx_network_code ON network.network (code);
+CREATE INDEX idx_network_name ON network.network (name);
+
+-- =========================================================
+-- 
+-- =========================================================
+CREATE TABLE network.operator_network (
+    id BIGSERIAL PRIMARY KEY,
+	operator_code TEXT REFERENCES network.operator (code),
+	network_code  TEXT REFERENCES network.network (code),
+    trans_mode TRANSPORT_MODE NOT NULL,
+    country_code CHAR(2) NOT NULL,
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now(),
+    updated_by TEXT DEFAULT CURRENT_USER
+);
+CREATE INDEX idx_operator_network_operator_code ON network.operator_network (operator_code);
+CREATE INDEX idx_operator_network_trans_mode    ON network.operator_network (trans_mode);
+CREATE INDEX idx_operator_network_country_code  ON network.operator_network (country_code);
+CREATE INDEX idx_operator_network_network_code  ON network.operator_network (network_code);
+
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- Stops (Transmodel compliant)
+-- the Geo position is in stop rather than stop-point.
+--   this means we do not get pin point accuracy of different
+--   eg platforms within a large stop like Victoria station
+-- =========================================================
+CREATE TABLE network.stop (
+    id BIGSERIAL PRIMARY KEY,
+    stop_code TEXT NOT NULL,
+    name TEXT,
+    type STOP_TYPE NOT NULL,
+    post_code TEXT,
+    geo_position GEOGRAPHY (POINT, 4326) NOT NULL,
+    additional_info TEXT,
+    -- 
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now(),
+    updated_by TEXT DEFAULT CURRENT_USER
+);
+CREATE INDEX idx_stop_stop_code ON network.stop (stop_code);
+CREATE INDEX idx_stop_post_code ON network.stop (post_code);
+CREATE INDEX idx_stop_geo_position ON network.stop USING GIST (geo_position);
+CREATE INDEX idx_stop_name ON network.stop (name);
+
+-- =========================================================
+-- I assume this applies to eg which platform/bay the stop is
+-- planned for.
+-- =========================================================
+CREATE TABLE network.stop_point (
+    id BIGSERIAL PRIMARY KEY,
+    platform TEXT,
+    direction COMPASS_DIRECTION, -- like North-East corner of Victoria station
+    additional_info TEXT,
+    -- 
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now(),
+    updated_by TEXT DEFAULT CURRENT_USER
+);
+CREATE INDEX idx_stop_point_stop_id ON network.stop_point (stop_id);
+
+-- =========================================================
+-- created when a service is scheduled. needs to be linked
+-- to a particular service/flight instance
+-- I think we need both stop_id and stop_point_id because 
+-- stop_point should be optional for a stop
+-- =========================================================
+CREATE TABLE network.scheduled_stop (
+    id                 BIGSERIAL PRIMARY KEY,
+    stop_id            BIGINT    NOT NULL REFERENCES network.stop(id), 
+    stop_point_id      BIGINT             REFERENCES network.stop_point(id),
+    flight_instance_id BIGINT    NOT NULL REFERENCES network.flight_instance (id),
+    sequence_order     INTEGER   NOT NULL,
+    scheduled_time     TIMESTAMP NOT NULL,
+    actual_time        TIMESTAMP,
+    -- 
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now(),
+    updated_by TEXT      DEFAULT CURRENT_USER
 );
 
--- =========================================
+-- =========================================================
+-- 
+-- =========================================================
+CREATE TABLE network.stop_facility (
+    id BIGSERIAL PRIMARY KEY,
+	code TEXT UNIQUE NOT NULL,
+	name TEXT NOT NULL,
+	additional_info TEXT,
+    -- 
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now(),
+    updated_by TEXT DEFAULT CURRENT_USER
+);
+    
+-- =========================================================
+-- 
+-- =========================================================
+CREATE TABLE network.stop_facilities (
+    id BIGSERIAL PRIMARY KEY,
+    stop_id BIGINT REFERENCES network.stop(id),
+    stop_facility_id BIGINT REFERENCES network.stop_facility (id),
+    -- 
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now(),
+    updated_by TEXT DEFAULT CURRENT_USER
+);
+    
+-- =========================================================
+-- 
+-- =========================================================
+--CREATE TABLE network.stop_time (
+--    id BIGSERIAL PRIMARY KEY,
+--    service_journey_id BIGINT REFERENCES network.service_journey(id),
+--    scheduled_stop_id BIGINT REFERENCES  network.scheduled_stop (id),
+--    stop_point_id BIGINT REFERENCES network.stop_point(id),
+--    arrival_time TIME,
+--    departure_time TIME,
+--    sequence_order INTEGER NOT NULL,
+--    created_at TIMESTAMP DEFAULT now(),
+--    updated_at TIMESTAMP DEFAULT now(),
+--    updated_by TEXT DEFAULT CURRENT_USER
+--);
+--CREATE INDEX idx_stoptime_journey_seq ON network.stop_time (service_journey_id, sequence_order);
+--CREATE INDEX idx_stoptime_stop_departure ON network.stop_time (stop_point_id, departure_time);
+--CREATE INDEX idx_stoptime_stop_time ON network.stop_time (stop_point_id, departure_time, service_journey_id);
+
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- ?????? not sure how this is used
 -- Lines, Routes & Infrastructure
--- =========================================
-CREATE TABLE line (
+-- =========================================================
+CREATE TABLE network.line (
     id BIGSERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     public_code TEXT,
-    transport_mode transport_mode NOT NULL,
-    operator_id BIGINT REFERENCES operator(id)
+    trans_mode TRANSPORT_MODE NOT NULL,
+    -- why do we need operator_id for this?
+--    operator_id BIGINT REFERENCES network.operator(id),
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now(),
+    updated_by TEXT DEFAULT CURRENT_USER
 );
+CREATE INDEX idx_line_name        ON network.line (name);
+CREATE INDEX idx_line_public_code ON network.line (public_code);
+CREATE INDEX idx_line_trans_mode  ON network.line (trans_mode);
+--CREATE INDEX idx_line_operator_id ON network.line (operator_id);
 
--- =========================================
+-- =========================================================
 -- 
--- =========================================
-CREATE TABLE route (
+-- =========================================================
+CREATE TABLE network.route (
     id BIGSERIAL PRIMARY KEY,
-    line_id BIGINT REFERENCES line(id),
-    direction route_direction NOT NULL
+    line_id BIGINT REFERENCES network.line(id),
+    route_direction ROUTE_DIRECTION NOT NULL,
+    compass_direction COMPASS_DIRECTION NOT NULL,
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now(),
+    updated_by TEXT DEFAULT CURRENT_USER
 );
+CREATE INDEX idx_route_line_id ON network.route (line_id);
 
--- =========================================
+-- =========================================================
 -- 
--- =========================================
-CREATE TABLE route_link (
+-- =========================================================
+CREATE TABLE network.route_link (
     id BIGSERIAL PRIMARY KEY,
-    route_id BIGINT REFERENCES route(id),
-    from_stop_point_id BIGINT REFERENCES scheduled_stop_point(id),
-    to_stop_point_id BIGINT REFERENCES scheduled_stop_point(id),
+    route_id BIGINT REFERENCES network.route(id),
+    from_stop_point_id BIGINT REFERENCES network.stop_point(id),
+    to_stop_point_id BIGINT REFERENCES network.stop_point(id),
     distance_meters INTEGER,
-    sequence_order INTEGER NOT NULL
+    sequence_order INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now(),
+    updated_by TEXT DEFAULT CURRENT_USER
 );
+CREATE INDEX idx_routelink_route_seq ON network.route_link (route_id, sequence_order);
 
--- =========================================
+-- =========================================================
 -- 
--- =========================================
-CREATE INDEX idx_routelink_route_seq ON route_link (route_id, sequence_order);
-
--- =========================================
--- 
--- =========================================
-CREATE TABLE journey_pattern (
+-- =========================================================
+CREATE TABLE network.journey_pattern (
     id BIGSERIAL PRIMARY KEY,
-    route_id BIGINT REFERENCES route(id)
+    route_id BIGINT REFERENCES network.route(id),
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now(),
+    updated_by TEXT DEFAULT CURRENT_USER
 );
+CREATE INDEX idx_journey_pattern_route_id ON network.journey_pattern (route_id);
 
--- =========================================
+-- =========================================================
 -- 
--- =========================================
-CREATE TABLE journey_pattern_stop (
+-- =========================================================
+CREATE TABLE network.journey_pattern_stop (
     id BIGSERIAL PRIMARY KEY,
-    journey_pattern_id BIGINT REFERENCES journey_pattern(id),
-    scheduled_stop_point_id BIGINT REFERENCES scheduled_stop_point(id),
-    sequence_order INTEGER NOT NULL
+    journey_pattern_id BIGINT REFERENCES network.journey_pattern(id),
+    stop_point_id BIGINT REFERENCES network.stop_point(id),
+    sequence_order INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now(),
+    updated_by TEXT DEFAULT CURRENT_USER
 );
-CREATE INDEX idx_jp_stop_seq ON journey_pattern_stop (journey_pattern_id, sequence_order);
+CREATE INDEX idx_jp_stop_seq ON network.journey_pattern_stop (journey_pattern_id, sequence_order);
 
--- =========================================
+-- =========================================================
 -- 
--- =========================================
-CREATE TABLE service_journey (
+-- =========================================================
+CREATE TABLE network.service_journey (
     id BIGSERIAL PRIMARY KEY,
-    line_id BIGINT REFERENCES line(id),
-    journey_pattern_id BIGINT REFERENCES journey_pattern(id),
+    line_id BIGINT REFERENCES network.line(id),
+    journey_pattern_id BIGINT REFERENCES network.journey_pattern(id),
     planned_departure_time TIME NOT NULL,
-    planned_arrival_time TIME NOT NULL
+    planned_arrival_time TIME NOT NULL,
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now(),
+    updated_by TEXT DEFAULT CURRENT_USER
 );
 
--- =========================================
--- 
--- =========================================
-CREATE TABLE stop_time (
-    id BIGSERIAL PRIMARY KEY,
-    service_journey_id BIGINT REFERENCES service_journey(id),
-    scheduled_stop_point_id BIGINT REFERENCES scheduled_stop_point(id),
-    arrival_time TIME,
-    departure_time TIME,
-    sequence_order INTEGER NOT NULL
-);
-CREATE INDEX idx_stoptime_journey_seq ON stop_time (service_journey_id, sequence_order);
-CREATE INDEX idx_stoptime_stop_departure ON stop_time (scheduled_stop_point_id, departure_time);
-CREATE INDEX idx_stoptime_stop_time ON stop_time (scheduled_stop_point_id, departure_time, service_journey_id);
-
--- =========================================
+-- =========================================================
 -- Calendar & Exceptions
--- =========================================
+-- =========================================================
 
-CREATE TABLE service_calendar (
+CREATE TABLE network.service_calendar (
     id BIGSERIAL PRIMARY KEY,
     start_date DATE,
     end_date DATE,
@@ -167,103 +300,185 @@ CREATE TABLE service_calendar (
     thursday BOOLEAN,
     friday BOOLEAN,
     saturday BOOLEAN,
-    sunday BOOLEAN
+    sunday BOOLEAN,
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now(),
+    updated_by TEXT DEFAULT CURRENT_USER
 );
 
--- =========================================
+-- =========================================================
 -- 
--- =========================================
-CREATE TABLE service_journey_calendar (
-    service_journey_id BIGINT REFERENCES service_journey(id),
-    service_calendar_id BIGINT REFERENCES service_calendar(id),
-    PRIMARY KEY (service_journey_id, service_calendar_id)
+-- =========================================================
+CREATE TABLE network.service_journey_calendar (
+    service_journey_id BIGINT REFERENCES network.service_journey(id),
+    service_calendar_id BIGINT REFERENCES network.service_calendar(id),
+    PRIMARY KEY (service_journey_id, service_calendar_id),
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now(),
+    updated_by TEXT DEFAULT CURRENT_USER
 );
 
--- =========================================
+-- =========================================================
 -- 
--- =========================================
-CREATE TABLE service_exception (
+-- =========================================================
+CREATE TABLE network.service_exception (
     id BIGSERIAL PRIMARY KEY,
-    service_calendar_id BIGINT REFERENCES service_calendar(id),
+    service_calendar_id BIGINT REFERENCES network.service_calendar(id),
     date DATE NOT NULL,
-    type exception_type NOT NULL
+    type exception_type NOT NULL,
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now(),
+    updated_by TEXT DEFAULT CURRENT_USER
 );
-CREATE INDEX idx_calendar_range ON service_calendar USING GIST (daterange(start_date, end_date, '[]') );
+CREATE INDEX idx_calendar_range ON network.service_calendar USING GIST (daterange(start_date, end_date, '[]') );
+
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- NaPTAN reference data
+-- =========================================================
+CREATE SCHEMA naptan;
+ALTER ROLE postgres IN DATABASE transmodel SET search_path TO naptan;
+CREATE TABLE naptan.stops (
+	atcocode varchar NULL,
+	NaptanCode varchar NULL,
+	PlateCode varchar NULL,
+	CleardownCode varchar NULL,
+	CommonName varchar NULL,
+	CommonNameLang varchar NULL,
+	ShortCommonName varchar NULL,
+	ShortCommonNameLang varchar NULL,
+	Landmark varchar NULL,
+	LandmarkLang varchar,
+	Street varchar,
+	StreetLang varchar,
+	Crossing varchar,
+	CrossingLang varchar,
+	Indicator varchar,
+	IndicatorLang varchar,
+	Bearing varchar,
+	NptgLocalityCode varchar,
+	LocalityName varchar,
+	ParentLocalityName varchar,
+	GrandParentLocalityName varchar,
+	Town varchar,
+	TownLang varchar,
+	Suburb varchar,
+	SuburbLang varchar,
+	LocalityCentre Boolean,
+	GridType varchar,
+	Easting int,
+	Northing int,
+	Longitude float8,
+	Latitude float8,
+	StopType varchar,
+	BusStopType varchar,
+	TimingStatus varchar,
+	DefaultWaitTime varchar,
+	Notes varchar,
+	NotesLang varchar,
+	AdministrativeAreaCode int,
+	CreationDateTime TIMESTAMP,
+	ModificationDateTime TIMESTAMP,
+	RevisionNumber int,
+	Modification varchar,
+	Status varchar
+);
 
 
 
--- =========================================
--- =========================================
--- =========================================
+
+
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- =========================================================
 -- Real-Time Data (Optimized)
--- =========================================
+-- =========================================================
 
 CREATE SCHEMA tracking;
-
 ALTER ROLE postgres IN DATABASE transmodel SET search_path TO tracking;
 
--- =========================================
+-- =========================================================
 -- 
--- =========================================
-CREATE TABLE vehicle (
+-- =========================================================
+CREATE TABLE tracking.vehicle (
     id BIGSERIAL PRIMARY KEY,
-    operator_id BIGINT REFERENCES operator(id),
+    operator_id BIGINT REFERENCES network.operator(id),
     vehicle_type TEXT,
-    capacity INTEGER
+    capacity INTEGER,
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now(),
+    updated_by TEXT DEFAULT CURRENT_USER
 );
 
--- =========================================
+-- =========================================================
 -- 
--- =========================================
-CREATE TABLE vehicle_journey_assignment (
+-- =========================================================
+CREATE TABLE tracking.vehicle_journey_assignment (
     id BIGSERIAL PRIMARY KEY,
-    vehicle_id BIGINT REFERENCES vehicle(id),
-    service_journey_id BIGINT REFERENCES service_journey(id),
-    assigned_at TIMESTAMPTZ DEFAULT now()
+    vehicle_id BIGINT REFERENCES tracking.vehicle(id),
+    service_journey_id BIGINT REFERENCES network.service_journey(id),
+    assigned_at TIMESTAMPTZ DEFAULT now(),
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP
 );
 
--- =========================================
+-- =========================================================
 -- 
--- =========================================
-CREATE TABLE vehicle_position (
-    vehicle_id BIGINT REFERENCES vehicle(id),
-    recorded_at TIMESTAMPTZ NOT NULL,
-    geom GEOGRAPHY(Point, 4326),
+-- =========================================================
+CREATE TABLE tracking.vehicle_position (
+    vehicle_id BIGINT REFERENCES tracking.vehicle(id),
+    recorded_at TIMESTAMP NOT NULL,
+    geo_position  GEOGRAPHY (POINT, 4326),
     speed REAL,
     bearing REAL,
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now(),
+    updated_by TEXT DEFAULT CURRENT_USER,
     PRIMARY KEY (vehicle_id, recorded_at)
 ) PARTITION BY RANGE (recorded_at);
 -- Recommended: daily partitions + retention policy.
-CREATE INDEX idx_vehicle_position_geom
-    ON vehicle_position USING GIST (geom);
+CREATE INDEX idx_vehicle_position_geo_position ON tracking.vehicle_position USING GIST (geom);
 
--- =========================================
+-- =========================================================
 -- 
--- =========================================
-CREATE TABLE realtime_stop_update (
+-- =========================================================
+CREATE TABLE tracking.realtime_stop_update (
     id BIGSERIAL PRIMARY KEY,
-    service_journey_id BIGINT REFERENCES service_journey(id),
-    scheduled_stop_point_id BIGINT REFERENCES scheduled_stop_point(id),
+    service_journey_id BIGINT REFERENCES network.service_journey(id),
+    stop_point_id BIGINT REFERENCES network.stop_point(id),
     delay_seconds INTEGER,
     predicted_arrival_time TIME,
     predicted_departure_time TIME,
     status realtime_status,
-    updated_at TIMESTAMPTZ DEFAULT now()
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now(),
+    updated_by TEXT DEFAULT CURRENT_USER
 );
-CREATE INDEX idx_rt_update_lookup ON realtime_stop_update (service_journey_id, scheduled_stop_point_id);
-CREATE INDEX idx_rt_update_recent ON realtime_stop_update (service_journey_id, updated_at DESC);
+CREATE INDEX idx_rt_update_lookup ON tracking.realtime_stop_update (service_journey_id, stop_point_id);
+CREATE INDEX idx_rt_update_recent ON tracking.realtime_stop_update (service_journey_id, updated_at DESC);
 
--- =========================================
+-- =========================================================
 -- 
---
-CREATE TABLE service_journey_status (
-    service_journey_id BIGINT PRIMARY KEY REFERENCES service_journey(id),
+-- =========================================================
+CREATE TABLE tracking.service_journey_status (
+    service_journey_id BIGINT PRIMARY KEY REFERENCES network.service_journey(id),
     status journey_status,
-    last_updated TIMESTAMPTZ
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now(),
+    updated_by TEXT DEFAULT CURRENT_USER
 );
 
--- =========================================
--- =========================================
+
+-- =========================================================
+-- =========================================================
 
 -- Mapping to GTFS & NeTEx
 --GTFS Mapping
@@ -281,7 +496,7 @@ CREATE TABLE service_journey_status (
 --NeTEx Mapping
 --NeTEx Concept	Table
 --StopPlace	stop_place
---ScheduledStopPoint	scheduled_stop_point
+--ScheduledStopPoint	stop_point
 --Line	line
 --Route	route
 --RouteLink	route_link
@@ -290,7 +505,7 @@ CREATE TABLE service_journey_status (
 --TimetabledPassingTime	stop_time
 --DayType / OperatingPeriod	service_calendar
 --
----- =========================================
+---- =========================================================
 --Query Cookbook (Journey Search)
 --A. Departures from a Stop (with real-time)
 --sql
@@ -306,8 +521,8 @@ CREATE TABLE service_journey_status (
 --JOIN line l ON l.id = sj.line_id
 --LEFT JOIN realtime_stop_update rtu
 --    ON rtu.service_journey_id = sj.id
--- AND rtu.scheduled_stop_point_id = st.scheduled_stop_point_id
---WHERE st.scheduled_stop_point_id = :stop_id
+-- AND rtu.stop_point_id = st.stop_point_id
+--WHERE st.stop_point_id = :stop_id
 --    AND st.departure_time >= :from_time
 --ORDER BY expected_departure
 --LIMIT 20;
@@ -319,8 +534,8 @@ CREATE TABLE service_journey_status (
 --JOIN stop_time b
 --    ON a.service_journey_id = b.service_journey_id
 --JOIN service_journey sj ON sj.id = a.service_journey_id
---WHERE a.scheduled_stop_point_id = :origin
---    AND b.scheduled_stop_point_id = :destination
+--WHERE a.stop_point_id = :origin
+--    AND b.stop_point_id = :destination
 --    AND a.sequence_order < b.sequence_order
 --    AND a.departure_time >= :time;
 --C. One-Transfer Journey
@@ -331,12 +546,12 @@ CREATE TABLE service_journey_status (
 --    sj2.id AS second_leg
 --FROM stop_time a
 --JOIN stop_time x1 ON x1.service_journey_id = a.service_journey_id
---JOIN stop_time x2 ON x2.scheduled_stop_point_id = x1.scheduled_stop_point_id
+--JOIN stop_time x2 ON x2.stop_point_id = x1.stop_point_id
 --JOIN stop_time b ON b.service_journey_id = x2.service_journey_id
 --JOIN service_journey sj1 ON sj1.id = a.service_journey_id
 --JOIN service_journey sj2 ON sj2.id = b.service_journey_id
---WHERE a.scheduled_stop_point_id = :origin
---    AND b.scheduled_stop_point_id = :destination
+--WHERE a.stop_point_id = :origin
+--    AND b.stop_point_id = :destination
 --    AND a.sequence_order < x1.sequence_order
 --    AND x2.sequence_order < b.sequence_order
 --    AND x2.departure_time >= x1.arrival_time;
@@ -345,6 +560,14 @@ CREATE TABLE service_journey_status (
 --Copy code
 --SELECT id, name
 --FROM stop_place
---ORDER BY geom <-> ST_MakePoint(:lon, :lat)::geography
+--ORDER BY geo_position <-> ST_MakePoint(:lon, :lat)::geography
 --LIMIT 5;
 
+
+
+
+Operator:
+	PKey, 
+	code,   INDEX but NOT UNIQUE 
+	network_id,
+	
