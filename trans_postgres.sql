@@ -26,7 +26,7 @@ ALTER ROLE postgres IN DATABASE transmodel SET search_path TO network;
 -- =========================================================
 CREATE TYPE TRANSPORT_MODE AS ENUM ('BUS','COACH','TRAIN');
 CREATE TYPE STOP_TYPE AS ENUM ('STATION','TERMINAL','STOP');
-CREATE TYPE ROUTE_DIRECTION AS ENUM ('OUTBOUND','INBOUND');
+CREATE TYPE SERVICE_DIRECTION AS ENUM ('OUTBOUND','INBOUND');
 CREATE TYPE COMPASS_DIRECTION AS ENUM ('N','NE','E','SE','S','SW','W','NW');
 CREATE TYPE exception_type AS ENUM ('ADDED','REMOVED');
 CREATE TYPE realtime_status AS ENUM ('ON_TIME','DELAYED','CANCELLED','SKIPPED');
@@ -36,9 +36,34 @@ CREATE TYPE journey_status AS ENUM ('PLANNED','IN_PROGRESS','COMPLETED','CANCELL
 -- =========================================================
 -- =========================================================
 -- =========================================================
+-- Assumptions:
+--   - There concept of outbound is attached to the first leg
+--       of a journey and nothing to do the starting position.
+--       In some designs, everything out of Paris is OUTBOUND,
+--       any journey into Paris is INBOUND
+--       This is not true of this design
+--   - 
+-- =========================================================
+-- =========================================================
 
 -- =========================================================
+-- zone can be an area, city, town, state, county or .....
+-- In it's simplest form it would be big towns and cities, 
+--   eg London, Madrid
 -- =========================================================
+CREATE TABLE network.zone (
+    id BIGSERIAL PRIMARY KEY,
+    code TEXT,		-- not sure who would set this
+    name TEXT NOT NULL,
+    -- 
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now(),
+    updated_by TEXT DEFAULT CURRENT_USER
+);
+CREATE INDEX idx_zone_code ON network.zone (code);
+CREATE INDEX idx_zone_name ON network.zone (name);
+
+
 -- =========================================================
 -- Stops (Transmodel compliant)
 -- the Geo position is in stop rather than stop-point.
@@ -50,6 +75,7 @@ CREATE TABLE network.stop (
     stop_code TEXT NOT NULL,
     name TEXT,
     type STOP_TYPE NOT NULL,
+    zone_id BIGINT NOT null , 
     post_code TEXT,
     geo_position GEOGRAPHY (POINT, 4326) NOT NULL,
     additional_info TEXT,
@@ -60,6 +86,7 @@ CREATE TABLE network.stop (
 );
 CREATE INDEX idx_stop_stop_code ON network.stop (stop_code);
 CREATE INDEX idx_stop_post_code ON network.stop (post_code);
+CREATE INDEX idx_stop_zone_id ON network.stop (zone_id);
 CREATE INDEX idx_stop_geo_position ON network.stop USING GIST (geo_position);
 CREATE INDEX idx_stop_name ON network.stop (name);
 
@@ -182,7 +209,7 @@ CREATE INDEX idx_operator_network_network_code  ON network.operator_network (net
 -- =========================================================
 -- =========================================================
 -- =========================================================
--- Lines, Routes & Infrastructure
+-- Lines, services & Infrastructure
 -- =========================================================
 -- ?????? not sure how this is used
 -- 
@@ -213,25 +240,33 @@ CREATE INDEX idx_line_operator_id ON network.line (operator_id);
 --    line, Manchester to Sandefjord, Norway ??
 --    operated by RyanAir
 --    compass_direction, NE
+-- The service is the higher, end to end, of a service,
+-- eg Bristol to London
+-- not sure what value 'line' adds.
 -- =========================================================
-CREATE TABLE network.route (
+CREATE TABLE network.service (
     id BIGSERIAL PRIMARY KEY,
     line_id BIGINT REFERENCES network.line(id),
---    route_direction ROUTE_DIRECTION NOT NULL,
+    code TEXT UNIQUE NOT NULL,		-- eg FLX-241
+--    service_direction SERVICE_DIRECTION NOT NULL,
     compass_direction COMPASS_DIRECTION,
+    from_stop_id    BIGINT REFERENCES network.stop(id),
+    to_stop_id      BIGINT REFERENCES network.stop(id),
+    distance_meters INTEGER,
     --
     created_at TIMESTAMP DEFAULT now(),
     updated_at TIMESTAMP DEFAULT now(),
     updated_by TEXT DEFAULT CURRENT_USER
 );
-CREATE INDEX idx_route_line_id ON network.route (line_id);
+CREATE INDEX idx_service_line_id ON network.service (line_id);
+CREATE INDEX idx_service_code ON network.service (code);
 
 -- =========================================================
 -- 
 -- =========================================================
-CREATE TABLE network.route_link (
+CREATE TABLE network.service_link (
     id BIGSERIAL PRIMARY KEY,
-    route_id        BIGINT REFERENCES network.route(id),
+    service_id      BIGINT REFERENCES network.service(id),
     from_stop_id    BIGINT REFERENCES network.stop(id),
     to_stop_id      BIGINT REFERENCES network.stop(id),
     distance_meters INTEGER,
@@ -241,19 +276,19 @@ CREATE TABLE network.route_link (
     updated_at TIMESTAMP DEFAULT now(),
     updated_by TEXT DEFAULT CURRENT_USER
 );
-CREATE INDEX idx_routelink_route_seq ON network.route_link (route_id, sequence_order);
+CREATE INDEX idx_servicelink_service_seq ON network.service_link (service_id, sequence_order);
 
 -- =========================================================
 -- 
 -- =========================================================
 CREATE TABLE network.journey_pattern (
     id BIGSERIAL PRIMARY KEY,
-    route_id BIGINT REFERENCES network.route(id),
+    service_id BIGINT REFERENCES network.service(id),
     created_at TIMESTAMP DEFAULT now(),
     updated_at TIMESTAMP DEFAULT now(),
     updated_by TEXT DEFAULT CURRENT_USER
 );
-CREATE INDEX idx_journey_pattern_route_id ON network.journey_pattern (route_id);
+CREATE INDEX idx_journey_pattern_service_id ON network.journey_pattern (service_id);
 
 -- =========================================================
 -- 
@@ -386,6 +421,24 @@ CREATE TABLE naptan.stops (
 	Status varchar
 );
 
+DROP TABLE naptan.uk_cities;
+CREATE TABLE naptan.uk_cities (
+    id BIGSERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    latitude FLOAT,
+    longitude FLOAT,
+    country TEXT,   -- BIGINT NOT NULL , -- REFERENCES naptan.country (id),
+    iso2 TEXT NOT NULL,
+    zone TEXT NOT NULL,
+    capital TEXT,  -- not needed
+    population int,
+    population_proper int,
+    
+    -- 
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now(),
+    updated_by TEXT DEFAULT CURRENT_USER
+);
 
 
 
@@ -483,7 +536,7 @@ CREATE TABLE tracking.service_journey_status (
 --agency	operator
 --stops	stop_place
 --stop_times	stop_time
---routes	line
+--services	line
 --trips	service_journey
 --calendar	service_calendar
 --calendar_dates	service_exception
@@ -495,8 +548,8 @@ CREATE TABLE tracking.service_journey_status (
 --StopPlace	stop_place
 --ScheduledStopPoint	stop_point
 --Line	line
---Route	route
---RouteLink	route_link
+--service	service
+--serviceLink	service_link
 --JourneyPattern	journey_pattern
 --ServiceJourney	service_journey
 --TimetabledPassingTime	stop_time
