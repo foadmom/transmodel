@@ -11,10 +11,11 @@ CREATE EXTENSION IF NOT EXISTS postgis;
 CREATE EXTENSION IF NOT EXISTS btree_gist;
 CREATE EXTENSION IF NOT EXISTS pg_trgm;
 
-CREATE SCHEMA IF NOT EXISTS reference;
-CREATE SCHEMA IF NOT EXISTS network;
-CREATE SCHEMA IF NOT EXISTS operation;
-CREATE SCHEMA IF NOT EXISTS tracking;
+--CREATE SCHEMA IF NOT EXISTS Common;
+--CREATE SCHEMA IF NOT EXISTS reference;
+--CREATE SCHEMA IF NOT EXISTS network;
+--CREATE SCHEMA IF NOT EXISTS operation;
+--CREATE SCHEMA IF NOT EXISTS tracking;
 
 
 --DROP TYPE IF EXISTS TRANSPORT_MODE ;
@@ -50,7 +51,7 @@ CREATE TYPE FUEL_TYPE AS ENUM ('PETROL', 'DIESEL', 'GAS', 'ELECTRIC');
 -- =========================================================
 -- =========================================================
 --DROP SCHEMA IF EXISTS reference;
---CREATE SCHEMA IF NOT EXISTS reference;
+CREATE SCHEMA IF NOT EXISTS reference;
 ALTER ROLE postgres IN DATABASE transmodel SET search_path TO reference;
 
 -- =========================================================
@@ -1288,7 +1289,7 @@ INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
 -- =========================================================
 -- =========================================================
 --DROP SCHEMA IF EXISTS network CASCADE;
---CREATE SCHEMA IF NOT EXISTS network;
+CREATE SCHEMA IF NOT EXISTS network;
 ALTER ROLE postgres IN DATABASE transmodel SET search_path TO network;
 
 
@@ -1334,7 +1335,7 @@ CREATE TABLE IF NOT EXISTS network.stop (
     type            STOP_TYPE NOT NULL,
     zone_id         BIGINT NOT NULL , 
     post_code       VARCHAR (16),
-    geo_position    GEOGRAPHY (POINT, 4326) NOT NULL,
+    geo             geography,
     additional_info VARCHAR (256),
     -- 
     created_at TIMESTAMP DEFAULT now(),
@@ -1344,7 +1345,7 @@ CREATE TABLE IF NOT EXISTS network.stop (
 CREATE INDEX idx_stop_stop_code ON network.stop (stop_code);
 CREATE INDEX idx_stop_post_code ON network.stop (post_code);
 CREATE INDEX idx_stop_zone_id ON network.stop (zone_id);
-CREATE INDEX idx_stop_geo_position ON network.stop USING GIST (geo_position);
+--CREATE INDEX idx_stop_geo_position ON network.stop USING GIST (geo_position);
 CREATE INDEX idx_stop_name ON network.stop (name);
 
 
@@ -1560,7 +1561,7 @@ CREATE TABLE network.scheduled_stop (
     id                 BIGSERIAL PRIMARY KEY,
     stop_id            BIGINT    NOT NULL REFERENCES network.stop(id), 
     stop_point_id      BIGINT             REFERENCES network.stop_point(id),
-    service_instance_id BIGINT    NOT NULL REFERENCES network.service_instance (id),
+    service_instance_id BIGINT   NOT NULL REFERENCES network.service_instance (id),
     sequence_order     INTEGER   NOT NULL,
     scheduled_time     TIMESTAMP NOT NULL,
     actual_time        TIMESTAMP,
@@ -1692,7 +1693,7 @@ CREATE TABLE network.service_calendar (
 -- Real-Time Data (Optimized)
 -- =========================================================
 -- DROP SCHEMA IF EXISTS operation cascade;
---CREATE SCHEMA IF NOT EXISTS operation;
+CREATE SCHEMA IF NOT EXISTS operation;
 ALTER ROLE postgres IN DATABASE transmodel SET search_path TO operation;
 
 -- =========================================================
@@ -1750,10 +1751,11 @@ CREATE TABLE operation.service_journey_status (
 -- =========================================================
 -- 
 -- =========================================================
+CREATE SCHEMA IF NOT EXISTS tracking;
 CREATE TABLE tracking.vehicle_position (
     vehicle_id    BIGINT REFERENCES operation.vehicle(id),
     recorded_at   TIMESTAMP NOT NULL,
-    geo_position  GEOGRAPHY (POINT, 4326),
+    geo           geography,
     speed         REAL,
     bearing       REAL,
     -- 
@@ -1763,7 +1765,7 @@ CREATE TABLE tracking.vehicle_position (
     PRIMARY KEY (vehicle_id, recorded_at)
 ) PARTITION BY RANGE (recorded_at);
 -- Recommended: daily partitions + retention policy.
-CREATE INDEX idx_vehicle_position_geo_position ON tracking.vehicle_position USING GIST (geo_position);
+--CREATE INDEX idx_vehicle_position_geo_position ON tracking.vehicle_position USING GIST (geo_position);
 
 -- =========================================================
 -- 
@@ -1784,7 +1786,179 @@ CREATE TABLE tracking.realtime_stop_update (
 CREATE INDEX idx_rt_update_lookup ON tracking.realtime_stop_update (service_instance_id, stop_point_id);
 CREATE INDEX idx_rt_update_recent ON tracking.realtime_stop_update (service_instance_id, updated_at DESC);
 
- 
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- =========================================================
+--{
+--    "response":
+--    {
+--        "rc" : ["OK", "ERROR"]    // if rc == "OK" move on to "result" else go to "error"
+--        "result" : ""             // a single text field in json
+--
+--        "errors":
+--        {
+--            // these fields are for postgres and will/may be different for a different database
+--            "returned_sqlstate"     : "",
+--            "column_name"           : "",
+--            "constraint_name"       : "",
+--            "pg_datatype_name"      : "",
+--            "message_text"          : "",
+--            "table_name"            : "",
+--            "schema_name"           : "",
+--            "pg_exception_detail"   : "",
+--            "pg_exception_hint"     : "",
+--            "pg_exception_context"  : ""
+--        }
+--    }
+--}
+-- =========================================================
+-- =========================================================
+-- 
+-- =========================================================
+CREATE SCHEMA IF NOT EXISTS common;
+
+-- =========================================================
+-- 
+-- =========================================================
+CREATE OR REPLACE FUNCTION common.create_ok_response (rc TEXT, result json) RETURNS TEXT
+AS $$
+    DECLARE
+        _output TEXT;
+    BEGIN
+        SELECT INTO _output CONCAT ('{"RESPONSE": {"rc" :"', rc, '","result":', result, ',"errors":', '"N/A"}}');
+        RETURN _output;
+    END;
+$$ LANGUAGE plpgsql;
+
+
+-- =========================================================
+-- 
+-- =========================================================
+CREATE OR REPLACE FUNCTION common.create_error_response (rc TEXT, errors json) RETURNS TEXT
+AS $$
+    DECLARE
+        _output TEXT;
+    BEGIN
+        SELECT INTO _output CONCAT ('{"response": {"rc" :"', rc, '","result": "N/A", "errors":', errors, '}}');
+--        SELECT INTO _output CONCAT ('{"response": {"rc" :"', rc, '","errors":', errors, '}}');
+        RETURN _output;
+    END;
+$$ LANGUAGE plpgsql;
+
+
+-- =========================================================
+-- 
+-- =========================================================
+CREATE OR REPLACE FUNCTION common.function_wrapper (functionName text, input json) RETURNS TEXT 
+AS $$
+    DECLARE
+        v_RETURNED_SQLSTATE     text;   -- the SQLSTATE error code of the exception
+        v_COLUMN_NAME           text;   -- the name of the column related to exception
+        v_CONSTRAINT_NAME       text;   -- the name of the constraint related to exception
+        v_PG_DATATYPE_NAME      text;   -- the name of the data type related to exception
+        v_MESSAGE_TEXT          text;   -- the text of the exception's primary message
+        v_TABLE_NAME            text;   -- the name of the table related to exception
+        v_SCHEMA_NAME           text;   -- the name of the schema related to exception
+        v_PG_EXCEPTION_DETAIL   text;   -- the text of the exception's detail message, if any
+        v_PG_EXCEPTION_HINT     text;   -- the text of the exception's hint message, if any
+        v_PG_EXCEPTION_CONTEXT  text;   -- line(s) of text describing the call stack at the time of the exception (see Section 41.6.9)
+
+        _result TEXT;
+        _errors json;
+        _query  TEXT;
+        
+        BEGIN
+
+            _query = 'SELECT ' || $1::regproc || ' (''' || $2::json || ''')';
+            EXECUTE  _query INTO _result;
+            SELECT common.create_ok_response ('OK'::TEXT, _result::json) INTO _result;
+            RETURN _result;
+
+            EXCEPTION WHEN OTHERS THEN
+                  GET STACKED DIAGNOSTICS 
+                        v_RETURNED_SQLSTATE   = RETURNED_SQLSTATE,
+                        v_COLUMN_NAME         = COLUMN_NAME,
+                        v_CONSTRAINT_NAME     = CONSTRAINT_NAME,
+                        v_PG_DATATYPE_NAME    = PG_DATATYPE_NAME,
+                        v_MESSAGE_TEXT        = MESSAGE_TEXT,
+                        v_TABLE_NAME          = TABLE_NAME,
+                        v_SCHEMA_NAME         = SCHEMA_NAME,
+                        v_PG_EXCEPTION_DETAIL = PG_EXCEPTION_DETAIL,
+                        v_PG_EXCEPTION_HINT   = PG_EXCEPTION_HINT,
+                        v_PG_EXCEPTION_CONTEXT= PG_EXCEPTION_CONTEXT;
+                
+--                    SELECT INTO _errors json_build_object('errors', 
+                    SELECT  INTO _errors json_build_object( 
+                            'RETURNED_SQLSTATE' ,    v_RETURNED_SQLSTATE,
+                            'COLUMN_NAME'       ,    v_COLUMN_NAME,
+                            'CONSTRAINT_NAME'   ,    v_CONSTRAINT_NAME,
+                            'PG_DATATYPE_NAME'  ,    v_PG_DATATYPE_NAME,
+                            'MESSAGE_TEXT'      ,    v_MESSAGE_TEXT,
+                            'TABLE_NAME'        ,    v_TABLE_NAME,
+                            'SCHEMA_NAME'       ,    v_SCHEMA_NAME,
+                            'PG_EXCEPTION_DETAI',    v_PG_EXCEPTION_DETAIL,
+                            'PG_EXCEPTION_HINT' ,    v_PG_EXCEPTION_HINT,
+                            'PG_EXCEPTION_CONTEXT' , v_PG_EXCEPTION_CONTEXT);
+                    SELECT common.create_error_response ('error', _errors) INTO _result;
+                    RETURN _result;
+        END;
+$$ LANGUAGE plpgsql;
+
+
+-- =========================================================
+-- 
+-- =========================================================
+CREATE OR REPLACE FUNCTION network.insert_network (input json) RETURNS json AS $$
+    DECLARE
+        _code TEXT := (input::json->>'code');
+        _name TEXT := (input::json->>'name');
+        _result json;
+        _id   BIGINT;
+    BEGIN
+        INSERT INTO network.network (code, name) VALUES (_code, _name) RETURNING id INTO _id;
+        _result = json_build_object('id', _id);
+        return _result;
+    END;
+$$ LANGUAGE plpgsql;
+
+
+-- =========================================================
+-- 
+-- =========================================================
+CREATE OR REPLACE FUNCTION network.operator_insert (input json) RETURNS json AS $$
+    DECLARE
+        _code TEXT := (input::json->>'code');
+        _name TEXT := (input::json->>'name');
+        _result json;
+        _id   BIGINT;
+    BEGIN
+        INSERT INTO network.operator (code, name) VALUES (_code, _name) RETURNING id INTO _id;
+        _result = json_build_object('id', _id);
+        return _result;
+    END;
+$$ LANGUAGE plpgsql;
+
+
+-- =========================================================
+-- 
+-- =========================================================
+CREATE OR REPLACE FUNCTION network.operator_get_all () RETURNS json AS $$
+    DECLARE
+        _result json;
+    BEGIN
+        select row_to_json (row) from (select * from network.operator) row;
+    END;
+$$ LANGUAGE plpgsql;
+
+
 -- =========================================================
 -- =========================================================
 --DROP SCHEMA IF EXISTS public CASCADE;
@@ -1818,19 +1992,30 @@ INSERT INTO network.line (name, public_code, trans_mode, operator_id )
 
 INSERT INTO network.zone (code, name) VALUES ('WMID', 'West Midlands'),
                                              ('LON',  'London');
-INSERT INTO network.stop (code, name, type, zone_id, post_code, geo_position) 
-        VALUES ('DGBT', 'Digbeth Coach Station', 'STATION', 1, 'B2', 'POINT(33.9434, -118.4079)'),
-               ('LOVC', 'London Victoria Coach Station', 'STATION', 2, 'W12', 'POINT(-0.1482, 51.4925)');
-    
+INSERT INTO network.stop (code, name, type, zone_id, post_code, geo) 
+        VALUES ('DGBT', 'Digbeth Coach Station',         'STATION', 1, 'B2',  'POINT(-1.888361  52.475453)'::geography),
+               ('LOVC', 'London Victoria Coach Station', 'STATION', 2, 'W12', 'POINT(-0.148277 -51.492525)'::geography);
+
 INSERT INTO network.service (line_id, code, compass_direction, from_stop_id, to_stop_id)
         VALUES (1, 'BRLO', 'E', 1, 2);
+-- =========================================================
+-- =========================================================
+SELECT common.function_wrapper ('network.insert_operator', '{"code": "EXL", "name": "Express Leisure Coaches"}'::json);
+
+select network.operator_get_all ();
+select row_to_json (row) from (select * from network.operator) row;
 
 -- =========================================================
 -- =========================================================
 -- =========================================================
 -- =========================================================
 -- =========================================================
-
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- =========================================================
 -- Mapping to GTFS & NeTEx
 --GTFS Mapping
 --GTFS Table	This Schema
