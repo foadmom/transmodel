@@ -5,11 +5,18 @@
 DROP DATABASE IF EXISTS transmodel WITH (FORCE);
 --
 CREATE DATABASE transmodel OWNER postgres;
+
 \c transmodel;
+DROP SCHEMA public;
+CREATE SCHEMA IF NOT EXISTS common;
+CREATE SCHEMA IF NOT EXISTS reference;
+CREATE SCHEMA IF NOT EXISTS network;
+CREATE SCHEMA IF NOT EXISTS operation;
+CREATE SCHEMA IF NOT EXISTS tracking;
 
---DROP SCHEMA public;
-
-ALTER ROLE postgres IN DATABASE transmodel SET search_path TO common;
+--grant create on schema common to postgres;
+--SHOW search_path;
+SET search_path TO common;
 
 CREATE TYPE TRANSPORT_MODE AS ENUM ('BUS','COACH','TRAIN');
 CREATE TYPE STOP_TYPE AS ENUM ('STATION','TERMINAL','STOP');
@@ -24,16 +31,6 @@ CREATE TYPE FUEL_TYPE AS ENUM ('PETROL', 'DIESEL', 'GAS', 'ELECTRIC');
 CREATE EXTENSION IF NOT EXISTS postgis;
 CREATE EXTENSION IF NOT EXISTS btree_gist;
 CREATE EXTENSION IF NOT EXISTS pg_trgm;
-
-
-CREATE SCHEMA IF NOT EXISTS common;
-CREATE SCHEMA IF NOT EXISTS reference;
-CREATE SCHEMA IF NOT EXISTS network;
-CREATE SCHEMA IF NOT EXISTS operation;
-CREATE SCHEMA IF NOT EXISTS tracking;
-
-
-\c transmodel
 
 -- =========================================================
 -- ENUM Types
@@ -1332,10 +1329,10 @@ CREATE TABLE IF NOT EXISTS network.stop (
     id              BIGSERIAL PRIMARY KEY,
     code            VARCHAR (8) NOT NULL,
     name            VARCHAR (64),
-    type            public.STOP_TYPE NOT NULL,
+    type            common.STOP_TYPE NOT NULL,
     zone_id         BIGINT NOT NULL , 
     post_code       VARCHAR (16),
-    geo             public.geography,
+    geo             common.geography,
     additional_info VARCHAR (256),
     -- 
     created_at TIMESTAMP DEFAULT now(),
@@ -1441,7 +1438,7 @@ CREATE TABLE network.operator_network (
     id            BIGSERIAL PRIMARY KEY,
 	operator_id   BIGINT REFERENCES network.operator (id),
 	network_id    BIGINT REFERENCES network.network (id),
-    trans_mode    public.TRANSPORT_MODE NOT NULL,
+    trans_mode    common.TRANSPORT_MODE NOT NULL,
     country_id    BIGINT  NOT NULL REFERENCES reference.country (id),
     -- 
     created_at TIMESTAMP DEFAULT now(),
@@ -1473,7 +1470,7 @@ CREATE TABLE network.line (
     id          BIGSERIAL PRIMARY KEY,
     name        VARCHAR (128) NOT NULL,
     public_code VARCHAR (8),
-    trans_mode  public.TRANSPORT_MODE NOT NULL,
+    trans_mode  common.TRANSPORT_MODE NOT NULL,
     operator_id BIGINT  NOT NULL REFERENCES network.operator(id),
     --
     created_at TIMESTAMP DEFAULT now(),
@@ -1501,9 +1498,9 @@ CREATE INDEX idx_line_operator_id ON network.line (operator_id);
 CREATE TABLE network.service (
     id                BIGSERIAL PRIMARY KEY,
     line_id           BIGINT REFERENCES network.line(id),
-    code              VARCHAR (8) UNIQUE NOT NULL,		-- eg FLX-241
+    code              VARCHAR (8) NOT NULL,		-- eg FLX-241
 --    service_direction SERVICE_DIRECTION NOT NULL,
-    compass_direction public.COMPASS_DIRECTION,
+    compass_direction common.COMPASS_DIRECTION,
     from_stop_id      BIGINT REFERENCES network.stop(id),
     to_stop_id        BIGINT REFERENCES network.stop(id),
     distance_meters   INTEGER,
@@ -1706,7 +1703,7 @@ CREATE TABLE IF NOT EXISTS operation.vehicle (
     vehicle_type VARCHAR (20),
     capacity     INT NOT NULL,
     seat_layout  BIGINT, -- REFERENCES coach_seats_layout(id),
-    fuel         public.FUEL_TYPE NOT NULL,
+    fuel         common.FUEL_TYPE NOT NULL,
     operator_id  BIGINT REFERENCES network.operator(id),
     -- 
     created_at TIMESTAMP DEFAULT now(),
@@ -1737,7 +1734,7 @@ CREATE TABLE operation.vehicle_service_assignment (
 -- =========================================================
 CREATE TABLE operation.service_journey_status (
     service_journey_id BIGINT PRIMARY KEY REFERENCES network.service_instance(id),
-    status             public.JOURNEY_STATUS,
+    status             common.JOURNEY_STATUS,
     -- 
     created_at TIMESTAMP DEFAULT now(),
     updated_at TIMESTAMP DEFAULT now(),
@@ -1755,7 +1752,7 @@ CREATE TABLE operation.service_journey_status (
 CREATE TABLE tracking.vehicle_position (
     vehicle_id    BIGINT REFERENCES operation.vehicle(id),
     recorded_at   TIMESTAMP NOT NULL,
-    geo           public.geography,
+    geo           common.geography,
     speed         REAL,
     bearing       REAL,
     -- 
@@ -1777,7 +1774,7 @@ CREATE TABLE tracking.realtime_stop_update (
     delay_seconds       INTEGER,
     predicted_arrival_time   TIMESTAMP,
     predicted_departure_time TIMESTAMP,
-    status                   public.REALTIME_STATUS,
+    status                   common.REALTIME_STATUS,
     -- 
     created_at TIMESTAMP DEFAULT now(),
     updated_at TIMESTAMP DEFAULT now(),
@@ -1963,13 +1960,12 @@ CREATE OR REPLACE FUNCTION network.operator_get_all () RETURNS json AS $$
     DECLARE
         _result json;
     BEGIN
-        select INTO _result row_to_json (row) from (select * from network.operator) row;
-		RETURN _result;
---        select row_to_json (row) from (select * from network.operator) row;
-
+        SELECT INTO _result json_agg(t) FROM (select * from network.operator) t;
+        RETURN _result;
     END;
 $$ LANGUAGE plpgsql;
 
+select network.operator_get_all ();
 -- =========================================================
 -- =========================================================
 -- =========================================================
@@ -1982,32 +1978,120 @@ CREATE OR REPLACE FUNCTION network.operator_network_insert (input json) RETURNS 
         v_country_iso2 TEXT := input::json->>'country_iso2';
         v_operator_code TEXT := input::json->>'operator_code';
         v_network_code TEXT := input::json->>'network_code';
-		_operator_id BIGINT;
-		_network_id BIGINT;
-		_trans_mode public.TRANSPORT_MODE = v_trans_mode::public.TRANSPORT_MODE;
-		_country_id BIGINT;
+        _id BIGINT;
+        _result json;
     BEGIN
-		select into _operator_id (SELECT id FROM network.operator WHERE code=v_operator_code);
-		select into _network_id (SELECT id FROM network.network WHERE code=v_network_code);
-        SELECT INTO _country_id (SELECT id FROM reference.country WHERE iso2=v_country_iso2);
         -- function body here
 	    INSERT INTO network.operator_network (operator_id, network_id, trans_mode, country_id) 
-			VALUES (_operator_id, _network_id, v_trans_mode, _country_id);
---          VALUES     ((SELECT id FROM network.operator WHERE code=v_operator_code),
---                     (SELECT id FROM network.network WHERE code=v_network_code), 
---                     v_trans_mode::TRANSPORT_MODE, 
---                     (SELECT id FROM reference.country WHERE iso2=v_country_iso2));
+          VALUES     ((SELECT id FROM network.operator WHERE code=v_operator_code),
+                     (SELECT id FROM network.network WHERE code=v_network_code), 
+                     v_trans_mode::common.TRANSPORT_MODE, 
+                     (SELECT id FROM reference.country WHERE iso2=v_country_iso2)) RETURNING id INTO _id;
+        _result = json_build_object('id', _id);
 
-        RETURN input;
+        RETURN _result;
     END;
 $$ LANGUAGE plpgsql;
 
-SELECT common.function_wrapper ('network.operator_network_insert', 
-                   '{"operator_code": "NEX", "network_code": "EN", "trans_mode":"COACH", "country_iso2":"GB"}'::json);
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- '{"name": "London Bristol", "public_code": "LBRRIS", "trans_mode": "COACH", "operator_code": "NEX"}'
+-- =========================================================
+CREATE OR REPLACE FUNCTION network.line_insert (input json) RETURNS text AS $$
+    DECLARE
+        v_name TEXT := input::json->>'name';
+        v_public_code TEXT := input::json->>'public_code';
+        v_trans_mode TEXT := input::json->>'trans_mode';
+        v_operator_code TEXT := input::json->>'operator_code';
+        _id BIGINT;
+        _result json;
+    BEGIN
+        -- function body here
+        INSERT INTO network.line (name, public_code, trans_mode, operator_id )
+            VALUES (v_name, v_public_code, v_trans_mode::common.TRANSPORT_MODE, 
+                    (SELECT id FROM network.operator WHERE code=v_operator_code)) RETURNING id INTO _id;
+        _result = json_build_object('id', _id);
+
+        RETURN _result;
+    END;
+$$ LANGUAGE plpgsql;
+
+SELECT id FROM network.operator WHERE code='NEX';
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- {"code": "WMID", "name": "West Midlands"}'
+-- =========================================================
+CREATE OR REPLACE FUNCTION network.zone_insert (input json) RETURNS json AS $$
+    DECLARE
+        v_code TEXT := (input::json->>'code');
+        v_name TEXT := (input::json->>'name');
+        _result json;
+        _id   BIGINT;
+    BEGIN
+        INSERT INTO network.zone (code, name) VALUES (v_code, v_name) RETURNING id INTO _id;
+        _result = json_build_object('id', _id);
+        return _result;
+    END;
+$$ LANGUAGE plpgsql;
+
 
 -- =========================================================
 -- =========================================================
---DROP SCHEMA IF EXISTS public CASCADE;
+-- =========================================================
+-- {"code": "DGBT", "name": "Digbeth Coach Station", "type": "STATION", 
+--  "zone_code":"WMID", "post_code":"B5 6DD", "geo": "POINT(-1.888361  52.475453)"}
+-- =========================================================
+CREATE OR REPLACE FUNCTION network.insert_stop (input json) RETURNS text AS $$
+    DECLARE
+        v_code TEXT := input::json->>'code';
+        v_name TEXT := input::json->>'name';
+        v_type TEXT := input::json->>'type';
+        v_zone_code TEXT := input::json->>'zone_code';
+        v_post_code TEXT := input::json->>'post_code';
+        v_geo TEXT := input::json->>'geo';
+        _result json;
+        _id   BIGINT;
+    BEGIN
+        -- function body here
+        INSERT INTO network.stop (code, name, type, zone_id, post_code, geo) 
+            VALUES (v_code, v_name, v_type::common.STOP_TYPE, 
+                   (SELECT id FROM network.zone WHERE code=v_zone_code),
+                   v_post_code, v_geo::common.geography) RETURNING id INTO _id;
+        _result = json_build_object('id', _id);
+        return _result;
+    END;
+$$ LANGUAGE plpgsql;
+
+-- =========================================================
+-- =========================================================
+-- =========================================================
+-- {"line_public_code":  "LONBIR", "code": "BRLO", "compass_direction": "S", 
+--  "from_stop_code": "DGBT", "to_stop_code": "LOVC"}
+-- =========================================================
+CREATE OR REPLACE FUNCTION network.service_insert (input json) RETURNS text AS $$
+    DECLARE
+        v_line_public_code TEXT := input::json->>'line_public_code';
+        v_code TEXT := input::json->>'code';
+        v_compass_direction TEXT := input::json->>'compass_direction';
+        v_from_stop_code TEXT := input::json->>'from_stop_code';
+        v_to_stop_code TEXT := input::json->>'to_stop_code';
+        _result json;
+        _id   BIGINT;
+    BEGIN
+        -- function body here
+        INSERT INTO network.service (line_id, code, compass_direction, from_stop_id, to_stop_id)
+                VALUES ( (SELECT id FROM network.line WHERE public_code=v_line_public_code),
+                        v_code, v_compass_direction::common.COMPASS_DIRECTION,
+                        (select  id FROM network.stop WHERE code=v_from_stop_code),
+                        (select  id FROM network.stop WHERE code=v_to_stop_code)) RETURNING id INTO _id;
+
+        _result = json_build_object('id', _id);
+        return _result;
+    END;
+$$ LANGUAGE plpgsql;
+
 
 -- =========================================================
 -- =========================================================
@@ -2022,48 +2106,37 @@ ALTER ROLE postgres IN DATABASE transmodel SET search_path TO common;
 SELECT common.function_wrapper ('network.network_insert', '{"code": "EN", "name": "England"}'::json);
 SELECT common.function_wrapper ('network.network_insert', '{"code": "SC", "name": "Scotland"}'::json);
 
-
 SELECT common.function_wrapper ('network.operator_insert', '{"code": "NEX", "name": "National Express"}'::json);
 SELECT common.function_wrapper ('network.operator_insert', '{"code": "FLB", "name": "Flixbus"}'::json);
 SELECT common.function_wrapper ('network.operator_insert', '{"code": "EXL", "name": "Express Leisure Coaches"}'::json);
 
-
 SELECT common.function_wrapper ('network.operator_network_insert', 
-                   '{"operator_code": "NEX", "network_code": "EN", "trans_mode":"COACH", "country_iso2":"GB"}'::json);
+        '{"operator_code": "NEX", "network_code": "EN", "trans_mode":"COACH", "country_iso2":"GB"}'::json);
 
-INSERT INTO network.operator_network (operator_id, network_id, trans_mode, country_id) 
-      VALUES     ((SELECT id FROM network.operator WHERE code='NEX'),
-            (SELECT id FROM network.network WHERE code='UK'), 'COACH', 
-            (SELECT id FROM reference.country WHERE iso2='GB'));
+SELECT common.function_wrapper ('network.line_insert', 
+        '{"name": "London Bristol", "public_code": "LODBRS", "trans_mode": "COACH", "operator_code": "NEX"}'::json);
+SELECT common.function_wrapper ('network.line_insert', 
+        '{"name": "London Birmingham", "public_code": "LONBIR", "trans_mode": "COACH", "operator_code": "NEX"}'::json);
 
 
+SELECT common.function_wrapper ('network.zone_insert', '{"code": "WMID", "name": "West Midlands"}'::json);
+SELECT common.function_wrapper ('network.zone_insert', '{"code": "LON",  "name": "London"}'::json);
 
---INSERT INTO network.operator_network (operator_id, network_id, trans_mode, country_id) 
---      VALUES     ((SELECT id FROM network.operator WHERE code='FLB'),
---            (SELECT id FROM network.network WHERE code='SC'), 'COACH', 
---            (SELECT id FROM reference.country WHERE iso2='GB'));
+SELECT common.function_wrapper ('network.insert_stop', 
+    '{"code": "DGBT", "name": "Digbeth Coach Station", "type": "STATION", "zone_code":"WMID", "post_code":"B5 6DD", "geo": "POINT(-1.888361  52.475453)"}'::json);
+SELECT common.function_wrapper ('network.insert_stop', 
+    '{"code": "LOVC", "name": "London Victoria Coach Station", "type": "STATION", "zone_code":"LON", "post_code":"SW1W 9TP", "geo": "POINT(-0.147694 51.492419)"}'::json);
 
-INSERT INTO network.line (name, public_code, trans_mode, operator_id )
-        VALUES ('Birstol to London', 'BTL01', 'COACH', 1);
 
-INSERT INTO network.zone (code, name) VALUES ('WMID', 'West Midlands'),
-                                             ('LON',  'London');
-INSERT INTO network.stop (code, name, type, zone_id, post_code, geo) 
-        VALUES ('DGBT', 'Digbeth Coach Station',         'STATION', 1, 'B2',  'POINT(-1.888361  52.475453)'::public.geography),
-               ('LOVC', 'London Victoria Coach Station', 'STATION', 2, 'W12', 'POINT(-0.148277 -51.492525)'::public.geography);
-
-INSERT INTO network.service (line_id, code, compass_direction, from_stop_id, to_stop_id)
-        VALUES (1, 'BRLO', 'E', 1, 2);
-
+SELECT common.function_wrapper ('network.service_insert', 
+        '{"line_public_code":  "LONBIR", "code": "BRLO", "compass_direction": "S", "from_stop_code": "DGBT", "to_stop_code": "LOVC"}');
+SELECT common.function_wrapper ('network.service_insert', 
+        '{"line_public_code":  "LONBIR", "code": "BRLO", "compass_direction": "N", "from_stop_code": "LOVC", "to_stop_code": "DGBT"}');
 
 
 -- =========================================================
 -- =========================================================
-SELECT id FROM reference.country WHERE iso2='GB';
-SELECT common.function_wrapper ('network.insert_operator', '{"code": "EXL", "name": "Express Leisure Coaches"}'::json);
 
-select network.operator_get_all ();
-select row_to_json (row) from (select * from network.operator) row;
 
 -- =========================================================
 -- =========================================================
@@ -2156,7 +2229,7 @@ select row_to_json (row) from (select * from network.operator) row;
 --Copy code
 --SELECT id, name
 --FROM stop_place
---ORDER BY geo_position <-> ST_MakePoint(:lon, :lat)::public.geography
+--ORDER BY geo_position <-> ST_MakePoint(:lon, :lat)::common.geography
 --LIMIT 5;
 
 
