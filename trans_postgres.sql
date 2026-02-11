@@ -1868,13 +1868,16 @@ AS $$
         v_PG_EXCEPTION_HINT     text;   -- the text of the exception's hint message, if any
         v_PG_EXCEPTION_CONTEXT  text;   -- line(s) of text describing the call stack at the time of the exception (see Section 41.6.9)
 
-        _result TEXT;
+		_result TEXT;
         _errors json;
         _query  TEXT;
         
         BEGIN
-
-            _query = 'SELECT ' || $1::regproc || ' (''' || $2::json || ''')';
+			IF input IS NULL THEN
+            	_query = 'SELECT ' || $1::regproc || ' ()';
+			ELSE
+            	_query = 'SELECT ' || $1::regproc || ' (''' || $2::json || ''')';
+			END IF;
             EXECUTE  _query INTO _result;
             SELECT common.create_ok_response ('OK'::TEXT, _result::json) INTO _result;
             RETURN _result;
@@ -1909,6 +1912,7 @@ AS $$
         END;
 $$ LANGUAGE plpgsql;
 
+select common.function_wrapper ('network.operator_get_all', NULL);
 
 -- =========================================================
 -- =========================================================
@@ -1960,12 +1964,14 @@ CREATE OR REPLACE FUNCTION network.operator_get_all () RETURNS json AS $$
     DECLARE
         _result json;
     BEGIN
-        SELECT INTO _result json_agg(t) FROM (select * from network.operator) t;
+        SELECT json_agg(t) FROM (select * from network.operator) t INTO _result;
         RETURN _result;
     END;
 $$ LANGUAGE plpgsql;
 
-select network.operator_get_all ();
+--select network.operator_get_all ();
+--select common.function_wrapper ('network.operator_get_all', '{}'::json);
+
 -- =========================================================
 -- =========================================================
 -- =========================================================
