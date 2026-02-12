@@ -1854,7 +1854,7 @@ $$ LANGUAGE plpgsql;
 -- =========================================================
 -- 
 -- =========================================================
-CREATE OR REPLACE FUNCTION common.function_wrapper (functionName text, input json) RETURNS TEXT 
+CREATE OR REPLACE FUNCTION common.function_wrapper (functionName text, input TEXT) RETURNS TEXT 
 AS $$
     DECLARE
         v_RETURNED_SQLSTATE     text;   -- the SQLSTATE error code of the exception
@@ -1873,7 +1873,7 @@ AS $$
         _query  TEXT;
         
         BEGIN
-			IF input IS NULL THEN
+			IF (input IS NULL) OR (input = '') THEN
             	_query = 'SELECT ' || $1::regproc || ' ()';
 			ELSE
             	_query = 'SELECT ' || $1::regproc || ' (''' || $2::json || ''')';
@@ -1895,24 +1895,22 @@ AS $$
                         v_PG_EXCEPTION_HINT   = PG_EXCEPTION_HINT,
                         v_PG_EXCEPTION_CONTEXT= PG_EXCEPTION_CONTEXT;
                 
---                    SELECT INTO _errors json_build_object('errors', 
                     SELECT  INTO _errors json_build_object( 
-                            'RETURNED_SQLSTATE' ,    v_RETURNED_SQLSTATE,
-                            'COLUMN_NAME'       ,    v_COLUMN_NAME,
-                            'CONSTRAINT_NAME'   ,    v_CONSTRAINT_NAME,
-                            'PG_DATATYPE_NAME'  ,    v_PG_DATATYPE_NAME,
-                            'MESSAGE_TEXT'      ,    v_MESSAGE_TEXT,
-                            'TABLE_NAME'        ,    v_TABLE_NAME,
-                            'SCHEMA_NAME'       ,    v_SCHEMA_NAME,
-                            'PG_EXCEPTION_DETAI',    v_PG_EXCEPTION_DETAIL,
-                            'PG_EXCEPTION_HINT' ,    v_PG_EXCEPTION_HINT,
-                            'PG_EXCEPTION_CONTEXT' , v_PG_EXCEPTION_CONTEXT);
+                            'RETURNED_SQLSTATE'    ,    v_RETURNED_SQLSTATE,
+                            'COLUMN_NAME'          ,    v_COLUMN_NAME,
+                            'CONSTRAINT_NAME'      ,    v_CONSTRAINT_NAME,
+                            'PG_DATATYPE_NAME'     ,    v_PG_DATATYPE_NAME,
+                            'MESSAGE_TEXT'         ,    v_MESSAGE_TEXT,
+                            'TABLE_NAME'           ,    v_TABLE_NAME,
+                            'SCHEMA_NAME'          ,    v_SCHEMA_NAME,
+                            'PG_EXCEPTION_DETAIL'  ,    v_PG_EXCEPTION_DETAIL,
+                            'PG_EXCEPTION_HINT'    ,    v_PG_EXCEPTION_HINT,
+                            'PG_EXCEPTION_CONTEXT' ,    v_PG_EXCEPTION_CONTEXT);
                     SELECT common.create_error_response ('error', _errors) INTO _result;
                     RETURN _result;
         END;
 $$ LANGUAGE plpgsql;
 
-select common.function_wrapper ('network.operator_get_all', NULL);
 
 -- =========================================================
 -- =========================================================
@@ -2023,7 +2021,7 @@ CREATE OR REPLACE FUNCTION network.line_insert (input json) RETURNS text AS $$
     END;
 $$ LANGUAGE plpgsql;
 
-SELECT id FROM network.operator WHERE code='NEX';
+--SELECT id FROM network.operator WHERE code='NEX';
 -- =========================================================
 -- =========================================================
 -- =========================================================
@@ -2109,29 +2107,29 @@ $$ LANGUAGE plpgsql;
 -- =========================================================
 ALTER ROLE postgres IN DATABASE transmodel SET search_path TO common;
 
-SELECT common.function_wrapper ('network.network_insert', '{"code": "EN", "name": "England"}'::json);
-SELECT common.function_wrapper ('network.network_insert', '{"code": "SC", "name": "Scotland"}'::json);
+SELECT common.function_wrapper ('network.network_insert', '{"code": "EN", "name": "England"}');
+SELECT common.function_wrapper ('network.network_insert', '{"code": "SC", "name": "Scotland"}');
 
-SELECT common.function_wrapper ('network.operator_insert', '{"code": "NEX", "name": "National Express"}'::json);
-SELECT common.function_wrapper ('network.operator_insert', '{"code": "FLB", "name": "Flixbus"}'::json);
-SELECT common.function_wrapper ('network.operator_insert', '{"code": "EXL", "name": "Express Leisure Coaches"}'::json);
+SELECT common.function_wrapper ('network.operator_insert', '{"code": "NEX", "name": "National Express"}');
+SELECT common.function_wrapper ('network.operator_insert', '{"code": "FLB", "name": "Flixbus"}');
+SELECT common.function_wrapper ('network.operator_insert', '{"code": "EXL", "name": "Express Leisure Coaches"}');
 
 SELECT common.function_wrapper ('network.operator_network_insert', 
-        '{"operator_code": "NEX", "network_code": "EN", "trans_mode":"COACH", "country_iso2":"GB"}'::json);
+        '{"operator_code": "NEX", "network_code": "EN", "trans_mode":"COACH", "country_iso2":"GB"}');
 
 SELECT common.function_wrapper ('network.line_insert', 
-        '{"name": "London Bristol", "public_code": "LODBRS", "trans_mode": "COACH", "operator_code": "NEX"}'::json);
+        '{"name": "London Bristol", "public_code": "LODBRS", "trans_mode": "COACH", "operator_code": "NEX"}');
 SELECT common.function_wrapper ('network.line_insert', 
-        '{"name": "London Birmingham", "public_code": "LONBIR", "trans_mode": "COACH", "operator_code": "NEX"}'::json);
+        '{"name": "London Birmingham", "public_code": "LONBIR", "trans_mode": "COACH", "operator_code": "NEX"}');
 
 
-SELECT common.function_wrapper ('network.zone_insert', '{"code": "WMID", "name": "West Midlands"}'::json);
-SELECT common.function_wrapper ('network.zone_insert', '{"code": "LON",  "name": "London"}'::json);
+SELECT common.function_wrapper ('network.zone_insert', '{"code": "WMID", "name": "West Midlands"}');
+SELECT common.function_wrapper ('network.zone_insert', '{"code": "LON",  "name": "London"}');
 
 SELECT common.function_wrapper ('network.insert_stop', 
-    '{"code": "DGBT", "name": "Digbeth Coach Station", "type": "STATION", "zone_code":"WMID", "post_code":"B5 6DD", "geo": "POINT(-1.888361  52.475453)"}'::json);
+    '{"code": "DGBT", "name": "Digbeth Coach Station", "type": "STATION", "zone_code":"WMID", "post_code":"B5 6DD", "geo": "POINT(-1.888361  52.475453)"}');
 SELECT common.function_wrapper ('network.insert_stop', 
-    '{"code": "LOVC", "name": "London Victoria Coach Station", "type": "STATION", "zone_code":"LON", "post_code":"SW1W 9TP", "geo": "POINT(-0.147694 51.492419)"}'::json);
+    '{"code": "LOVC", "name": "London Victoria Coach Station", "type": "STATION", "zone_code":"LON", "post_code":"SW1W 9TP", "geo": "POINT(-0.147694 51.492419)"}');
 
 
 SELECT common.function_wrapper ('network.service_insert', 
