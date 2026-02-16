@@ -1446,9 +1446,10 @@ CREATE TABLE network.operator_network (
     updated_by VARCHAR (32) DEFAULT CURRENT_USER
 );
 CREATE INDEX idx_operator_network_operator_id ON network.operator_network (operator_id);
+CREATE INDEX idx_operator_network_network_id  ON network.operator_network (network_id);
 CREATE INDEX idx_operator_network_trans_mode  ON network.operator_network (trans_mode);
 CREATE INDEX idx_operator_network_country_id  ON network.operator_network (country_id);
-CREATE INDEX idx_operator_network_network_id  ON network.operator_network (network_id);
+CREATE UNIQUE INDEX idx_operator_network_network_id_compo  ON network.operator_network (operator_id, network_id);
 
 
 -- =========================================================
@@ -1498,7 +1499,7 @@ CREATE INDEX idx_line_operator_id ON network.line (operator_id);
 CREATE TABLE network.service (
     id                BIGSERIAL PRIMARY KEY,
     line_id           BIGINT REFERENCES network.line(id),
-    code              VARCHAR (8) NOT NULL,		-- eg FLX-241
+    code              VARCHAR (16) NOT NULL,		-- eg FLX-241
 --    service_direction SERVICE_DIRECTION NOT NULL,
     compass_direction common.COMPASS_DIRECTION,
     from_stop_id      BIGINT REFERENCES network.stop(id),
@@ -1830,7 +1831,7 @@ AS $$
     DECLARE
         _output TEXT;
     BEGIN
-        SELECT INTO _output CONCAT ('{"RESPONSE": {"rc" :"', rc, '","result":', result, ',"errors":', '"N/A"}}');
+        SELECT INTO _output CONCAT ('{"RESPONSE": {"rc" :"', rc, '","result":', result, ',"errors":', '"No"}}');
         RETURN _output;
     END;
 $$ LANGUAGE plpgsql;
@@ -1844,7 +1845,7 @@ AS $$
     DECLARE
         _output TEXT;
     BEGIN
-        SELECT INTO _output CONCAT ('{"response": {"rc" :"', rc, '","result": "N/A", "errors":', errors, '}}');
+        SELECT INTO _output CONCAT ('{"response": {"rc" :"', rc, '","result": "No", "errors":', errors, '}}');
 --        SELECT INTO _output CONCAT ('{"response": {"rc" :"', rc, '","errors":', errors, '}}');
         RETURN _output;
     END;
@@ -2098,6 +2099,31 @@ $$ LANGUAGE plpgsql;
 
 
 -- =========================================================
+-- 
+-- =========================================================
+CREATE OR REPLACE FUNCTION network.service_link_insert (input json) RETURNS text AS $$
+    DECLARE
+        v_to_stop_code    TEXT    := input::json->>'to_stop_code';
+        v_distance_meters NUMERIC := (input::json->>'distance_meters')::NUMERIC;
+        v_sequence_order  NUMERIC := (input::json->>'sequence_order')::NUMERIC;
+        v_service_code    TEXT    := input::json->>'service_code';
+        v_from_stop_code  TEXT    := input::json->>'from_stop_code';
+        _result TEXT;
+        _id   BIGINT;
+    BEGIN
+        -- function body here
+        INSERT INTO network.service_link (service_id, from_stop_id, to_stop_id, distance_meters, sequence_order)
+            VALUES ( (SELECT id FROM network.service WHERE code=v_service_code),
+                     (SELECT id FROM network.stop    WHERE code=v_from_stop_code),
+                     (SELECT id FROM network.stop    WHERE code=v_to_stop_code), 20000, 1 
+                   ) returning id into _id;
+        _result = json_build_object('id', _id);
+        RETURN _result;
+    END;
+$$ LANGUAGE plpgsql;
+
+
+-- =========================================================
 -- =========================================================
 -- =========================================================
 -- =========================================================
@@ -2113,30 +2139,61 @@ SELECT common.function_wrapper ('network.network_insert', '{"code": "SC", "name"
 SELECT common.function_wrapper ('network.operator_insert', '{"code": "NEX", "name": "National Express"}');
 SELECT common.function_wrapper ('network.operator_insert', '{"code": "FLB", "name": "Flixbus"}');
 SELECT common.function_wrapper ('network.operator_insert', '{"code": "EXL", "name": "Express Leisure Coaches"}');
+SELECT common.function_wrapper ('network.operator_insert', '{"code": "MGB", "name": "Mega Bus"}');
 
 SELECT common.function_wrapper ('network.operator_network_insert', 
         '{"operator_code": "NEX", "network_code": "EN", "trans_mode":"COACH", "country_iso2":"GB"}');
+SELECT common.function_wrapper ('network.operator_network_insert', 
+        '{"operator_code": "NEX", "network_code": "SC", "trans_mode":"COACH", "country_iso2":"GB"}');
+SELECT common.function_wrapper ('network.operator_network_insert', 
+        '{"operator_code": "MGB", "network_code": "SC", "trans_mode":"COACH", "country_iso2":"GB"}');
+SELECT common.function_wrapper ('network.operator_network_insert', 
+        '{"operator_code": "FLB", "network_code": "EN", "trans_mode":"COACH", "country_iso2":"GB"}');
 
 SELECT common.function_wrapper ('network.line_insert', 
         '{"name": "London Bristol", "public_code": "LODBRS", "trans_mode": "COACH", "operator_code": "NEX"}');
 SELECT common.function_wrapper ('network.line_insert', 
         '{"name": "London Birmingham", "public_code": "LONBIR", "trans_mode": "COACH", "operator_code": "NEX"}');
+SELECT common.function_wrapper ('network.line_insert', 
+        '{"name": "Birmingham Hull", "public_code": "BIRHUL", "trans_mode": "COACH", "operator_code": "NEX"}');
+SELECT common.function_wrapper ('network.line_insert', 
+        '{"name": "London Brighton", "public_code": "LONBRI", "trans_mode": "COACH", "operator_code": "NEX"}');
+SELECT common.function_wrapper ('network.line_insert', 
+        '{"name": "London Dover", "public_code": "LONDOV", "trans_mode": "COACH", "operator_code": "NEX"}');
+SELECT common.function_wrapper ('network.line_insert', 
+        '{"name": "London Dover", "public_code": "LONDOV", "trans_mode": "COACH", "operator_code": "FLB"}');
+SELECT common.function_wrapper ('network.line_insert', 
+        '{"name": "London Ipswich", "public_code": "LONIPS", "trans_mode": "COACH", "operator_code": "FLB"}');
 
 
 SELECT common.function_wrapper ('network.zone_insert', '{"code": "WMID", "name": "West Midlands"}');
 SELECT common.function_wrapper ('network.zone_insert', '{"code": "LON",  "name": "London"}');
+SELECT common.function_wrapper ('network.zone_insert', '{"code": "BUCK",  "name": "Buckingham"}');
+SELECT common.function_wrapper ('network.zone_insert', '{"code": "NORT",  "name": "Northmapton"}');
 
 SELECT common.function_wrapper ('network.insert_stop', 
     '{"code": "DGBT", "name": "Digbeth Coach Station", "type": "STATION", "zone_code":"WMID", "post_code":"B5 6DD", "geo": "POINT(-1.888361  52.475453)"}');
 SELECT common.function_wrapper ('network.insert_stop', 
-    '{"code": "LOVC", "name": "London Victoria Coach Station", "type": "STATION", "zone_code":"LON", "post_code":"SW1W 9TP", "geo": "POINT(-0.147694 51.492419)"}');
+    '{"code": "LOVICCS", "name": "London Victoria Coach Station", "type": "STATION", "zone_code":"LON", "post_code":"SW1W 9TP", "geo": "POINT(-0.147694 51.492419)"}');
+SELECT common.function_wrapper ('network.insert_stop', 
+    '{"code": "MKCEN", "name": "Milton Keynes Centre", "type": "STOP", "zone_code":"BUCK", "post_code":"SW1W 9TP", "geo": "POINT(-0.147694 51.492419)"}');
+SELECT common.function_wrapper ('network.insert_stop', 
+    '{"code": "COVCEN", "name": "Coventry Centre", "type": "STOP", "zone_code":"WMID", "post_code":"SW1W 9TP", "geo": "POINT(-0.147694 51.492419)"}');
+SELECT common.function_wrapper ('network.insert_stop', 
+    '{"code": "NORCST", "name": "Northhampton Coach Station", "type": "STATION", "zone_code":"NORT", "post_code":"SW1W 9TP", "geo": "POINT(-0.147694 51.492419)"}');
 
 
 SELECT common.function_wrapper ('network.service_insert', 
-        '{"line_public_code":  "LONBIR", "code": "BRLO", "compass_direction": "S", "from_stop_code": "DGBT", "to_stop_code": "LOVC"}');
+        '{"line_public_code":  "LONBIR", "code": "NX230_S", "compass_direction": "S", "from_stop_code": "DGBT", "to_stop_code": "LOVC"}');
 SELECT common.function_wrapper ('network.service_insert', 
-        '{"line_public_code":  "LONBIR", "code": "BRLO", "compass_direction": "N", "from_stop_code": "LOVC", "to_stop_code": "DGBT"}');
+        '{"line_public_code":  "LONBIR", "code": "NX230_N", "compass_direction": "N", "from_stop_code": "LOVC", "to_stop_code": "DGBT"}');
 
+SELECT common.function_wrapper ('network.service_link_insert', 
+            '{"service_code": "NX230_S", "from_stop_code": "DGBT", "to_stop_code": "COVCEN", "distance_meters": 20000, "sequence_order": 1}');
+SELECT common.function_wrapper ('network.service_link_insert', 
+            '{"service_code": "NX230_S", "from_stop_code": "COVCEN", "to_stop_code": "NORCST", "distance_meters": 235000, "sequence_order": 2}');
+SELECT common.function_wrapper ('network.service_link_insert', 
+            '{"service_code": "NX230_S", "from_stop_code": "NORCST", "to_stop_code": "LOVICCS", "distance_meters": 305000, "sequence_order": 3}');
 
 -- =========================================================
 -- =========================================================
