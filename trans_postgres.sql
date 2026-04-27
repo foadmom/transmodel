@@ -1,5 +1,8 @@
 -- sudo apt install postgresql-18 postgresql-client-18 postgis -y
 -- sudo -u postgres psql -U postgres -f ./trans_postgres.sql 
+-- for postgres docker:
+-- sudo docker pull postgis/postgis:latest
+-- cat ./trans_postgres.sql | sudo docker exec -i postgres psql -h localhost -U postgres -f-
 -- ===============================================================================
 \c postgres;
 DROP DATABASE IF EXISTS transmodel WITH (FORCE);
@@ -106,6 +109,8 @@ CREATE TABLE reference.stop (
     updated_at TIMESTAMP DEFAULT now(),
     updated_by VARCHAR (32)      DEFAULT CURRENT_USER
 );
+
+
 COPY reference.stop (atcocode, referenceCode, PlateCode, CleardownCode, CommonName, CommonNameLang,
 	ShortCommonName, ShortCommonNameLang, Landmark, LandmarkLang, Street,
 	StreetLang, Crossing, CrossingLang, Indicator, IndicatorLang, Bearing,
@@ -114,7 +119,10 @@ COPY reference.stop (atcocode, referenceCode, PlateCode, CleardownCode, CommonNa
 	Northing, Longitude, Latitude, StopType, BusStopType,
 	TimingStatus, DefaultWaitTime, Notes, NotesLang, AdministrativeAreaCode,
 	CreationDateTime, ModificationDateTime, RevisionNumber, Modification, Status)
-FROM '/data/workspaces/go/github.com/foadmom/naptan_data/naptan_stops.csv'
+-- FROM '/data/workspaces/go/github.com/foadmom/naptan_data/naptan_stops.csv'
+-- for docker instance use the following rather the commented line above.
+-- copt the .csv file to the docker container volume first.
+FROM '/var/lib/postgresql/18/docker/naptan_stops.csv'
 DELIMITER ','
 CSV HEADER;
 
