@@ -122,6 +122,7 @@ COPY reference.stop (atcocode, referenceCode, PlateCode, CleardownCode, CommonNa
 -- FROM '/data/workspaces/go/github.com/foadmom/naptan_data/naptan_stops.csv'
 -- for docker instance use the following rather the commented line above.
 -- copt the .csv file to the docker container volume first.
+-- FROM '/var/lib/postgresql/18/docker/naptan_stops.csv'
 FROM '/var/lib/postgresql/18/docker/naptan_stops.csv'
 DELIMITER ','
 CSV HEADER;
