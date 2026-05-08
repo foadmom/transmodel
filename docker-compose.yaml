@@ -1,0 +1,31 @@
+# docker run --name cloudbeaver --rm -ti -p 127.0.0.1:8978:8978 -v /var/
+# cloudbeaver/workspace:/opt/cloudbeaver/workspace dbeaver/cloudbeaver:latest
+# sudo docker pull postgis/postgis:latest
+# sudo docker exec -it postgres psql -h localhost -U postgres
+# cat trans_postgres.sql | docker exec -i postgres psql -h localhost -U postgres -f-
+# docker exec -it 879f99294e22 /bin/bash
+services:
+  postgres:
+    # image: postgis/postgis:latest
+    image: postgis/postgis:18-3.6-alpine
+    container_name: postgres
+    # restart: always
+    security_opt:
+      - apparmor=unconfined
+    user: "root:root"
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      # for postgres or postgis docker the data is in /var/lib/postgresql/18/docker
+      - /home/foadm/data/postgresql:/var/lib/postgresql
+      # - ./cities.csv:/var/lib/postgresql/cities.csv
+      # - ./countries.csv:/var/lib/postgresql/countries.csv
+      # - ./languages.csv:/var/lib/postgresql/languages.csv
+      # - ./naptan_stops.csv:/var/lib/postgresql/naptan_stops.csv
+      - ./logs:/app/logs
+      
+  
+    
+

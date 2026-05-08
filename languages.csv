@@ -1,0 +1,487 @@
+"id","iso_639_2_code_b","iso_639_2_code_t","iso_639_1_code","english_name","french_name","created_at","updated_at","updated_by"
+1,aar,   ,aa,Afar,afar,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+2,abk,   ,ab,Abkhazian,abkhaze,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+3,ace,   ,  ,Achinese,aceh,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+4,ach,   ,  ,Acoli,acoli,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+5,ada,   ,  ,Adangme,adangme,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+6,ady,   ,  ,Adyghe; Adygei,adyghé,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+7,afa,   ,  ,Afro-Asiatic languages,"afro-asiatiques, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+8,afh,   ,  ,Afrihili,afrihili,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+9,afr,   ,af,Afrikaans,afrikaans,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+10,ain,   ,  ,Ainu,aïnou,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+11,aka,   ,ak,Akan,akan,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+12,akk,   ,  ,Akkadian,akkadien,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+13,alb,sqi,sq,Albanian,albanais,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+14,ale,   ,  ,Aleut,aléoute,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+15,alg,   ,  ,Algonquian languages,"algonquines, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+16,alt,   ,  ,Southern Altai,altai du Sud,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+17,amh,   ,am,Amharic,amharique,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+18,ang,   ,  ,"English, Old (ca.450-1100)",anglo-saxon (ca.450-1100),2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+19,anp,   ,  ,Angika,angika,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+20,apa,   ,  ,Apache languages,"apaches, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+21,ara,   ,ar,Arabic,arabe,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+22,arc,   ,  ,Official Aramaic (700-300 BCE); Imperial Aramaic (700-300 BCE),araméen d'empire (700-300 BCE),2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+23,arg,   ,an,Aragonese,aragonais,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+24,arm,hye,hy,Armenian,arménien,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+25,arn,   ,  ,Mapudungun; Mapuche,mapudungun; mapuche; mapuce,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+26,arp,   ,  ,Arapaho,arapaho,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+27,art,   ,  ,Artificial languages,"artificielles, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+28,arw,   ,  ,Arawak,arawak,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+29,asm,   ,as,Assamese,assamais,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+30,ast,   ,  ,Asturian; Bable; Leonese; Asturleonese,asturien; bable; léonais; asturoléonais,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+31,ath,   ,  ,Athapascan languages,"athapascanes, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+32,aus,   ,  ,Australian languages,"australiennes, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+33,ava,   ,av,Avaric,avar,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+34,ave,   ,ae,Avestan,avestique,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+35,awa,   ,  ,Awadhi,awadhi,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+36,aym,   ,ay,Aymara,aymara,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+37,aze,   ,az,Azerbaijani,azéri,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+38,bad,   ,  ,Banda languages,"banda, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+39,bai,   ,  ,Bamileke languages,"bamiléké, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+40,bak,   ,ba,Bashkir,bachkir,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+41,bal,   ,  ,Baluchi,baloutchi,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+42,bam,   ,bm,Bambara,bambara,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+43,ban,   ,  ,Balinese,balinais,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+44,baq,eus,eu,Basque,basque,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+45,bas,   ,  ,Basa,basa,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+46,bat,   ,  ,Baltic languages,"baltes, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+47,bej,   ,  ,Beja; Bedawiyet,bedja,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+48,bel,   ,be,Belarusian,biélorusse,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+49,bem,   ,  ,Bemba,bemba,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+50,ben,   ,bn,Bengali,bengali,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+51,ber,   ,  ,Berber languages,"berbères, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+52,bho,   ,  ,Bhojpuri,bhojpuri,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+53,bih,   ,  ,Bihari languages,langues biharis,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+54,bik,   ,  ,Bikol,bikol,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+55,bin,   ,  ,Bini; Edo,bini; edo,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+56,bis,   ,bi,Bislama,bichlamar,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+57,bla,   ,  ,Siksika,blackfoot,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+58,bnt,   ,  ,Bantu languages,"bantou, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+59,bos,   ,bs,Bosnian,bosniaque,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+60,bra,   ,  ,Braj,braj,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+61,bre,   ,br,Breton,breton,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+62,btk,   ,  ,Batak languages,"batak, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+63,bua,   ,  ,Buriat,bouriate,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+64,bug,   ,  ,Buginese,bugi,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+65,bul,   ,bg,Bulgarian,bulgare,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+66,bur,mya,my,Burmese,birman,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+67,byn,   ,  ,Blin; Bilin,blin; bilen,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+68,cad,   ,  ,Caddo,caddo,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+69,cai,   ,  ,Central American Indian languages,"amérindiennes de L'Amérique centrale, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+70,car,   ,  ,Galibi Carib,karib; galibi; carib,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+71,cat,   ,ca,Catalan; Valencian,catalan; valencien,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+72,cau,   ,  ,Caucasian languages,"caucasiennes, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+73,ceb,   ,  ,Cebuano,cebuano,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+74,cel,   ,  ,Celtic languages,"celtiques, langues; celtes, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+75,cha,   ,ch,Chamorro,chamorro,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+76,chb,   ,  ,Chibcha,chibcha,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+77,che,   ,ce,Chechen,tchétchène,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+78,chg,   ,  ,Chagatai,djaghataï,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+79,chi,zho,zh,Chinese,chinois,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+80,chk,   ,  ,Chuukese,chuuk,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+81,chm,   ,  ,Mari,mari,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+82,chn,   ,  ,Chinook jargon,"chinook, jargon",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+83,cho,   ,  ,Choctaw,choctaw,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+84,chp,   ,  ,Chipewyan; Dene Suline,chipewyan,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+85,chr,   ,  ,Cherokee,cherokee,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+86,chu,   ,cu,Church Slavic; Old Slavonic; Church Slavonic; Old Bulgarian; Old Church Slavonic,slavon d'église; vieux slave; slavon liturgique; vieux bulgare,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+87,chv,   ,cv,Chuvash,tchouvache,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+88,chy,   ,  ,Cheyenne,cheyenne,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+89,cmc,   ,  ,Chamic languages,"chames, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+90,cnr,   ,  ,Montenegrin,monténégrin,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+91,cop,   ,  ,Coptic,copte,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+92,cor,   ,kw,Cornish,cornique,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+93,cos,   ,co,Corsican,corse,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+94,cpe,   ,  ,"Creoles and pidgins, English based",créoles et pidgins basés sur l'anglais,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+95,cpf,   ,  ,"Creoles and pidgins, French-based",créoles et pidgins basés sur le français,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+96,cpp,   ,  ,"Creoles and pidgins, Portuguese-based",créoles et pidgins basés sur le portugais,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+97,cre,   ,cr,Cree,cree,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+98,crh,   ,  ,Crimean Tatar; Crimean Turkish,tatar de Crimé,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+99,crp,   ,  ,Creoles and pidgins,créoles et pidgins,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+100,csb,   ,  ,Kashubian,kachoube,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+101,cus,   ,  ,Cushitic languages,"couchitiques, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+102,cze,ces,cs,Czech,tchèque,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+103,dak,   ,  ,Dakota,dakota,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+104,dan,   ,da,Danish,danois,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+105,dar,   ,  ,Dargwa,dargwa,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+106,day,   ,  ,Land Dayak languages,"dayak, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+107,del,   ,  ,Delaware,delaware,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+108,den,   ,  ,Slave (Athapascan),esclave (athapascan),2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+109,dgr,   ,  ,Tlicho; Dogrib,tlicho; dogrib,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+110,din,   ,  ,Dinka,dinka,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+111,div,   ,dv,Divehi; Dhivehi; Maldivian,maldivien,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+112,doi,   ,  ,Dogri,dogri,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+113,dra,   ,  ,Dravidian languages,"dravidiennes, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+114,dsb,   ,  ,Lower Sorbian,bas-sorabe,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+115,dua,   ,  ,Duala,douala,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+116,dum,   ,  ,"Dutch, Middle (ca.1050-1350)",néerlandais moyen (ca. 1050-1350),2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+117,dut,nld,nl,Dutch; Flemish,néerlandais; flamand,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+118,dyu,   ,  ,Dyula,dioula,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+119,dzo,   ,dz,Dzongkha,dzongkha,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+120,efi,   ,  ,Efik,efik,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+121,egy,   ,  ,Egyptian (Ancient),égyptien,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+122,eka,   ,  ,Ekajuk,ekajuk,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+123,elx,   ,  ,Elamite,élamite,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+124,eng,   ,en,English,anglais,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+125,enm,   ,  ,"English, Middle (1100-1500)",anglais moyen (1100-1500),2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+126,epo,   ,eo,Esperanto,espéranto,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+127,est,   ,et,Estonian,estonien,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+128,ewe,   ,ee,Ewe,éwé,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+129,ewo,   ,  ,Ewondo,éwondo,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+130,fan,   ,  ,Fang,fang,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+131,fao,   ,fo,Faroese,féroïen,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+132,fat,   ,  ,Fanti,fanti,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+133,fij,   ,fj,Fijian,fidjien,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+134,fil,   ,  ,Filipino; Pilipino,filipino; pilipino,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+135,fin,   ,fi,Finnish,finnois,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+136,fiu,   ,  ,Finno-Ugrian languages,"finno-ougriennes, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+137,fon,   ,  ,Fon,fon,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+138,fre,fra,fr,French,français,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+139,frm,   ,  ,"French, Middle (ca.1400-1600)",français moyen (1400-1600),2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+140,fro,   ,  ,"French, Old (842-ca.1400)",français ancien (842-ca.1400),2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+141,frr,   ,  ,Northern Frisian,frison septentrional,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+142,frs,   ,  ,Eastern Frisian,frison oriental,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+143,fry,   ,fy,Western Frisian,frison occidental,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+144,ful,   ,ff,Fulah,peul,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+145,fur,   ,  ,Friulian,frioulan,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+146,gaa,   ,  ,Ga,ga,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+147,gay,   ,  ,Gayo,gayo,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+148,gba,   ,  ,Gbaya,gbaya,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+149,gem,   ,  ,Germanic languages,"germaniques, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+150,geo,kat,ka,Georgian,géorgien,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+151,ger,deu,de,German,allemand,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+152,gez,   ,  ,Geez,guèze,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+153,gil,   ,  ,Gilbertese,kiribati,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+154,gla,   ,gd,Gaelic; Scottish Gaelic,gaélique; gaélique écossais,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+155,gle,   ,ga,Irish,irlandais,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+156,glg,   ,gl,Galician,galicien,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+157,glv,   ,gv,Manx,manx; mannois,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+158,gmh,   ,  ,"German, Middle High (ca.1050-1500)","allemand, moyen haut (ca. 1050-1500)",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+159,goh,   ,  ,"German, Old High (ca.750-1050)","allemand, vieux haut (ca. 750-1050)",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+160,gon,   ,  ,Gondi,gond,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+161,gor,   ,  ,Gorontalo,gorontalo,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+162,got,   ,  ,Gothic,gothique,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+163,grb,   ,  ,Grebo,grebo,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+164,grc,   ,  ,"Greek, Ancient (to 1453)",grec ancien (jusqu'à 1453),2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+165,gre,ell,el,"Greek, Modern (1453-)",grec moderne (après 1453),2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+166,grn,   ,gn,Guarani,guarani,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+167,gsw,   ,  ,Swiss German; Alemannic; Alsatian,suisse alémanique; alémanique; alsacien,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+168,guj,   ,gu,Gujarati,goudjrati,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+169,gwi,   ,  ,Gwich'in,gwich'in,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+170,hai,   ,  ,Haida,haida,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+171,hat,   ,ht,Haitian; Haitian Creole,haïtien; créole haïtien,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+172,hau,   ,ha,Hausa,haoussa,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+173,haw,   ,  ,Hawaiian,hawaïen,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+174,heb,   ,he,Hebrew,hébreu,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+175,her,   ,hz,Herero,herero,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+176,hil,   ,  ,Hiligaynon,hiligaynon,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+177,him,   ,  ,Himachali languages; Western Pahari languages,langues himachalis; langues paharis occidentales,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+178,hin,   ,hi,Hindi,hindi,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+179,hit,   ,  ,Hittite,hittite,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+180,hmn,   ,  ,Hmong; Mong,hmong,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+181,hmo,   ,ho,Hiri Motu,hiri motu,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+182,hrv,   ,hr,Croatian,croate,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+183,hsb,   ,  ,Upper Sorbian,haut-sorabe,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+184,hun,   ,hu,Hungarian,hongrois,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+185,hup,   ,  ,Hupa,hupa,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+186,iba,   ,  ,Iban,iban,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+187,ibo,   ,ig,Igbo,igbo,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+188,ice,isl,is,Icelandic,islandais,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+189,ido,   ,io,Ido,ido,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+190,iii,   ,ii,Sichuan Yi; Nuosu,yi de Sichuan,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+191,ijo,   ,  ,Ijo languages,"ijo, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+192,iku,   ,iu,Inuktitut,inuktitut,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+193,ile,   ,ie,Interlingue; Occidental,interlingue,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+194,ilo,   ,  ,Iloko,ilocano,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+195,ina,   ,ia,Interlingua (International Auxiliary Language Association),interlingua (langue auxiliaire internationale),2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+196,inc,   ,  ,Indic languages,"indo-aryennes, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+197,ind,   ,id,Indonesian,indonésien,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+198,ine,   ,  ,Indo-European languages,"indo-européennes, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+199,inh,   ,  ,Ingush,ingouche,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+200,ipk,   ,ik,Inupiaq,inupiaq,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+201,ira,   ,  ,Iranian languages,"iraniennes, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+202,iro,   ,  ,Iroquoian languages,"iroquoises, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+203,ita,   ,it,Italian,italien,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+204,jav,   ,jv,Javanese,javanais,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+205,jbo,   ,  ,Lojban,lojban,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+206,jpn,   ,ja,Japanese,japonais,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+207,jpr,   ,  ,Judeo-Persian,judéo-persan,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+208,jrb,   ,  ,Judeo-Arabic,judéo-arabe,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+209,kaa,   ,  ,Kara-Kalpak,karakalpak,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+210,kab,   ,  ,Kabyle,kabyle,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+211,kac,   ,  ,Kachin; Jingpho,kachin; jingpho,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+212,kal,   ,kl,Kalaallisut; Greenlandic,groenlandais,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+213,kam,   ,  ,Kamba,kamba,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+214,kan,   ,kn,Kannada,kannada,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+215,kar,   ,  ,Karen languages,"karen, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+216,kas,   ,ks,Kashmiri,kashmiri,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+217,kau,   ,kr,Kanuri,kanouri,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+218,kaw,   ,  ,Kawi,kawi,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+219,kaz,   ,kk,Kazakh,kazakh,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+220,kbd,   ,  ,Kabardian,kabardien,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+221,kha,   ,  ,Khasi,khasi,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+222,khi,   ,  ,Khoisan languages,"khoïsan, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+223,khm,   ,km,Central Khmer,khmer central,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+224,kho,   ,  ,Khotanese; Sakan,khotanais; sakan,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+225,kik,   ,ki,Kikuyu; Gikuyu,kikuyu,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+226,kin,   ,rw,Kinyarwanda,rwanda,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+227,kir,   ,ky,Kirghiz; Kyrgyz,kirghiz,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+228,kmb,   ,  ,Kimbundu,kimbundu,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+229,kok,   ,  ,Konkani,konkani,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+230,kom,   ,kv,Komi,kom,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+231,kon,   ,kg,Kongo,kongo,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+232,kor,   ,ko,Korean,coréen,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+233,kos,   ,  ,Kosraean,kosrae,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+234,kpe,   ,  ,Kpelle,kpellé,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+235,krc,   ,  ,Karachay-Balkar,karatchai balkar,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+236,krl,   ,  ,Karelian,carélien,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+237,kro,   ,  ,Kru languages,"krou, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+238,kru,   ,  ,Kurukh,kurukh,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+239,kua,   ,kj,Kuanyama; Kwanyama,kuanyama; kwanyama,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+240,kum,   ,  ,Kumyk,koumyk,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+241,kur,   ,ku,Kurdish,kurde,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+242,kut,   ,  ,Kutenai,kutenai,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+243,lad,   ,  ,Ladino,judéo-espagnol,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+244,lah,   ,  ,Lahnda,lahnda,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+245,lam,   ,  ,Lamba,lamba,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+246,lao,   ,lo,Lao,lao,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+247,lat,   ,la,Latin,latin,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+248,lav,   ,lv,Latvian,letton,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+249,lez,   ,  ,Lezghian,lezghien,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+250,lim,   ,li,Limburgan; Limburger; Limburgish,limbourgeois,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+251,lin,   ,ln,Lingala,lingala,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+252,lit,   ,lt,Lithuanian,lituanien,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+253,lol,   ,  ,Mongo,mongo,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+254,loz,   ,  ,Lozi,lozi,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+255,ltz,   ,lb,Luxembourgish; Letzeburgesch,luxembourgeois,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+256,lua,   ,  ,Luba-Lulua,luba-lulua,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+257,lub,   ,lu,Luba-Katanga,luba-katanga,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+258,lug,   ,lg,Ganda,ganda,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+259,lui,   ,  ,Luiseno,luiseno,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+260,lun,   ,  ,Lunda,lunda,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+261,luo,   ,  ,Luo (Kenya and Tanzania),luo (Kenya et Tanzanie),2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+262,lus,   ,  ,Lushai,lushai,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+263,mac,mkd,mk,Macedonian,macédonien,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+264,mad,   ,  ,Madurese,madourais,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+265,mag,   ,  ,Magahi,magahi,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+266,mah,   ,mh,Marshallese,marshall,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+267,mai,   ,  ,Maithili,maithili,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+268,mak,   ,  ,Makasar,makassar,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+269,mal,   ,ml,Malayalam,malayalam,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+270,man,   ,  ,Mandingo,mandingue,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+271,mao,mri,mi,Maori,maori,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+272,map,   ,  ,Austronesian languages,"austronésiennes, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+273,mar,   ,mr,Marathi,marathe,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+274,mas,   ,  ,Masai,massaï,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+275,may,msa,ms,Malay,malais,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+276,mdf,   ,  ,Moksha,moksa,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+277,mdr,   ,  ,Mandar,mandar,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+278,men,   ,  ,Mende,mendé,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+279,mga,   ,  ,"Irish, Middle (900-1200)",irlandais moyen (900-1200),2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+280,mic,   ,  ,Mi'kmaq; Micmac,mi'kmaq; micmac,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+281,min,   ,  ,Minangkabau,minangkabau,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+282,mis,   ,  ,Uncoded languages,langues non codées,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+283,mkh,   ,  ,Mon-Khmer languages,"môn-khmer, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+284,mlg,   ,mg,Malagasy,malgache,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+285,mlt,   ,mt,Maltese,maltais,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+286,mnc,   ,  ,Manchu,mandchou,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+287,mni,   ,  ,Manipuri,manipuri,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+288,mno,   ,  ,Manobo languages,"manobo, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+289,moh,   ,  ,Mohawk,mohawk,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+290,mon,   ,mn,Mongolian,mongol,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+291,mos,   ,  ,Mossi,moré,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+292,mul,   ,  ,Multiple languages,multilingue,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+293,mun,   ,  ,Munda languages,"mounda, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+294,mus,   ,  ,Creek,muskogee,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+295,mwl,   ,  ,Mirandese,mirandais,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+296,mwr,   ,  ,Marwari,marvari,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+297,myn,   ,  ,Mayan languages,"maya, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+298,myv,   ,  ,Erzya,erza,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+299,nah,   ,  ,Nahuatl languages,"nahuatl, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+300,nai,   ,  ,North American Indian languages,"nord-amérindiennes, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+301,nap,   ,  ,Neapolitan,napolitain,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+302,nau,   ,na,Nauru,nauruan,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+303,nav,   ,nv,Navajo; Navaho,navaho,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+304,nbl,   ,nr,"Ndebele, South; South Ndebele",ndébélé du Sud,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+305,nde,   ,nd,"Ndebele, North; North Ndebele",ndébélé du Nord,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+306,ndo,   ,ng,Ndonga,ndonga,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+307,nds,   ,  ,"Low German; Low Saxon; German, Low; Saxon, Low","bas allemand; bas saxon; allemand, bas; saxon, bas",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+308,nep,   ,ne,Nepali,népalais,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+309,new,   ,  ,Nepal Bhasa; Newari,nepal bhasa; newari,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+310,nia,   ,  ,Nias,nias,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+311,nic,   ,  ,Niger-Kordofanian languages,"nigéro-kordofaniennes, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+312,niu,   ,  ,Niuean,niué,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+313,nno,   ,nn,"Norwegian Nynorsk; Nynorsk, Norwegian","norvégien nynorsk; nynorsk, norvégien",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+314,nob,   ,nb,"Bokmål, Norwegian; Norwegian Bokmål",norvégien bokmål,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+315,nog,   ,  ,Nogai,nogaï; nogay,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+316,non,   ,  ,"Norse, Old","norrois, vieux",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+317,nor,   ,no,Norwegian,norvégien,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+318,nqo,   ,  ,N'Ko,n'ko,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+319,nso,   ,  ,Pedi; Sepedi; Northern Sotho,pedi; sepedi; sotho du Nord,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+320,nub,   ,  ,Nubian languages,"nubiennes, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+321,nwc,   ,  ,Classical Newari; Old Newari; Classical Nepal Bhasa,newari classique,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+322,nya,   ,ny,Chichewa; Chewa; Nyanja,chichewa; chewa; nyanja,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+323,nym,   ,  ,Nyamwezi,nyamwezi,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+324,nyn,   ,  ,Nyankole,nyankolé,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+325,nyo,   ,  ,Nyoro,nyoro,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+326,nzi,   ,  ,Nzima,nzema,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+327,oci,   ,oc,Occitan (post 1500),occitan (après 1500),2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+328,oji,   ,oj,Ojibwa,ojibwa,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+329,ori,   ,or,Oriya,oriya,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+330,orm,   ,om,Oromo,galla,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+331,osa,   ,  ,Osage,osage,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+332,oss,   ,os,Ossetian; Ossetic,ossète,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+333,ota,   ,  ,"Turkish, Ottoman (1500-1928)",turc ottoman (1500-1928),2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+334,oto,   ,  ,Otomian languages,"otomi, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+335,paa,   ,  ,Papuan languages,"papoues, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+336,pag,   ,  ,Pangasinan,pangasinan,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+337,pal,   ,  ,Pahlavi,pahlavi,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+338,pam,   ,  ,Pampanga; Kapampangan,pampangan,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+339,pan,   ,pa,Panjabi; Punjabi,pendjabi,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+340,pap,   ,  ,Papiamento,papiamento,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+341,pau,   ,  ,Palauan,palau,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+342,peo,   ,  ,"Persian, Old (ca.600-400 B.C.)","perse, vieux (ca. 600-400 av. J.-C.)",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+343,per,fas,fa,Persian,persan,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+344,phi,   ,  ,Philippine languages,"philippines, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+345,phn,   ,  ,Phoenician,phénicien,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+346,pli,   ,pi,Pali,pali,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+347,pol,   ,pl,Polish,polonais,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+348,pon,   ,  ,Pohnpeian,pohnpei,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+349,por,   ,pt,Portuguese,portugais,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+350,pra,   ,  ,Prakrit languages,"prâkrit, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+351,pro,   ,  ,"Provençal, Old (to 1500); Occitan, Old (to 1500)",provençal ancien (jusqu'à 1500); occitan ancien (jusqu'à 1500),2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+352,pus,   ,ps,Pushto; Pashto,pachto,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+353,que,   ,qu,Quechua,quechua,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+354,raj,   ,  ,Rajasthani,rajasthani,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+355,rap,   ,  ,Rapanui,rapanui,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+356,rar,   ,  ,Rarotongan; Cook Islands Maori,rarotonga; maori des îles Cook,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+357,roa,   ,  ,Romance languages,"romanes, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+358,roh,   ,rm,Romansh,romanche,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+359,rom,   ,  ,Romany,tsigane,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+360,rum,ron,ro,Romanian; Moldavian; Moldovan,roumain; moldave,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+361,run,   ,rn,Rundi,rundi,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+362,rup,   ,  ,Aromanian; Arumanian; Macedo-Romanian,aroumain; macédo-roumain,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+363,rus,   ,ru,Russian,russe,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+364,sad,   ,  ,Sandawe,sandawe,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+365,sag,   ,sg,Sango,sango,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+366,sah,   ,  ,Yakut,iakoute,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+367,sai,   ,  ,South American Indian languages,"sud-amérindiennes, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+368,sal,   ,  ,Salishan languages,"salishennes, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+369,sam,   ,  ,Samaritan Aramaic,samaritain,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+370,san,   ,sa,Sanskrit,sanskrit,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+371,sas,   ,  ,Sasak,sasak,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+372,sat,   ,  ,Santali,santal,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+373,scn,   ,  ,Sicilian,sicilien,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+374,sco,   ,  ,Scots,écossais,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+375,sel,   ,  ,Selkup,selkoupe,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+376,sem,   ,  ,Semitic languages,"sémitiques, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+377,sga,   ,  ,"Irish, Old (to 900)",irlandais ancien (jusqu'à 900),2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+378,sgn,   ,  ,Sign Languages,langues des signes,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+379,shn,   ,  ,Shan,chan,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+380,sid,   ,  ,Sidamo,sidamo,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+381,sin,   ,si,Sinhala; Sinhalese,singhalais,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+382,sio,   ,  ,Siouan languages,"sioux, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+383,sit,   ,  ,Sino-Tibetan languages,"sino-tibétaines, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+384,sla,   ,  ,Slavic languages,"slaves, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+385,slo,slk,sk,Slovak,slovaque,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+386,slv,   ,sl,Slovenian,slovène,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+387,sma,   ,  ,Southern Sami,sami du Sud,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+388,sme,   ,se,Northern Sami,sami du Nord,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+389,smi,   ,  ,Sami languages,"sames, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+390,smj,   ,  ,Lule Sami,sami de Lule,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+391,smn,   ,  ,Inari Sami,sami d'Inari,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+392,smo,   ,sm,Samoan,samoan,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+393,sms,   ,  ,Skolt Sami,sami skolt,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+394,sna,   ,sn,Shona,shona,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+395,snd,   ,sd,Sindhi,sindhi,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+396,snk,   ,  ,Soninke,soninké,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+397,sog,   ,  ,Sogdian,sogdien,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+398,som,   ,so,Somali,somali,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+399,son,   ,  ,Songhai languages,"songhai, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+400,sot,   ,st,"Sotho, Southern",sotho du Sud,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+401,spa,   ,es,Spanish; Castilian,espagnol; castillan,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+402,srd,   ,sc,Sardinian,sarde,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+403,srn,   ,  ,Sranan Tongo,sranan tongo,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+404,srp,   ,sr,Serbian,serbe,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+405,srr,   ,  ,Serer,sérère,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+406,ssa,   ,  ,Nilo-Saharan languages,"nilo-sahariennes, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+407,ssw,   ,ss,Swati,swati,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+408,suk,   ,  ,Sukuma,sukuma,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+409,sun,   ,su,Sundanese,soundanais,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+410,sus,   ,  ,Susu,soussou,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+411,sux,   ,  ,Sumerian,sumérien,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+412,swa,   ,sw,Swahili,swahili,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+413,swe,   ,sv,Swedish,suédois,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+414,syc,   ,  ,Classical Syriac,syriaque classique,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+415,syr,   ,  ,Syriac,syriaque,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+416,tah,   ,ty,Tahitian,tahitien,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+417,tai,   ,  ,Tai languages,"tai, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+418,tam,   ,ta,Tamil,tamoul,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+419,tat,   ,tt,Tatar,tatar,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+420,tel,   ,te,Telugu,télougou,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+421,tem,   ,  ,Timne,temne,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+422,ter,   ,  ,Tereno,tereno,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+423,tet,   ,  ,Tetum,tetum,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+424,tgk,   ,tg,Tajik,tadjik,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+425,tgl,   ,tl,Tagalog,tagalog,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+426,tha,   ,th,Thai,thaï,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+427,tib,bod,bo,Tibetan,tibétain,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+428,tig,   ,  ,Tigre,tigré,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+429,tir,   ,ti,Tigrinya,tigrigna,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+430,tiv,   ,  ,Tiv,tiv,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+431,tkl,   ,  ,Tokelau,tokelau,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+432,tlh,   ,  ,Klingon; tlhIngan-Hol,klingon,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+433,tli,   ,  ,Tlingit,tlingit,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+434,tmh,   ,  ,Tamashek,tamacheq,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+435,tog,   ,  ,Tonga (Nyasa),tonga (Nyasa),2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+436,ton,   ,to,Tonga (Tonga Islands),tongan (Îles Tonga),2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+437,tpi,   ,  ,Tok Pisin,tok pisin,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+438,tsi,   ,  ,Tsimshian,tsimshian,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+439,tsn,   ,tn,Tswana,tswana,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+440,tso,   ,ts,Tsonga,tsonga,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+441,tuk,   ,tk,Turkmen,turkmène,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+442,tum,   ,  ,Tumbuka,tumbuka,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+443,tup,   ,  ,Tupi languages,"tupi, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+444,tur,   ,tr,Turkish,turc,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+445,tut,   ,  ,Altaic languages,"altaïques, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+446,tvl,   ,  ,Tuvalu,tuvalu,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+447,twi,   ,tw,Twi,twi,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+448,tyv,   ,  ,Tuvinian,touva,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+449,udm,   ,  ,Udmurt,oudmourte,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+450,uga,   ,  ,Ugaritic,ougaritique,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+451,uig,   ,ug,Uighur; Uyghur,ouïgour,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+452,ukr,   ,uk,Ukrainian,ukrainien,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+453,umb,   ,  ,Umbundu,umbundu,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+454,und,   ,  ,Undetermined,indéterminée,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+455,urd,   ,ur,Urdu,ourdou,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+456,uzb,   ,uz,Uzbek,ouszbek,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+457,vai,   ,  ,Vai,vaï,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+458,ven,   ,ve,Venda,venda,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+459,vie,   ,vi,Vietnamese,vietnamien,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+460,vol,   ,vo,Volapük,volapük,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+461,vot,   ,  ,Votic,vote,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+462,wak,   ,  ,Wakashan languages,"wakashanes, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+463,wal,   ,  ,Wolaitta; Wolaytta,wolaitta; wolaytta,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+464,war,   ,  ,Waray,waray,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+465,was,   ,  ,Washo,washo,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+466,wel,cym,cy,Welsh,gallois,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+467,wen,   ,  ,Sorbian languages,"sorabes, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+468,wln,   ,wa,Walloon,wallon,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+469,wol,   ,wo,Wolof,wolof,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+470,xal,   ,  ,Kalmyk; Oirat,kalmouk; oïrat,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+471,xho,   ,xh,Xhosa,xhosa,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+472,yao,   ,  ,Yao,yao,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+473,yap,   ,  ,Yapese,yapois,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+474,yid,   ,yi,Yiddish,yiddish,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+475,yor,   ,yo,Yoruba,yoruba,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+476,ypk,   ,  ,Yupik languages,"yupik, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+477,zap,   ,  ,Zapotec,zapotèque,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+478,zbl,   ,  ,Blissymbols; Blissymbolics; Bliss,symboles Bliss; Bliss,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+479,zen,   ,  ,Zenaga,zenaga,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+480,zgh,   ,  ,Standard Moroccan Tamazight,amazighe standard marocain,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+481,zha,   ,za,Zhuang; Chuang,zhuang; chuang,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+482,znd,   ,  ,Zande languages,"zandé, langues",2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+483,zul,   ,zu,Zulu,zoulou,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+484,zun,   ,  ,Zuni,zuni,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+485,zxx,   ,  ,No linguistic content; Not applicable,pas de contenu linguistique; non applicable,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres
+486,zza,   ,  ,Zaza; Dimili; Dimli; Kirdki; Kirmanjki; Zazaki,zaza; dimili; dimli; kirdki; kirmanjki; zazaki,2026-01-21 10:58:05.583,2026-01-21 10:58:05.583,postgres

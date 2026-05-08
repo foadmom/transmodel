@@ -142,10 +142,10 @@ CREATE TABLE reference.country (
     updated_at TIMESTAMP DEFAULT now(),
     updated_by VARCHAR (32) DEFAULT CURRENT_USER
 );
---COPY reference.country(iso2, latitude, longitude, name) 
---FROM '/home/postgres/countries.csv'
---DELIMITER ','
---CSV HEADER;
+-- COPY reference.country(iso2, latitude, longitude, name) 
+-- FROM '/var/lib/postgresql/18/docker/countries.csv'
+-- DELIMITER ','
+-- CSV HEADER;
 -- =========================================================
 -- =========================================================
 INSERT INTO reference.country (iso2,latitude,longitude,"name",created_at,updated_at,updated_by) VALUES
@@ -435,546 +435,546 @@ CREATE TABLE IF NOT EXISTS reference.language (
     updated_at TIMESTAMP DEFAULT now(),
     updated_by VARCHAR (32) DEFAULT CURRENT_USER
 );
---COPY reference.language(ISO_639_2_Code_b,ISO_639_2_Code_t, ISO_639_1_Code, english_name, french_name) 
---FROM '/data/workspaces/go/github.com/foadmom/naptan_data/language-codes-full.csv'
---DELIMITER ','
---CSV HEADER;
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('aar     ','   ','aa','Afar','afar','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('abk     ','   ','ab','Abkhazian','abkhaze','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ace     ','   ','  ','Achinese','aceh','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ach     ','   ','  ','Acoli','acoli','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ada     ','   ','  ','Adangme','adangme','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ady     ','   ','  ','Adyghe; Adygei','adyghé','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('afa     ','   ','  ','Afro-Asiatic languages','afro-asiatiques, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('afh     ','   ','  ','Afrihili','afrihili','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('afr     ','   ','af','Afrikaans','afrikaans','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ain     ','   ','  ','Ainu','aïnou','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('aka     ','   ','ak','Akan','akan','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('akk     ','   ','  ','Akkadian','akkadien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('alb     ','sqi','sq','Albanian','albanais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ale     ','   ','  ','Aleut','aléoute','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('alg     ','   ','  ','Algonquian languages','algonquines, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('alt     ','   ','  ','Southern Altai','altai du Sud','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('amh     ','   ','am','Amharic','amharique','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ang     ','   ','  ','English, Old (ca.450-1100)','anglo-saxon (ca.450-1100)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('anp     ','   ','  ','Angika','angika','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('apa     ','   ','  ','Apache languages','apaches, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('ara     ','   ','ar','Arabic','arabe','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('arc     ','   ','  ','Official Aramaic (700-300 BCE); Imperial Aramaic (700-300 BCE)','araméen d''empire (700-300 BCE)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('arg     ','   ','an','Aragonese','aragonais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('arm     ','hye','hy','Armenian','arménien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('arn     ','   ','  ','Mapudungun; Mapuche','mapudungun; mapuche; mapuce','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('arp     ','   ','  ','Arapaho','arapaho','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('art     ','   ','  ','Artificial languages','artificielles, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('arw     ','   ','  ','Arawak','arawak','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('asm     ','   ','as','Assamese','assamais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ast     ','   ','  ','Asturian; Bable; Leonese; Asturleonese','asturien; bable; léonais; asturoléonais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('ath     ','   ','  ','Athapascan languages','athapascanes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('aus     ','   ','  ','Australian languages','australiennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ava     ','   ','av','Avaric','avar','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ave     ','   ','ae','Avestan','avestique','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('awa     ','   ','  ','Awadhi','awadhi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('aym     ','   ','ay','Aymara','aymara','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('aze     ','   ','az','Azerbaijani','azéri','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('bad     ','   ','  ','Banda languages','banda, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('bai     ','   ','  ','Bamileke languages','bamiléké, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('bak     ','   ','ba','Bashkir','bachkir','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('bal     ','   ','  ','Baluchi','baloutchi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('bam     ','   ','bm','Bambara','bambara','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ban     ','   ','  ','Balinese','balinais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('baq     ','eus','eu','Basque','basque','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('bas     ','   ','  ','Basa','basa','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('bat     ','   ','  ','Baltic languages','baltes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('bej     ','   ','  ','Beja; Bedawiyet','bedja','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('bel     ','   ','be','Belarusian','biélorusse','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('bem     ','   ','  ','Bemba','bemba','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ben     ','   ','bn','Bengali','bengali','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('ber     ','   ','  ','Berber languages','berbères, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('bho     ','   ','  ','Bhojpuri','bhojpuri','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('bih     ','   ','  ','Bihari languages','langues biharis','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('bik     ','   ','  ','Bikol','bikol','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('bin     ','   ','  ','Bini; Edo','bini; edo','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('bis     ','   ','bi','Bislama','bichlamar','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('bla     ','   ','  ','Siksika','blackfoot','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('bnt     ','   ','  ','Bantu languages','bantou, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('bos     ','   ','bs','Bosnian','bosniaque','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('bra     ','   ','  ','Braj','braj','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('bre     ','   ','br','Breton','breton','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('btk     ','   ','  ','Batak languages','batak, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('bua     ','   ','  ','Buriat','bouriate','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('bug     ','   ','  ','Buginese','bugi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('bul     ','   ','bg','Bulgarian','bulgare','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('bur     ','mya','my','Burmese','birman','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('byn     ','   ','  ','Blin; Bilin','blin; bilen','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('cad     ','   ','  ','Caddo','caddo','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('cai     ','   ','  ','Central American Indian languages','amérindiennes de L''Amérique centrale, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('car     ','   ','  ','Galibi Carib','karib; galibi; carib','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('cat     ','   ','ca','Catalan; Valencian','catalan; valencien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('cau     ','   ','  ','Caucasian languages','caucasiennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ceb     ','   ','  ','Cebuano','cebuano','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('cel     ','   ','  ','Celtic languages','celtiques, langues; celtes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('cha     ','   ','ch','Chamorro','chamorro','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('chb     ','   ','  ','Chibcha','chibcha','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('che     ','   ','ce','Chechen','tchétchène','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('chg     ','   ','  ','Chagatai','djaghataï','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('chi     ','zho','zh','Chinese','chinois','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('chk     ','   ','  ','Chuukese','chuuk','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('chm     ','   ','  ','Mari','mari','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('chn     ','   ','  ','Chinook jargon','chinook, jargon','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('cho     ','   ','  ','Choctaw','choctaw','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('chp     ','   ','  ','Chipewyan; Dene Suline','chipewyan','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('chr     ','   ','  ','Cherokee','cherokee','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('chu     ','   ','cu','Church Slavic; Old Slavonic; Church Slavonic; Old Bulgarian; Old Church Slavonic','slavon d''église; vieux slave; slavon liturgique; vieux bulgare','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('chv     ','   ','cv','Chuvash','tchouvache','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('chy     ','   ','  ','Cheyenne','cheyenne','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('cmc     ','   ','  ','Chamic languages','chames, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('cnr     ','   ','  ','Montenegrin','monténégrin','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('cop     ','   ','  ','Coptic','copte','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('cor     ','   ','kw','Cornish','cornique','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('cos     ','   ','co','Corsican','corse','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('cpe     ','   ','  ','Creoles and pidgins, English based','créoles et pidgins basés sur l''anglais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('cpf     ','   ','  ','Creoles and pidgins, French-based','créoles et pidgins basés sur le français','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('cpp     ','   ','  ','Creoles and pidgins, Portuguese-based','créoles et pidgins basés sur le portugais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('cre     ','   ','cr','Cree','cree','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('crh     ','   ','  ','Crimean Tatar; Crimean Turkish','tatar de Crimé','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('crp     ','   ','  ','Creoles and pidgins','créoles et pidgins','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('csb     ','   ','  ','Kashubian','kachoube','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('cus     ','   ','  ','Cushitic languages','couchitiques, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('cze     ','ces','cs','Czech','tchèque','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('dak     ','   ','  ','Dakota','dakota','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('dan     ','   ','da','Danish','danois','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('dar     ','   ','  ','Dargwa','dargwa','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('day     ','   ','  ','Land Dayak languages','dayak, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('del     ','   ','  ','Delaware','delaware','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('den     ','   ','  ','Slave (Athapascan)','esclave (athapascan)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('dgr     ','   ','  ','Tlicho; Dogrib','tlicho; dogrib','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('din     ','   ','  ','Dinka','dinka','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('div     ','   ','dv','Divehi; Dhivehi; Maldivian','maldivien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('doi     ','   ','  ','Dogri','dogri','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('dra     ','   ','  ','Dravidian languages','dravidiennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('dsb     ','   ','  ','Lower Sorbian','bas-sorabe','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('dua     ','   ','  ','Duala','douala','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('dum     ','   ','  ','Dutch, Middle (ca.1050-1350)','néerlandais moyen (ca. 1050-1350)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('dut     ','nld','nl','Dutch; Flemish','néerlandais; flamand','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('dyu     ','   ','  ','Dyula','dioula','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('dzo     ','   ','dz','Dzongkha','dzongkha','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('efi     ','   ','  ','Efik','efik','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('egy     ','   ','  ','Egyptian (Ancient)','égyptien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('eka     ','   ','  ','Ekajuk','ekajuk','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('elx     ','   ','  ','Elamite','élamite','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('eng     ','   ','en','English','anglais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('enm     ','   ','  ','English, Middle (1100-1500)','anglais moyen (1100-1500)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('epo     ','   ','eo','Esperanto','espéranto','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('est     ','   ','et','Estonian','estonien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ewe     ','   ','ee','Ewe','éwé','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ewo     ','   ','  ','Ewondo','éwondo','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('fan     ','   ','  ','Fang','fang','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('fao     ','   ','fo','Faroese','féroïen','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('fat     ','   ','  ','Fanti','fanti','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('fij     ','   ','fj','Fijian','fidjien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('fil     ','   ','  ','Filipino; Pilipino','filipino; pilipino','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('fin     ','   ','fi','Finnish','finnois','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('fiu     ','   ','  ','Finno-Ugrian languages','finno-ougriennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('fon     ','   ','  ','Fon','fon','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('fre     ','fra','fr','French','français','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('frm     ','   ','  ','French, Middle (ca.1400-1600)','français moyen (1400-1600)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('fro     ','   ','  ','French, Old (842-ca.1400)','français ancien (842-ca.1400)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('frr     ','   ','  ','Northern Frisian','frison septentrional','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('frs     ','   ','  ','Eastern Frisian','frison oriental','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('fry     ','   ','fy','Western Frisian','frison occidental','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ful     ','   ','ff','Fulah','peul','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('fur     ','   ','  ','Friulian','frioulan','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('gaa     ','   ','  ','Ga','ga','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('gay     ','   ','  ','Gayo','gayo','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('gba     ','   ','  ','Gbaya','gbaya','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('gem     ','   ','  ','Germanic languages','germaniques, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('geo     ','kat','ka','Georgian','géorgien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('ger     ','deu','de','German','allemand','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('gez     ','   ','  ','Geez','guèze','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('gil     ','   ','  ','Gilbertese','kiribati','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('gla     ','   ','gd','Gaelic; Scottish Gaelic','gaélique; gaélique écossais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('gle     ','   ','ga','Irish','irlandais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('glg     ','   ','gl','Galician','galicien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('glv     ','   ','gv','Manx','manx; mannois','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('gmh     ','   ','  ','German, Middle High (ca.1050-1500)','allemand, moyen haut (ca. 1050-1500)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('goh     ','   ','  ','German, Old High (ca.750-1050)','allemand, vieux haut (ca. 750-1050)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('gon     ','   ','  ','Gondi','gond','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('gor     ','   ','  ','Gorontalo','gorontalo','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('got     ','   ','  ','Gothic','gothique','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('grb     ','   ','  ','Grebo','grebo','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('grc     ','   ','  ','Greek, Ancient (to 1453)','grec ancien (jusqu''à 1453)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('gre     ','ell','el','Greek, Modern (1453-)','grec moderne (après 1453)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('grn     ','   ','gn','Guarani','guarani','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('gsw     ','   ','  ','Swiss German; Alemannic; Alsatian','suisse alémanique; alémanique; alsacien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('guj     ','   ','gu','Gujarati','goudjrati','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('gwi     ','   ','  ','Gwich''in','gwich''in','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('hai     ','   ','  ','Haida','haida','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('hat     ','   ','ht','Haitian; Haitian Creole','haïtien; créole haïtien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('hau     ','   ','ha','Hausa','haoussa','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('haw     ','   ','  ','Hawaiian','hawaïen','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('heb     ','   ','he','Hebrew','hébreu','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('her     ','   ','hz','Herero','herero','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('hil     ','   ','  ','Hiligaynon','hiligaynon','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('him     ','   ','  ','Himachali languages; Western Pahari languages','langues himachalis; langues paharis occidentales','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('hin     ','   ','hi','Hindi','hindi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('hit     ','   ','  ','Hittite','hittite','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('hmn     ','   ','  ','Hmong; Mong','hmong','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('hmo     ','   ','ho','Hiri Motu','hiri motu','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('hrv     ','   ','hr','Croatian','croate','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('hsb     ','   ','  ','Upper Sorbian','haut-sorabe','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('hun     ','   ','hu','Hungarian','hongrois','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('hup     ','   ','  ','Hupa','hupa','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('iba     ','   ','  ','Iban','iban','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ibo     ','   ','ig','Igbo','igbo','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ice     ','isl','is','Icelandic','islandais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ido     ','   ','io','Ido','ido','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('iii     ','   ','ii','Sichuan Yi; Nuosu','yi de Sichuan','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('ijo     ','   ','  ','Ijo languages','ijo, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('iku     ','   ','iu','Inuktitut','inuktitut','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ile     ','   ','ie','Interlingue; Occidental','interlingue','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ilo     ','   ','  ','Iloko','ilocano','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ina     ','   ','ia','Interlingua (International Auxiliary Language Association)','interlingua (langue auxiliaire internationale)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('inc     ','   ','  ','Indic languages','indo-aryennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ind     ','   ','id','Indonesian','indonésien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ine     ','   ','  ','Indo-European languages','indo-européennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('inh     ','   ','  ','Ingush','ingouche','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ipk     ','   ','ik','Inupiaq','inupiaq','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('ira     ','   ','  ','Iranian languages','iraniennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('iro     ','   ','  ','Iroquoian languages','iroquoises, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ita     ','   ','it','Italian','italien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('jav     ','   ','jv','Javanese','javanais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('jbo     ','   ','  ','Lojban','lojban','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('jpn     ','   ','ja','Japanese','japonais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('jpr     ','   ','  ','Judeo-Persian','judéo-persan','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('jrb     ','   ','  ','Judeo-Arabic','judéo-arabe','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('kaa     ','   ','  ','Kara-Kalpak','karakalpak','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('kab     ','   ','  ','Kabyle','kabyle','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('kac     ','   ','  ','Kachin; Jingpho','kachin; jingpho','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('kal     ','   ','kl','Kalaallisut; Greenlandic','groenlandais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('kam     ','   ','  ','Kamba','kamba','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('kan     ','   ','kn','Kannada','kannada','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('kar     ','   ','  ','Karen languages','karen, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('kas     ','   ','ks','Kashmiri','kashmiri','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('kau     ','   ','kr','Kanuri','kanouri','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('kaw     ','   ','  ','Kawi','kawi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('kaz     ','   ','kk','Kazakh','kazakh','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('kbd     ','   ','  ','Kabardian','kabardien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('kha     ','   ','  ','Khasi','khasi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('khi     ','   ','  ','Khoisan languages','khoïsan, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('khm     ','   ','km','Central Khmer','khmer central','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('kho     ','   ','  ','Khotanese; Sakan','khotanais; sakan','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('kik     ','   ','ki','Kikuyu; Gikuyu','kikuyu','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('kin     ','   ','rw','Kinyarwanda','rwanda','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('kir     ','   ','ky','Kirghiz; Kyrgyz','kirghiz','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('kmb     ','   ','  ','Kimbundu','kimbundu','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('kok     ','   ','  ','Konkani','konkani','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('kom     ','   ','kv','Komi','kom','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('kon     ','   ','kg','Kongo','kongo','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('kor     ','   ','ko','Korean','coréen','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('kos     ','   ','  ','Kosraean','kosrae','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('kpe     ','   ','  ','Kpelle','kpellé','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('krc     ','   ','  ','Karachay-Balkar','karatchai balkar','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('krl     ','   ','  ','Karelian','carélien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('kro     ','   ','  ','Kru languages','krou, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('kru     ','   ','  ','Kurukh','kurukh','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('kua     ','   ','kj','Kuanyama; Kwanyama','kuanyama; kwanyama','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('kum     ','   ','  ','Kumyk','koumyk','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('kur     ','   ','ku','Kurdish','kurde','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('kut     ','   ','  ','Kutenai','kutenai','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('lad     ','   ','  ','Ladino','judéo-espagnol','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('lah     ','   ','  ','Lahnda','lahnda','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('lam     ','   ','  ','Lamba','lamba','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('lao     ','   ','lo','Lao','lao','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('lat     ','   ','la','Latin','latin','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('lav     ','   ','lv','Latvian','letton','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('lez     ','   ','  ','Lezghian','lezghien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('lim     ','   ','li','Limburgan; Limburger; Limburgish','limbourgeois','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('lin     ','   ','ln','Lingala','lingala','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('lit     ','   ','lt','Lithuanian','lituanien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('lol     ','   ','  ','Mongo','mongo','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('loz     ','   ','  ','Lozi','lozi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ltz     ','   ','lb','Luxembourgish; Letzeburgesch','luxembourgeois','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('lua     ','   ','  ','Luba-Lulua','luba-lulua','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('lub     ','   ','lu','Luba-Katanga','luba-katanga','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('lug     ','   ','lg','Ganda','ganda','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('lui     ','   ','  ','Luiseno','luiseno','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('lun     ','   ','  ','Lunda','lunda','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('luo     ','   ','  ','Luo (Kenya and Tanzania)','luo (Kenya et Tanzanie)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('lus     ','   ','  ','Lushai','lushai','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('mac     ','mkd','mk','Macedonian','macédonien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('mad     ','   ','  ','Madurese','madourais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('mag     ','   ','  ','Magahi','magahi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('mah     ','   ','mh','Marshallese','marshall','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('mai     ','   ','  ','Maithili','maithili','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('mak     ','   ','  ','Makasar','makassar','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('mal     ','   ','ml','Malayalam','malayalam','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('man     ','   ','  ','Mandingo','mandingue','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('mao     ','mri','mi','Maori','maori','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('map     ','   ','  ','Austronesian languages','austronésiennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('mar     ','   ','mr','Marathi','marathe','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('mas     ','   ','  ','Masai','massaï','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('may     ','msa','ms','Malay','malais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('mdf     ','   ','  ','Moksha','moksa','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('mdr     ','   ','  ','Mandar','mandar','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('men     ','   ','  ','Mende','mendé','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('mga     ','   ','  ','Irish, Middle (900-1200)','irlandais moyen (900-1200)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('mic     ','   ','  ','Mi''kmaq; Micmac','mi''kmaq; micmac','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('min     ','   ','  ','Minangkabau','minangkabau','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('mis     ','   ','  ','Uncoded languages','langues non codées','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('mkh     ','   ','  ','Mon-Khmer languages','môn-khmer, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('mlg     ','   ','mg','Malagasy','malgache','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('mlt     ','   ','mt','Maltese','maltais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('mnc     ','   ','  ','Manchu','mandchou','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('mni     ','   ','  ','Manipuri','manipuri','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('mno     ','   ','  ','Manobo languages','manobo, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('moh     ','   ','  ','Mohawk','mohawk','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('mon     ','   ','mn','Mongolian','mongol','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('mos     ','   ','  ','Mossi','moré','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('mul     ','   ','  ','Multiple languages','multilingue','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('mun     ','   ','  ','Munda languages','mounda, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('mus     ','   ','  ','Creek','muskogee','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('mwl     ','   ','  ','Mirandese','mirandais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('mwr     ','   ','  ','Marwari','marvari','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('myn     ','   ','  ','Mayan languages','maya, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('myv     ','   ','  ','Erzya','erza','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('nah     ','   ','  ','Nahuatl languages','nahuatl, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('nai     ','   ','  ','North American Indian languages','nord-amérindiennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('nap     ','   ','  ','Neapolitan','napolitain','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('nau     ','   ','na','Nauru','nauruan','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('nav     ','   ','nv','Navajo; Navaho','navaho','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('nbl     ','   ','nr','Ndebele, South; South Ndebele','ndébélé du Sud','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('nde     ','   ','nd','Ndebele, North; North Ndebele','ndébélé du Nord','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ndo     ','   ','ng','Ndonga','ndonga','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('nds     ','   ','  ','Low German; Low Saxon; German, Low; Saxon, Low','bas allemand; bas saxon; allemand, bas; saxon, bas','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('nep     ','   ','ne','Nepali','népalais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('new     ','   ','  ','Nepal Bhasa; Newari','nepal bhasa; newari','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('nia     ','   ','  ','Nias','nias','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('nic     ','   ','  ','Niger-Kordofanian languages','nigéro-kordofaniennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('niu     ','   ','  ','Niuean','niué','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('nno     ','   ','nn','Norwegian Nynorsk; Nynorsk, Norwegian','norvégien nynorsk; nynorsk, norvégien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('nob     ','   ','nb','Bokmål, Norwegian; Norwegian Bokmål','norvégien bokmål','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('nog     ','   ','  ','Nogai','nogaï; nogay','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('non     ','   ','  ','Norse, Old','norrois, vieux','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('nor     ','   ','no','Norwegian','norvégien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('nqo     ','   ','  ','N''Ko','n''ko','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('nso     ','   ','  ','Pedi; Sepedi; Northern Sotho','pedi; sepedi; sotho du Nord','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('nub     ','   ','  ','Nubian languages','nubiennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('nwc     ','   ','  ','Classical Newari; Old Newari; Classical Nepal Bhasa','newari classique','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('nya     ','   ','ny','Chichewa; Chewa; Nyanja','chichewa; chewa; nyanja','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('nym     ','   ','  ','Nyamwezi','nyamwezi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('nyn     ','   ','  ','Nyankole','nyankolé','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('nyo     ','   ','  ','Nyoro','nyoro','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('nzi     ','   ','  ','Nzima','nzema','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('oci     ','   ','oc','Occitan (post 1500)','occitan (après 1500)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('oji     ','   ','oj','Ojibwa','ojibwa','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ori     ','   ','or','Oriya','oriya','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('orm     ','   ','om','Oromo','galla','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('osa     ','   ','  ','Osage','osage','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('oss     ','   ','os','Ossetian; Ossetic','ossète','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ota     ','   ','  ','Turkish, Ottoman (1500-1928)','turc ottoman (1500-1928)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('oto     ','   ','  ','Otomian languages','otomi, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('paa     ','   ','  ','Papuan languages','papoues, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('pag     ','   ','  ','Pangasinan','pangasinan','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('pal     ','   ','  ','Pahlavi','pahlavi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('pam     ','   ','  ','Pampanga; Kapampangan','pampangan','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('pan     ','   ','pa','Panjabi; Punjabi','pendjabi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('pap     ','   ','  ','Papiamento','papiamento','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('pau     ','   ','  ','Palauan','palau','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('peo     ','   ','  ','Persian, Old (ca.600-400 B.C.)','perse, vieux (ca. 600-400 av. J.-C.)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('per     ','fas','fa','Persian','persan','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('phi     ','   ','  ','Philippine languages','philippines, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('phn     ','   ','  ','Phoenician','phénicien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('pli     ','   ','pi','Pali','pali','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('pol     ','   ','pl','Polish','polonais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('pon     ','   ','  ','Pohnpeian','pohnpei','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('por     ','   ','pt','Portuguese','portugais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('pra     ','   ','  ','Prakrit languages','prâkrit, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('pro     ','   ','  ','Provençal, Old (to 1500); Occitan, Old (to 1500)','provençal ancien (jusqu''à 1500); occitan ancien (jusqu''à 1500)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('pus     ','   ','ps','Pushto; Pashto','pachto','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
---	 ('qaa-qtz ','   ','  ','Reserved for local use','réservée à l''usage local','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('que     ','   ','qu','Quechua','quechua','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('raj     ','   ','  ','Rajasthani','rajasthani','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('rap     ','   ','  ','Rapanui','rapanui','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('rar     ','   ','  ','Rarotongan; Cook Islands Maori','rarotonga; maori des îles Cook','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('roa     ','   ','  ','Romance languages','romanes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('roh     ','   ','rm','Romansh','romanche','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('rom     ','   ','  ','Romany','tsigane','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('rum     ','ron','ro','Romanian; Moldavian; Moldovan','roumain; moldave','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('run     ','   ','rn','Rundi','rundi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('rup     ','   ','  ','Aromanian; Arumanian; Macedo-Romanian','aroumain; macédo-roumain','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('rus     ','   ','ru','Russian','russe','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('sad     ','   ','  ','Sandawe','sandawe','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('sag     ','   ','sg','Sango','sango','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('sah     ','   ','  ','Yakut','iakoute','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('sai     ','   ','  ','South American Indian languages','sud-amérindiennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('sal     ','   ','  ','Salishan languages','salishennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('sam     ','   ','  ','Samaritan Aramaic','samaritain','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('san     ','   ','sa','Sanskrit','sanskrit','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('sas     ','   ','  ','Sasak','sasak','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('sat     ','   ','  ','Santali','santal','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('scn     ','   ','  ','Sicilian','sicilien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('sco     ','   ','  ','Scots','écossais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('sel     ','   ','  ','Selkup','selkoupe','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('sem     ','   ','  ','Semitic languages','sémitiques, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('sga     ','   ','  ','Irish, Old (to 900)','irlandais ancien (jusqu''à 900)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('sgn     ','   ','  ','Sign Languages','langues des signes','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('shn     ','   ','  ','Shan','chan','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('sid     ','   ','  ','Sidamo','sidamo','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('sin     ','   ','si','Sinhala; Sinhalese','singhalais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('sio     ','   ','  ','Siouan languages','sioux, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('sit     ','   ','  ','Sino-Tibetan languages','sino-tibétaines, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('sla     ','   ','  ','Slavic languages','slaves, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('slo     ','slk','sk','Slovak','slovaque','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('slv     ','   ','sl','Slovenian','slovène','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('sma     ','   ','  ','Southern Sami','sami du Sud','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('sme     ','   ','se','Northern Sami','sami du Nord','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('smi     ','   ','  ','Sami languages','sames, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('smj     ','   ','  ','Lule Sami','sami de Lule','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('smn     ','   ','  ','Inari Sami','sami d''Inari','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('smo     ','   ','sm','Samoan','samoan','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('sms     ','   ','  ','Skolt Sami','sami skolt','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('sna     ','   ','sn','Shona','shona','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('snd     ','   ','sd','Sindhi','sindhi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('snk     ','   ','  ','Soninke','soninké','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('sog     ','   ','  ','Sogdian','sogdien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('som     ','   ','so','Somali','somali','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('son     ','   ','  ','Songhai languages','songhai, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('sot     ','   ','st','Sotho, Southern','sotho du Sud','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('spa     ','   ','es','Spanish; Castilian','espagnol; castillan','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('srd     ','   ','sc','Sardinian','sarde','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('srn     ','   ','  ','Sranan Tongo','sranan tongo','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('srp     ','   ','sr','Serbian','serbe','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('srr     ','   ','  ','Serer','sérère','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ssa     ','   ','  ','Nilo-Saharan languages','nilo-sahariennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ssw     ','   ','ss','Swati','swati','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('suk     ','   ','  ','Sukuma','sukuma','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('sun     ','   ','su','Sundanese','soundanais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('sus     ','   ','  ','Susu','soussou','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('sux     ','   ','  ','Sumerian','sumérien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('swa     ','   ','sw','Swahili','swahili','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('swe     ','   ','sv','Swedish','suédois','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('syc     ','   ','  ','Classical Syriac','syriaque classique','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('syr     ','   ','  ','Syriac','syriaque','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tah     ','   ','ty','Tahitian','tahitien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tai     ','   ','  ','Tai languages','tai, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tam     ','   ','ta','Tamil','tamoul','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tat     ','   ','tt','Tatar','tatar','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('tel     ','   ','te','Telugu','télougou','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tem     ','   ','  ','Timne','temne','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ter     ','   ','  ','Tereno','tereno','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tet     ','   ','  ','Tetum','tetum','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tgk     ','   ','tg','Tajik','tadjik','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tgl     ','   ','tl','Tagalog','tagalog','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tha     ','   ','th','Thai','thaï','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tib     ','bod','bo','Tibetan','tibétain','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tig     ','   ','  ','Tigre','tigré','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tir     ','   ','ti','Tigrinya','tigrigna','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('tiv     ','   ','  ','Tiv','tiv','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tkl     ','   ','  ','Tokelau','tokelau','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tlh     ','   ','  ','Klingon; tlhIngan-Hol','klingon','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tli     ','   ','  ','Tlingit','tlingit','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tmh     ','   ','  ','Tamashek','tamacheq','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tog     ','   ','  ','Tonga (Nyasa)','tonga (Nyasa)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ton     ','   ','to','Tonga (Tonga Islands)','tongan (Îles Tonga)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tpi     ','   ','  ','Tok Pisin','tok pisin','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tsi     ','   ','  ','Tsimshian','tsimshian','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tsn     ','   ','tn','Tswana','tswana','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('tso     ','   ','ts','Tsonga','tsonga','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tuk     ','   ','tk','Turkmen','turkmène','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tum     ','   ','  ','Tumbuka','tumbuka','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tup     ','   ','  ','Tupi languages','tupi, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tur     ','   ','tr','Turkish','turc','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tut     ','   ','  ','Altaic languages','altaïques, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tvl     ','   ','  ','Tuvalu','tuvalu','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('twi     ','   ','tw','Twi','twi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('tyv     ','   ','  ','Tuvinian','touva','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('udm     ','   ','  ','Udmurt','oudmourte','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('uga     ','   ','  ','Ugaritic','ougaritique','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('uig     ','   ','ug','Uighur; Uyghur','ouïgour','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ukr     ','   ','uk','Ukrainian','ukrainien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('umb     ','   ','  ','Umbundu','umbundu','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('und     ','   ','  ','Undetermined','indéterminée','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('urd     ','   ','ur','Urdu','ourdou','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('uzb     ','   ','uz','Uzbek','ouszbek','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('vai     ','   ','  ','Vai','vaï','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ven     ','   ','ve','Venda','venda','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('vie     ','   ','vi','Vietnamese','vietnamien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('vol     ','   ','vo','Volapük','volapük','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('vot     ','   ','  ','Votic','vote','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('wak     ','   ','  ','Wakashan languages','wakashanes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('wal     ','   ','  ','Wolaitta; Wolaytta','wolaitta; wolaytta','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('war     ','   ','  ','Waray','waray','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('was     ','   ','  ','Washo','washo','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('wel     ','cym','cy','Welsh','gallois','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('wen     ','   ','  ','Sorbian languages','sorabes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('wln     ','   ','wa','Walloon','wallon','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('wol     ','   ','wo','Wolof','wolof','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('xal     ','   ','  ','Kalmyk; Oirat','kalmouk; oïrat','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('xho     ','   ','xh','Xhosa','xhosa','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('yao     ','   ','  ','Yao','yao','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('yap     ','   ','  ','Yapese','yapois','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('yid     ','   ','yi','Yiddish','yiddish','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('yor     ','   ','yo','Yoruba','yoruba','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('ypk     ','   ','  ','Yupik languages','yupik, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('zap     ','   ','  ','Zapotec','zapotèque','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('zbl     ','   ','  ','Blissymbols; Blissymbolics; Bliss','symboles Bliss; Bliss','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('zen     ','   ','  ','Zenaga','zenaga','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
-INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
-	 ('zgh     ','   ','  ','Standard Moroccan Tamazight','amazighe standard marocain','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('zha     ','   ','za','Zhuang; Chuang','zhuang; chuang','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('znd     ','   ','  ','Zande languages','zandé, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('zul     ','   ','zu','Zulu','zoulou','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('zun     ','   ','  ','Zuni','zuni','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('zxx     ','   ','  ','No linguistic content; Not applicable','pas de contenu linguistique; non applicable','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
-	 ('zza     ','   ','  ','Zaza; Dimili; Dimli; Kirdki; Kirmanjki; Zazaki','zaza; dimili; dimli; kirdki; kirmanjki; zazaki','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+COPY reference.language(ISO_639_2_Code_b,ISO_639_2_Code_t, ISO_639_1_Code, english_name, french_name) 
+FROM '/var/lib/postgresql/18/docker/languages.csv'
+DELIMITER ','
+CSV HEADER;
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('aar     ','   ','aa','Afar','afar','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('abk     ','   ','ab','Abkhazian','abkhaze','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ace     ','   ','  ','Achinese','aceh','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ach     ','   ','  ','Acoli','acoli','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ada     ','   ','  ','Adangme','adangme','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ady     ','   ','  ','Adyghe; Adygei','adyghé','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('afa     ','   ','  ','Afro-Asiatic languages','afro-asiatiques, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('afh     ','   ','  ','Afrihili','afrihili','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('afr     ','   ','af','Afrikaans','afrikaans','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ain     ','   ','  ','Ainu','aïnou','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('aka     ','   ','ak','Akan','akan','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('akk     ','   ','  ','Akkadian','akkadien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('alb     ','sqi','sq','Albanian','albanais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ale     ','   ','  ','Aleut','aléoute','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('alg     ','   ','  ','Algonquian languages','algonquines, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('alt     ','   ','  ','Southern Altai','altai du Sud','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('amh     ','   ','am','Amharic','amharique','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ang     ','   ','  ','English, Old (ca.450-1100)','anglo-saxon (ca.450-1100)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('anp     ','   ','  ','Angika','angika','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('apa     ','   ','  ','Apache languages','apaches, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('ara     ','   ','ar','Arabic','arabe','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('arc     ','   ','  ','Official Aramaic (700-300 BCE); Imperial Aramaic (700-300 BCE)','araméen d''empire (700-300 BCE)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('arg     ','   ','an','Aragonese','aragonais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('arm     ','hye','hy','Armenian','arménien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('arn     ','   ','  ','Mapudungun; Mapuche','mapudungun; mapuche; mapuce','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('arp     ','   ','  ','Arapaho','arapaho','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('art     ','   ','  ','Artificial languages','artificielles, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('arw     ','   ','  ','Arawak','arawak','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('asm     ','   ','as','Assamese','assamais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ast     ','   ','  ','Asturian; Bable; Leonese; Asturleonese','asturien; bable; léonais; asturoléonais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('ath     ','   ','  ','Athapascan languages','athapascanes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('aus     ','   ','  ','Australian languages','australiennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ava     ','   ','av','Avaric','avar','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ave     ','   ','ae','Avestan','avestique','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('awa     ','   ','  ','Awadhi','awadhi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('aym     ','   ','ay','Aymara','aymara','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('aze     ','   ','az','Azerbaijani','azéri','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('bad     ','   ','  ','Banda languages','banda, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('bai     ','   ','  ','Bamileke languages','bamiléké, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('bak     ','   ','ba','Bashkir','bachkir','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('bal     ','   ','  ','Baluchi','baloutchi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('bam     ','   ','bm','Bambara','bambara','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ban     ','   ','  ','Balinese','balinais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('baq     ','eus','eu','Basque','basque','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('bas     ','   ','  ','Basa','basa','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('bat     ','   ','  ','Baltic languages','baltes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('bej     ','   ','  ','Beja; Bedawiyet','bedja','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('bel     ','   ','be','Belarusian','biélorusse','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('bem     ','   ','  ','Bemba','bemba','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ben     ','   ','bn','Bengali','bengali','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('ber     ','   ','  ','Berber languages','berbères, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('bho     ','   ','  ','Bhojpuri','bhojpuri','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('bih     ','   ','  ','Bihari languages','langues biharis','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('bik     ','   ','  ','Bikol','bikol','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('bin     ','   ','  ','Bini; Edo','bini; edo','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('bis     ','   ','bi','Bislama','bichlamar','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('bla     ','   ','  ','Siksika','blackfoot','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('bnt     ','   ','  ','Bantu languages','bantou, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('bos     ','   ','bs','Bosnian','bosniaque','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('bra     ','   ','  ','Braj','braj','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('bre     ','   ','br','Breton','breton','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('btk     ','   ','  ','Batak languages','batak, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('bua     ','   ','  ','Buriat','bouriate','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('bug     ','   ','  ','Buginese','bugi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('bul     ','   ','bg','Bulgarian','bulgare','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('bur     ','mya','my','Burmese','birman','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('byn     ','   ','  ','Blin; Bilin','blin; bilen','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('cad     ','   ','  ','Caddo','caddo','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('cai     ','   ','  ','Central American Indian languages','amérindiennes de L''Amérique centrale, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('car     ','   ','  ','Galibi Carib','karib; galibi; carib','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('cat     ','   ','ca','Catalan; Valencian','catalan; valencien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('cau     ','   ','  ','Caucasian languages','caucasiennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ceb     ','   ','  ','Cebuano','cebuano','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('cel     ','   ','  ','Celtic languages','celtiques, langues; celtes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('cha     ','   ','ch','Chamorro','chamorro','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('chb     ','   ','  ','Chibcha','chibcha','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('che     ','   ','ce','Chechen','tchétchène','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('chg     ','   ','  ','Chagatai','djaghataï','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('chi     ','zho','zh','Chinese','chinois','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('chk     ','   ','  ','Chuukese','chuuk','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('chm     ','   ','  ','Mari','mari','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('chn     ','   ','  ','Chinook jargon','chinook, jargon','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('cho     ','   ','  ','Choctaw','choctaw','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('chp     ','   ','  ','Chipewyan; Dene Suline','chipewyan','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('chr     ','   ','  ','Cherokee','cherokee','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('chu     ','   ','cu','Church Slavic; Old Slavonic; Church Slavonic; Old Bulgarian; Old Church Slavonic','slavon d''église; vieux slave; slavon liturgique; vieux bulgare','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('chv     ','   ','cv','Chuvash','tchouvache','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('chy     ','   ','  ','Cheyenne','cheyenne','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('cmc     ','   ','  ','Chamic languages','chames, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('cnr     ','   ','  ','Montenegrin','monténégrin','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('cop     ','   ','  ','Coptic','copte','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('cor     ','   ','kw','Cornish','cornique','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('cos     ','   ','co','Corsican','corse','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('cpe     ','   ','  ','Creoles and pidgins, English based','créoles et pidgins basés sur l''anglais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('cpf     ','   ','  ','Creoles and pidgins, French-based','créoles et pidgins basés sur le français','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('cpp     ','   ','  ','Creoles and pidgins, Portuguese-based','créoles et pidgins basés sur le portugais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('cre     ','   ','cr','Cree','cree','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('crh     ','   ','  ','Crimean Tatar; Crimean Turkish','tatar de Crimé','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('crp     ','   ','  ','Creoles and pidgins','créoles et pidgins','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('csb     ','   ','  ','Kashubian','kachoube','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('cus     ','   ','  ','Cushitic languages','couchitiques, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('cze     ','ces','cs','Czech','tchèque','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('dak     ','   ','  ','Dakota','dakota','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('dan     ','   ','da','Danish','danois','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('dar     ','   ','  ','Dargwa','dargwa','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('day     ','   ','  ','Land Dayak languages','dayak, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('del     ','   ','  ','Delaware','delaware','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('den     ','   ','  ','Slave (Athapascan)','esclave (athapascan)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('dgr     ','   ','  ','Tlicho; Dogrib','tlicho; dogrib','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('din     ','   ','  ','Dinka','dinka','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('div     ','   ','dv','Divehi; Dhivehi; Maldivian','maldivien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('doi     ','   ','  ','Dogri','dogri','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('dra     ','   ','  ','Dravidian languages','dravidiennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('dsb     ','   ','  ','Lower Sorbian','bas-sorabe','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('dua     ','   ','  ','Duala','douala','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('dum     ','   ','  ','Dutch, Middle (ca.1050-1350)','néerlandais moyen (ca. 1050-1350)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('dut     ','nld','nl','Dutch; Flemish','néerlandais; flamand','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('dyu     ','   ','  ','Dyula','dioula','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('dzo     ','   ','dz','Dzongkha','dzongkha','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('efi     ','   ','  ','Efik','efik','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('egy     ','   ','  ','Egyptian (Ancient)','égyptien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('eka     ','   ','  ','Ekajuk','ekajuk','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('elx     ','   ','  ','Elamite','élamite','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('eng     ','   ','en','English','anglais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('enm     ','   ','  ','English, Middle (1100-1500)','anglais moyen (1100-1500)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('epo     ','   ','eo','Esperanto','espéranto','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('est     ','   ','et','Estonian','estonien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ewe     ','   ','ee','Ewe','éwé','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ewo     ','   ','  ','Ewondo','éwondo','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('fan     ','   ','  ','Fang','fang','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('fao     ','   ','fo','Faroese','féroïen','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('fat     ','   ','  ','Fanti','fanti','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('fij     ','   ','fj','Fijian','fidjien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('fil     ','   ','  ','Filipino; Pilipino','filipino; pilipino','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('fin     ','   ','fi','Finnish','finnois','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('fiu     ','   ','  ','Finno-Ugrian languages','finno-ougriennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('fon     ','   ','  ','Fon','fon','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('fre     ','fra','fr','French','français','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('frm     ','   ','  ','French, Middle (ca.1400-1600)','français moyen (1400-1600)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('fro     ','   ','  ','French, Old (842-ca.1400)','français ancien (842-ca.1400)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('frr     ','   ','  ','Northern Frisian','frison septentrional','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('frs     ','   ','  ','Eastern Frisian','frison oriental','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('fry     ','   ','fy','Western Frisian','frison occidental','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ful     ','   ','ff','Fulah','peul','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('fur     ','   ','  ','Friulian','frioulan','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('gaa     ','   ','  ','Ga','ga','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('gay     ','   ','  ','Gayo','gayo','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('gba     ','   ','  ','Gbaya','gbaya','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('gem     ','   ','  ','Germanic languages','germaniques, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('geo     ','kat','ka','Georgian','géorgien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('ger     ','deu','de','German','allemand','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('gez     ','   ','  ','Geez','guèze','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('gil     ','   ','  ','Gilbertese','kiribati','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('gla     ','   ','gd','Gaelic; Scottish Gaelic','gaélique; gaélique écossais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('gle     ','   ','ga','Irish','irlandais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('glg     ','   ','gl','Galician','galicien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('glv     ','   ','gv','Manx','manx; mannois','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('gmh     ','   ','  ','German, Middle High (ca.1050-1500)','allemand, moyen haut (ca. 1050-1500)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('goh     ','   ','  ','German, Old High (ca.750-1050)','allemand, vieux haut (ca. 750-1050)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('gon     ','   ','  ','Gondi','gond','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('gor     ','   ','  ','Gorontalo','gorontalo','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('got     ','   ','  ','Gothic','gothique','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('grb     ','   ','  ','Grebo','grebo','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('grc     ','   ','  ','Greek, Ancient (to 1453)','grec ancien (jusqu''à 1453)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('gre     ','ell','el','Greek, Modern (1453-)','grec moderne (après 1453)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('grn     ','   ','gn','Guarani','guarani','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('gsw     ','   ','  ','Swiss German; Alemannic; Alsatian','suisse alémanique; alémanique; alsacien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('guj     ','   ','gu','Gujarati','goudjrati','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('gwi     ','   ','  ','Gwich''in','gwich''in','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('hai     ','   ','  ','Haida','haida','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('hat     ','   ','ht','Haitian; Haitian Creole','haïtien; créole haïtien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('hau     ','   ','ha','Hausa','haoussa','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('haw     ','   ','  ','Hawaiian','hawaïen','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('heb     ','   ','he','Hebrew','hébreu','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('her     ','   ','hz','Herero','herero','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('hil     ','   ','  ','Hiligaynon','hiligaynon','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('him     ','   ','  ','Himachali languages; Western Pahari languages','langues himachalis; langues paharis occidentales','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('hin     ','   ','hi','Hindi','hindi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('hit     ','   ','  ','Hittite','hittite','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('hmn     ','   ','  ','Hmong; Mong','hmong','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('hmo     ','   ','ho','Hiri Motu','hiri motu','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('hrv     ','   ','hr','Croatian','croate','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('hsb     ','   ','  ','Upper Sorbian','haut-sorabe','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('hun     ','   ','hu','Hungarian','hongrois','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('hup     ','   ','  ','Hupa','hupa','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('iba     ','   ','  ','Iban','iban','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ibo     ','   ','ig','Igbo','igbo','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ice     ','isl','is','Icelandic','islandais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ido     ','   ','io','Ido','ido','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('iii     ','   ','ii','Sichuan Yi; Nuosu','yi de Sichuan','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('ijo     ','   ','  ','Ijo languages','ijo, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('iku     ','   ','iu','Inuktitut','inuktitut','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ile     ','   ','ie','Interlingue; Occidental','interlingue','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ilo     ','   ','  ','Iloko','ilocano','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ina     ','   ','ia','Interlingua (International Auxiliary Language Association)','interlingua (langue auxiliaire internationale)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('inc     ','   ','  ','Indic languages','indo-aryennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ind     ','   ','id','Indonesian','indonésien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ine     ','   ','  ','Indo-European languages','indo-européennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('inh     ','   ','  ','Ingush','ingouche','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ipk     ','   ','ik','Inupiaq','inupiaq','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('ira     ','   ','  ','Iranian languages','iraniennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('iro     ','   ','  ','Iroquoian languages','iroquoises, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ita     ','   ','it','Italian','italien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('jav     ','   ','jv','Javanese','javanais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('jbo     ','   ','  ','Lojban','lojban','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('jpn     ','   ','ja','Japanese','japonais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('jpr     ','   ','  ','Judeo-Persian','judéo-persan','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('jrb     ','   ','  ','Judeo-Arabic','judéo-arabe','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('kaa     ','   ','  ','Kara-Kalpak','karakalpak','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('kab     ','   ','  ','Kabyle','kabyle','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('kac     ','   ','  ','Kachin; Jingpho','kachin; jingpho','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('kal     ','   ','kl','Kalaallisut; Greenlandic','groenlandais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('kam     ','   ','  ','Kamba','kamba','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('kan     ','   ','kn','Kannada','kannada','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('kar     ','   ','  ','Karen languages','karen, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('kas     ','   ','ks','Kashmiri','kashmiri','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('kau     ','   ','kr','Kanuri','kanouri','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('kaw     ','   ','  ','Kawi','kawi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('kaz     ','   ','kk','Kazakh','kazakh','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('kbd     ','   ','  ','Kabardian','kabardien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('kha     ','   ','  ','Khasi','khasi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('khi     ','   ','  ','Khoisan languages','khoïsan, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('khm     ','   ','km','Central Khmer','khmer central','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('kho     ','   ','  ','Khotanese; Sakan','khotanais; sakan','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('kik     ','   ','ki','Kikuyu; Gikuyu','kikuyu','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('kin     ','   ','rw','Kinyarwanda','rwanda','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('kir     ','   ','ky','Kirghiz; Kyrgyz','kirghiz','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('kmb     ','   ','  ','Kimbundu','kimbundu','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('kok     ','   ','  ','Konkani','konkani','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('kom     ','   ','kv','Komi','kom','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('kon     ','   ','kg','Kongo','kongo','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('kor     ','   ','ko','Korean','coréen','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('kos     ','   ','  ','Kosraean','kosrae','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('kpe     ','   ','  ','Kpelle','kpellé','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('krc     ','   ','  ','Karachay-Balkar','karatchai balkar','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('krl     ','   ','  ','Karelian','carélien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('kro     ','   ','  ','Kru languages','krou, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('kru     ','   ','  ','Kurukh','kurukh','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('kua     ','   ','kj','Kuanyama; Kwanyama','kuanyama; kwanyama','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('kum     ','   ','  ','Kumyk','koumyk','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('kur     ','   ','ku','Kurdish','kurde','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('kut     ','   ','  ','Kutenai','kutenai','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('lad     ','   ','  ','Ladino','judéo-espagnol','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('lah     ','   ','  ','Lahnda','lahnda','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('lam     ','   ','  ','Lamba','lamba','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('lao     ','   ','lo','Lao','lao','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('lat     ','   ','la','Latin','latin','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('lav     ','   ','lv','Latvian','letton','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('lez     ','   ','  ','Lezghian','lezghien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('lim     ','   ','li','Limburgan; Limburger; Limburgish','limbourgeois','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('lin     ','   ','ln','Lingala','lingala','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('lit     ','   ','lt','Lithuanian','lituanien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('lol     ','   ','  ','Mongo','mongo','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('loz     ','   ','  ','Lozi','lozi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ltz     ','   ','lb','Luxembourgish; Letzeburgesch','luxembourgeois','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('lua     ','   ','  ','Luba-Lulua','luba-lulua','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('lub     ','   ','lu','Luba-Katanga','luba-katanga','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('lug     ','   ','lg','Ganda','ganda','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('lui     ','   ','  ','Luiseno','luiseno','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('lun     ','   ','  ','Lunda','lunda','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('luo     ','   ','  ','Luo (Kenya and Tanzania)','luo (Kenya et Tanzanie)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('lus     ','   ','  ','Lushai','lushai','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('mac     ','mkd','mk','Macedonian','macédonien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('mad     ','   ','  ','Madurese','madourais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('mag     ','   ','  ','Magahi','magahi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('mah     ','   ','mh','Marshallese','marshall','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('mai     ','   ','  ','Maithili','maithili','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('mak     ','   ','  ','Makasar','makassar','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('mal     ','   ','ml','Malayalam','malayalam','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('man     ','   ','  ','Mandingo','mandingue','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('mao     ','mri','mi','Maori','maori','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('map     ','   ','  ','Austronesian languages','austronésiennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('mar     ','   ','mr','Marathi','marathe','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('mas     ','   ','  ','Masai','massaï','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('may     ','msa','ms','Malay','malais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('mdf     ','   ','  ','Moksha','moksa','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('mdr     ','   ','  ','Mandar','mandar','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('men     ','   ','  ','Mende','mendé','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('mga     ','   ','  ','Irish, Middle (900-1200)','irlandais moyen (900-1200)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('mic     ','   ','  ','Mi''kmaq; Micmac','mi''kmaq; micmac','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('min     ','   ','  ','Minangkabau','minangkabau','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('mis     ','   ','  ','Uncoded languages','langues non codées','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('mkh     ','   ','  ','Mon-Khmer languages','môn-khmer, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('mlg     ','   ','mg','Malagasy','malgache','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('mlt     ','   ','mt','Maltese','maltais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('mnc     ','   ','  ','Manchu','mandchou','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('mni     ','   ','  ','Manipuri','manipuri','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('mno     ','   ','  ','Manobo languages','manobo, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('moh     ','   ','  ','Mohawk','mohawk','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('mon     ','   ','mn','Mongolian','mongol','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('mos     ','   ','  ','Mossi','moré','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('mul     ','   ','  ','Multiple languages','multilingue','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('mun     ','   ','  ','Munda languages','mounda, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('mus     ','   ','  ','Creek','muskogee','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('mwl     ','   ','  ','Mirandese','mirandais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('mwr     ','   ','  ','Marwari','marvari','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('myn     ','   ','  ','Mayan languages','maya, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('myv     ','   ','  ','Erzya','erza','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('nah     ','   ','  ','Nahuatl languages','nahuatl, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('nai     ','   ','  ','North American Indian languages','nord-amérindiennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('nap     ','   ','  ','Neapolitan','napolitain','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('nau     ','   ','na','Nauru','nauruan','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('nav     ','   ','nv','Navajo; Navaho','navaho','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('nbl     ','   ','nr','Ndebele, South; South Ndebele','ndébélé du Sud','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('nde     ','   ','nd','Ndebele, North; North Ndebele','ndébélé du Nord','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ndo     ','   ','ng','Ndonga','ndonga','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('nds     ','   ','  ','Low German; Low Saxon; German, Low; Saxon, Low','bas allemand; bas saxon; allemand, bas; saxon, bas','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('nep     ','   ','ne','Nepali','népalais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('new     ','   ','  ','Nepal Bhasa; Newari','nepal bhasa; newari','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('nia     ','   ','  ','Nias','nias','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('nic     ','   ','  ','Niger-Kordofanian languages','nigéro-kordofaniennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('niu     ','   ','  ','Niuean','niué','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('nno     ','   ','nn','Norwegian Nynorsk; Nynorsk, Norwegian','norvégien nynorsk; nynorsk, norvégien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('nob     ','   ','nb','Bokmål, Norwegian; Norwegian Bokmål','norvégien bokmål','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('nog     ','   ','  ','Nogai','nogaï; nogay','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('non     ','   ','  ','Norse, Old','norrois, vieux','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('nor     ','   ','no','Norwegian','norvégien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('nqo     ','   ','  ','N''Ko','n''ko','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('nso     ','   ','  ','Pedi; Sepedi; Northern Sotho','pedi; sepedi; sotho du Nord','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('nub     ','   ','  ','Nubian languages','nubiennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('nwc     ','   ','  ','Classical Newari; Old Newari; Classical Nepal Bhasa','newari classique','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('nya     ','   ','ny','Chichewa; Chewa; Nyanja','chichewa; chewa; nyanja','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('nym     ','   ','  ','Nyamwezi','nyamwezi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('nyn     ','   ','  ','Nyankole','nyankolé','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('nyo     ','   ','  ','Nyoro','nyoro','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('nzi     ','   ','  ','Nzima','nzema','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('oci     ','   ','oc','Occitan (post 1500)','occitan (après 1500)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('oji     ','   ','oj','Ojibwa','ojibwa','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ori     ','   ','or','Oriya','oriya','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('orm     ','   ','om','Oromo','galla','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('osa     ','   ','  ','Osage','osage','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('oss     ','   ','os','Ossetian; Ossetic','ossète','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ota     ','   ','  ','Turkish, Ottoman (1500-1928)','turc ottoman (1500-1928)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('oto     ','   ','  ','Otomian languages','otomi, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('paa     ','   ','  ','Papuan languages','papoues, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('pag     ','   ','  ','Pangasinan','pangasinan','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('pal     ','   ','  ','Pahlavi','pahlavi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('pam     ','   ','  ','Pampanga; Kapampangan','pampangan','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('pan     ','   ','pa','Panjabi; Punjabi','pendjabi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('pap     ','   ','  ','Papiamento','papiamento','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('pau     ','   ','  ','Palauan','palau','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('peo     ','   ','  ','Persian, Old (ca.600-400 B.C.)','perse, vieux (ca. 600-400 av. J.-C.)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('per     ','fas','fa','Persian','persan','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('phi     ','   ','  ','Philippine languages','philippines, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('phn     ','   ','  ','Phoenician','phénicien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('pli     ','   ','pi','Pali','pali','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('pol     ','   ','pl','Polish','polonais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('pon     ','   ','  ','Pohnpeian','pohnpei','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('por     ','   ','pt','Portuguese','portugais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('pra     ','   ','  ','Prakrit languages','prâkrit, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('pro     ','   ','  ','Provençal, Old (to 1500); Occitan, Old (to 1500)','provençal ancien (jusqu''à 1500); occitan ancien (jusqu''à 1500)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('pus     ','   ','ps','Pushto; Pashto','pachto','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- --	 ('qaa-qtz ','   ','  ','Reserved for local use','réservée à l''usage local','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('que     ','   ','qu','Quechua','quechua','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('raj     ','   ','  ','Rajasthani','rajasthani','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('rap     ','   ','  ','Rapanui','rapanui','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('rar     ','   ','  ','Rarotongan; Cook Islands Maori','rarotonga; maori des îles Cook','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('roa     ','   ','  ','Romance languages','romanes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('roh     ','   ','rm','Romansh','romanche','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('rom     ','   ','  ','Romany','tsigane','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('rum     ','ron','ro','Romanian; Moldavian; Moldovan','roumain; moldave','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('run     ','   ','rn','Rundi','rundi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('rup     ','   ','  ','Aromanian; Arumanian; Macedo-Romanian','aroumain; macédo-roumain','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('rus     ','   ','ru','Russian','russe','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('sad     ','   ','  ','Sandawe','sandawe','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('sag     ','   ','sg','Sango','sango','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('sah     ','   ','  ','Yakut','iakoute','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('sai     ','   ','  ','South American Indian languages','sud-amérindiennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('sal     ','   ','  ','Salishan languages','salishennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('sam     ','   ','  ','Samaritan Aramaic','samaritain','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('san     ','   ','sa','Sanskrit','sanskrit','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('sas     ','   ','  ','Sasak','sasak','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('sat     ','   ','  ','Santali','santal','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('scn     ','   ','  ','Sicilian','sicilien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('sco     ','   ','  ','Scots','écossais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('sel     ','   ','  ','Selkup','selkoupe','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('sem     ','   ','  ','Semitic languages','sémitiques, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('sga     ','   ','  ','Irish, Old (to 900)','irlandais ancien (jusqu''à 900)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('sgn     ','   ','  ','Sign Languages','langues des signes','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('shn     ','   ','  ','Shan','chan','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('sid     ','   ','  ','Sidamo','sidamo','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('sin     ','   ','si','Sinhala; Sinhalese','singhalais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('sio     ','   ','  ','Siouan languages','sioux, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('sit     ','   ','  ','Sino-Tibetan languages','sino-tibétaines, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('sla     ','   ','  ','Slavic languages','slaves, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('slo     ','slk','sk','Slovak','slovaque','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('slv     ','   ','sl','Slovenian','slovène','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('sma     ','   ','  ','Southern Sami','sami du Sud','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('sme     ','   ','se','Northern Sami','sami du Nord','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('smi     ','   ','  ','Sami languages','sames, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('smj     ','   ','  ','Lule Sami','sami de Lule','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('smn     ','   ','  ','Inari Sami','sami d''Inari','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('smo     ','   ','sm','Samoan','samoan','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('sms     ','   ','  ','Skolt Sami','sami skolt','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('sna     ','   ','sn','Shona','shona','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('snd     ','   ','sd','Sindhi','sindhi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('snk     ','   ','  ','Soninke','soninké','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('sog     ','   ','  ','Sogdian','sogdien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('som     ','   ','so','Somali','somali','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('son     ','   ','  ','Songhai languages','songhai, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('sot     ','   ','st','Sotho, Southern','sotho du Sud','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('spa     ','   ','es','Spanish; Castilian','espagnol; castillan','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('srd     ','   ','sc','Sardinian','sarde','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('srn     ','   ','  ','Sranan Tongo','sranan tongo','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('srp     ','   ','sr','Serbian','serbe','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('srr     ','   ','  ','Serer','sérère','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ssa     ','   ','  ','Nilo-Saharan languages','nilo-sahariennes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ssw     ','   ','ss','Swati','swati','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('suk     ','   ','  ','Sukuma','sukuma','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('sun     ','   ','su','Sundanese','soundanais','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('sus     ','   ','  ','Susu','soussou','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('sux     ','   ','  ','Sumerian','sumérien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('swa     ','   ','sw','Swahili','swahili','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('swe     ','   ','sv','Swedish','suédois','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('syc     ','   ','  ','Classical Syriac','syriaque classique','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('syr     ','   ','  ','Syriac','syriaque','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tah     ','   ','ty','Tahitian','tahitien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tai     ','   ','  ','Tai languages','tai, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tam     ','   ','ta','Tamil','tamoul','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tat     ','   ','tt','Tatar','tatar','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('tel     ','   ','te','Telugu','télougou','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tem     ','   ','  ','Timne','temne','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ter     ','   ','  ','Tereno','tereno','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tet     ','   ','  ','Tetum','tetum','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tgk     ','   ','tg','Tajik','tadjik','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tgl     ','   ','tl','Tagalog','tagalog','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tha     ','   ','th','Thai','thaï','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tib     ','bod','bo','Tibetan','tibétain','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tig     ','   ','  ','Tigre','tigré','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tir     ','   ','ti','Tigrinya','tigrigna','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('tiv     ','   ','  ','Tiv','tiv','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tkl     ','   ','  ','Tokelau','tokelau','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tlh     ','   ','  ','Klingon; tlhIngan-Hol','klingon','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tli     ','   ','  ','Tlingit','tlingit','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tmh     ','   ','  ','Tamashek','tamacheq','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tog     ','   ','  ','Tonga (Nyasa)','tonga (Nyasa)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ton     ','   ','to','Tonga (Tonga Islands)','tongan (Îles Tonga)','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tpi     ','   ','  ','Tok Pisin','tok pisin','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tsi     ','   ','  ','Tsimshian','tsimshian','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tsn     ','   ','tn','Tswana','tswana','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('tso     ','   ','ts','Tsonga','tsonga','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tuk     ','   ','tk','Turkmen','turkmène','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tum     ','   ','  ','Tumbuka','tumbuka','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tup     ','   ','  ','Tupi languages','tupi, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tur     ','   ','tr','Turkish','turc','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tut     ','   ','  ','Altaic languages','altaïques, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tvl     ','   ','  ','Tuvalu','tuvalu','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('twi     ','   ','tw','Twi','twi','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('tyv     ','   ','  ','Tuvinian','touva','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('udm     ','   ','  ','Udmurt','oudmourte','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('uga     ','   ','  ','Ugaritic','ougaritique','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('uig     ','   ','ug','Uighur; Uyghur','ouïgour','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ukr     ','   ','uk','Ukrainian','ukrainien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('umb     ','   ','  ','Umbundu','umbundu','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('und     ','   ','  ','Undetermined','indéterminée','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('urd     ','   ','ur','Urdu','ourdou','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('uzb     ','   ','uz','Uzbek','ouszbek','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('vai     ','   ','  ','Vai','vaï','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ven     ','   ','ve','Venda','venda','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('vie     ','   ','vi','Vietnamese','vietnamien','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('vol     ','   ','vo','Volapük','volapük','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('vot     ','   ','  ','Votic','vote','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('wak     ','   ','  ','Wakashan languages','wakashanes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('wal     ','   ','  ','Wolaitta; Wolaytta','wolaitta; wolaytta','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('war     ','   ','  ','Waray','waray','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('was     ','   ','  ','Washo','washo','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('wel     ','cym','cy','Welsh','gallois','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('wen     ','   ','  ','Sorbian languages','sorabes, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('wln     ','   ','wa','Walloon','wallon','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('wol     ','   ','wo','Wolof','wolof','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('xal     ','   ','  ','Kalmyk; Oirat','kalmouk; oïrat','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('xho     ','   ','xh','Xhosa','xhosa','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('yao     ','   ','  ','Yao','yao','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('yap     ','   ','  ','Yapese','yapois','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('yid     ','   ','yi','Yiddish','yiddish','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('yor     ','   ','yo','Yoruba','yoruba','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('ypk     ','   ','  ','Yupik languages','yupik, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('zap     ','   ','  ','Zapotec','zapotèque','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('zbl     ','   ','  ','Blissymbols; Blissymbolics; Bliss','symboles Bliss; Bliss','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('zen     ','   ','  ','Zenaga','zenaga','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
+-- INSERT INTO reference."language" (iso_639_2_code_b,iso_639_2_code_t,iso_639_1_code,english_name,french_name,created_at,updated_at,updated_by) VALUES
+-- 	 ('zgh     ','   ','  ','Standard Moroccan Tamazight','amazighe standard marocain','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('zha     ','   ','za','Zhuang; Chuang','zhuang; chuang','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('znd     ','   ','  ','Zande languages','zandé, langues','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('zul     ','   ','zu','Zulu','zoulou','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('zun     ','   ','  ','Zuni','zuni','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('zxx     ','   ','  ','No linguistic content; Not applicable','pas de contenu linguistique; non applicable','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres'),
+-- 	 ('zza     ','   ','  ','Zaza; Dimili; Dimli; Kirdki; Kirmanjki; Zazaki','zaza; dimili; dimli; kirdki; kirmanjki; zazaki','2026-01-21 10:58:05.583799','2026-01-21 10:58:05.583799','postgres');
 
 
 -- =========================================================
@@ -993,295 +993,295 @@ CREATE TABLE IF NOT EXISTS reference.city (
     updated_at TIMESTAMP DEFAULT now(),
     updated_by VARCHAR (32) DEFAULT CURRENT_USER
 );
---COPY reference.cities(name,latitude, longitude, country, iso2,zone,capital,population, population_proper) 
---FROM '/data/workspaces/go/github.com/foadmom/naptan_data/UK_cities.csv'
---DELIMITER ','
---CSV HEADER;
+COPY reference.cities(name,latitude, longitude, country, iso2,zone,capital,population, population_proper) 
+FROM '/var/lib/postgresql/18/docker/cities.csv'
+DELIMITER ','
+CSV HEADER;
 
-INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
-	 ('London',51.5072,-0.1275,74),
-	 ('Birmingham',52.48,-1.9025,74),
-	 ('Portsmouth',50.8058,-1.0872,74),
-	 ('Southampton',50.9025,-1.4042,74),
-	 ('Nottingham',52.9561,-1.1512,74),
-	 ('Bristol',51.4536,-2.5975,74),
-	 ('Manchester',53.479,-2.2452,74),
-	 ('Liverpool',53.4094,-2.9785,74),
-	 ('Leicester',52.6344,-1.1319,74),
-	 ('Worthing',50.8147,-0.3714,74);
-INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
-	 ('Coventry',52.4081,-1.5106,74),
-	 ('Belfast',54.5964,-5.93,74),
-	 ('Bradford',53.8,-1.75,74),
-	 ('Derby',52.9247,-1.478,74),
-	 ('Plymouth',50.3714,-4.1422,74),
-	 ('Westminster',51.4947,-0.1353,74),
-	 ('Wolverhampton',52.5833,-2.1333,74),
-	 ('Northampton',52.2304,-0.8938,74),
-	 ('Norwich',52.6286,1.2928,74),
-	 ('Luton',51.8783,-0.4147,74);
-INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
-	 ('Solihull',52.413,-1.778,74),
-	 ('Islington',51.544,-0.1027,74),
-	 ('Aberdeen',57.15,-2.11,74),
-	 ('Croydon',51.3727,-0.1099,74),
-	 ('Bournemouth',50.72,-1.88,74),
-	 ('Basildon',51.58,0.49,74),
-	 ('Maidstone',51.272,0.529,74),
-	 ('Ilford',51.5575,0.0858,74),
-	 ('Warrington',53.39,-2.59,74),
-	 ('Oxford',51.75,-1.25,74);
-INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
-	 ('Harrow',51.5836,-0.3464,74),
-	 ('West Bromwich',52.519,-1.995,74),
-	 ('Gloucester',51.8667,-2.25,74),
-	 ('York',53.96,-1.08,74),
-	 ('Blackpool',53.8142,-3.0503,74),
-	 ('Stockport',53.4083,-2.1494,74),
-	 ('Sale',53.424,-2.322,74),
-	 ('Tottenham',51.5975,-0.0681,74),
-	 ('Cambridge',52.2053,0.1192,74),
-	 ('Romford',51.5768,0.1801,74);
-INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
-	 ('Colchester',51.8917,0.903,74),
-	 ('High Wycombe',51.6287,-0.7482,74),
-	 ('Gateshead',54.9556,-1.6,74),
-	 ('Slough',51.5084,-0.5881,74),
-	 ('Blackburn',53.748,-2.482,74),
-	 ('Chelmsford',51.73,0.48,74),
-	 ('Rochdale',53.61,-2.16,74),
-	 ('Rotherham',53.43,-1.357,74),
-	 ('Walthamstow',51.584,-0.021,74),
-	 ('Basingstoke',51.2667,-1.0876,74);
-INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
-	 ('Salford',53.483,-2.2931,74),
-	 ('Hounslow',51.4668,-0.375,74),
-	 ('Wembley',51.5528,-0.2979,74),
-	 ('Worcester',52.1911,-2.2206,74),
-	 ('Hammersmith',51.4928,-0.2229,74),
-	 ('Rayleigh',51.5864,0.6049,74),
-	 ('Hemel Hempstead',51.7526,-0.4692,74),
-	 ('Bath',51.38,-2.36,74),
-	 ('Hayes',51.5127,-0.4211,74),
-	 ('Darlington',54.527,-1.5526,74);
-INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
-	 ('Hove',50.8352,-0.1758,74),
-	 ('Hastings',50.85,0.57,74),
-	 ('Watford',51.655,-0.3957,74),
-	 ('Stevenage',51.9017,-0.2019,74),
-	 ('Hartlepool',54.69,-1.21,74),
-	 ('Chester',53.19,-2.89,74),
-	 ('Fulham',51.4828,-0.195,74),
-	 ('Nuneaton',52.523,-1.468,74),
-	 ('Ealing',51.5175,-0.2988,74),
-	 ('Aylesbury',51.8168,-0.8124,74);
-INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
-	 ('Edmonton',51.6154,-0.0708,74),
-	 ('Saint Albans',51.755,-0.336,74),
-	 ('Burnley',53.789,-2.248,74),
-	 ('Batley',53.7167,-1.6356,74),
-	 ('Scunthorpe',53.5809,-0.6502,74),
-	 ('Dudley',52.508,-2.089,74),
-	 ('Brixton',51.4575,-0.1175,74),
-	 ('Southall',51.5111,-0.3756,74),
-	 ('Paisley',55.8456,-4.4239,74),
-	 ('Chatham',51.37,0.52,74);
-INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
-	 ('East Ham',51.5323,0.0554,74),
-	 ('Weston-super-Mare',51.346,-2.977,74),
-	 ('Carlisle',54.8947,-2.9364,74),
-	 ('South Shields',54.995,-1.43,74),
-	 ('East Kilbride',55.7644,-4.1769,74),
-	 ('Burton upon Trent',52.8019,-1.6367,74),
-	 ('Harrogate',53.9919,-1.5378,74),
-	 ('Crewe',53.099,-2.44,74),
-	 ('Lowestoft',52.48,1.75,74),
-	 ('Rugby',52.37,-1.26,74);
-INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
-	 ('Chingford',51.623,0.009,74),
-	 ('Uxbridge',51.5404,-0.4778,74),
-	 ('Walsall',52.58,-1.98,74),
-	 ('Grays',51.475,0.33,74),
-	 ('Walton upon Thames',51.3868,-0.4133,74),
-	 ('Thornton Heath',51.4002,-0.1086,74),
-	 ('Finchley',51.599,-0.187,74),
-	 ('Kensington',51.5,-0.19,74),
-	 ('Boston',52.974,-0.0214,74),
-	 ('Paignton',50.4353,-3.5625,74);
-INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
-	 ('Waterlooville',50.88,-1.03,74),
-	 ('Guiseley',53.875,-1.706,74),
-	 ('Hornchurch',51.5565,0.2128,74),
-	 ('Mitcham',51.4009,-0.1517,74),
-	 ('Feltham',51.4496,-0.4089,74),
-	 ('Stourbridge',52.4575,-2.1479,74),
-	 ('Rochester',51.375,0.5,74),
-	 ('Dewsbury',53.691,-1.633,74),
-	 ('Acton',51.5135,-0.2707,74),
-	 ('Twickenham',51.449,-0.337,74);
-INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
-	 ('Wrecsam',53.046,-2.993,74),
-	 ('Ellesmere Port',53.279,-2.897,74),
-	 ('Bangor',54.66,-5.67,74),
-	 ('Taunton',51.019,-3.1,74),
-	 ('Loughborough',52.7725,-1.2078,74),
-	 ('Barking',51.54,0.08,74),
-	 ('Edgware',51.6185,-0.2729,74),
-	 ('Littlehampton',50.8094,-0.5409,74),
-	 ('Ruislip',51.576,-0.433,74),
-	 ('Streatham',51.4279,-0.1235,74);
-INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
-	 ('Royal Tunbridge Wells',51.132,0.263,74),
-	 ('Bebington',53.35,-3.003,74),
-	 ('Macclesfield',53.25,-2.13,74),
-	 ('Wellingborough',52.3028,-0.6944,74),
-	 ('Kettering',52.3931,-0.7229,74),
-	 ('Braintree',51.878,0.55,74),
-	 ('Royal Leamington Spa',52.2919,-1.5358,74),
-	 ('Barrow in Furness',54.1108,-3.2261,74),
-	 ('Dunfermline',56.0719,-3.4393,74),
-	 ('Altrincham',53.3838,-2.3547,74);
-INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
-	 ('Lancaster',54.0489,-2.8014,74),
-	 ('Crosby',53.4872,-3.0343,74),
-	 ('Bootle',53.4457,-2.9891,74),
-	 ('Stratford',51.5423,-0.0026,74),
-	 ('Folkestone',51.0792,1.1794,74),
-	 ('Cumbernauld',55.945,-3.994,74),
-	 ('Andover',51.208,-1.48,74),
-	 ('Neath',51.66,-3.81,74),
-	 ('Rowley Regis',52.488,-2.05,74),
-	 ('Scarborough',54.2825,-0.4,74);
-INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
-	 ('Leith',55.98,-3.17,74),
-	 ('Yeovil',50.9452,-2.637,74),
-	 ('Eltham',51.451,0.052,74),
-	 ('Hampstead',51.5541,-0.1744,74),
-	 ('Sutton in Ashfield',53.125,-1.261,74),
-	 ('Morden',51.4015,-0.1949,74),
-	 ('Barnet',51.6444,-0.1997,74),
-	 ('Stretford',53.4466,-2.3086,74),
-	 ('Beckenham',51.408,-0.022,74),
-	 ('Greenford',51.5299,-0.3488,74);
-INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
-	 ('Cheshunt',51.702,-0.035,74),
-	 ('Kirkby',53.48,-2.89,74),
-	 ('Salisbury',51.07,-1.79,74),
-	 ('Ashton',53.4897,-2.0952,74),
-	 ('Surbiton',51.394,-0.307,74),
-	 ('Castleford',53.716,-1.356,74),
-	 ('Catford',51.4452,-0.0207,74),
-	 ('Worksop',53.3042,-1.1244,74),
-	 ('Morley',53.7492,-1.6023,74),
-	 ('Merthyr Tudful',51.743,-3.378,74);
-INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
-	 ('Middleton',53.555,-2.187,74),
-	 ('Fleet',51.2834,-0.8456,74),
-	 ('Fareham',50.85,-1.18,74),
-	 ('Urmston',53.4487,-2.3747,74),
-	 ('Sutton',51.3656,-0.1963,74),
-	 ('Caerphilly',51.578,-3.218,74),
-	 ('Bridgwater',51.128,-2.993,74),
-	 ('Newbury',51.401,-1.323,74),
-	 ('Welling',51.4594,0.1097,74),
-	 ('Kingswood',51.46,-2.505,74);
-INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
-	 ('Dunstable',51.886,-0.521,74),
-	 ('Ramsgate',51.336,1.416,74),
-	 ('Strood',51.393,0.478,74),
-	 ('Cleethorpes',53.5533,-0.0215,74),
-	 ('Pinner',51.5932,-0.3894,74),
-	 ('Great Yarmouth',52.606,1.729,74),
-	 ('Ilkeston',52.9711,-1.3092,74),
-	 ('Chorley',53.653,-2.632,74),
-	 ('Herne Bay',51.37,1.13,74),
-	 ('Bishops Stortford',51.872,0.1725,74);
-INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
-	 ('Arnold',53.005,-1.127,74),
-	 ('Coalville',52.724,-1.369,74),
-	 ('Bletchley',51.994,-0.732,74),
-	 ('Leighton Buzzard',51.9165,-0.6617,74),
-	 ('Airdrie',55.86,-3.98,74),
-	 ('Blyth',55.126,-1.514,74),
-	 ('Laindon',51.574,0.4181,74),
-	 ('Llanelli',51.684,-4.163,74),
-	 ('Beeston',52.927,-1.215,74),
-	 ('Small Heath',52.4629,-1.8542,74);
-INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
-	 ('Whitley Bay',55.0456,-1.4443,74),
-	 ('Denton',53.4554,-2.1122,74),
-	 ('West Bridgford',52.932,-1.127,74),
-	 ('Borehamwood',51.6578,-0.2722,74),
-	 ('Falkirk',56.0011,-3.7835,74),
-	 ('Walkden',53.5239,-2.3991,74),
-	 ('Kenton',51.5878,-0.3086,74),
-	 ('Bridlington',54.0819,-0.1923,74),
-	 ('Billingham',54.61,-1.27,74),
-	 ('Grantham',52.918,-0.638,74);
-INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
-	 ('North Shields',55.0097,-1.4448,74),
-	 ('Hitchin',51.947,-0.283,74),
-	 ('Spalding',52.7858,-0.1529,74),
-	 ('Rainham',51.36,0.61,74),
-	 ('Letchworth',51.978,-0.23,74),
-	 ('Wickford',51.6114,0.5207,74),
-	 ('Huyton',53.4111,-2.8403,74),
-	 ('Abingdon',51.6717,-1.2783,74),
-	 ('Trowbridge',51.32,-2.208,74),
-	 ('Wigston Magna',52.5812,-1.093,74);
-INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
-	 ('Didcot',51.606,-1.241,74),
-	 ('Earley',51.433,-0.933,74),
-	 ('Bexleyheath',51.459,0.138,74),
-	 ('Ecclesfield',53.4429,-1.4698,74),
-	 ('Darwen',53.698,-2.461,74),
-	 ('Prestwich',53.5333,-2.2833,74),
-	 ('Pontypridd',51.602,-3.342,74),
-	 ('Rutherglen',55.828,-4.214,74),
-	 ('Dover',51.1295,1.3089,74),
-	 ('Chichester',50.8365,-0.7792,74);
-INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
-	 ('Deal',51.2226,1.4006,74),
-	 ('Bicester',51.9,-1.15,74),
-	 ('Northolt',51.5467,-0.37,74),
-	 ('Wishaw',55.7742,-3.9183,74),
-	 ('Carshalton',51.3652,-0.1676,74),
-	 ('Bulwell',53.001,-1.197,74),
-	 ('Newtownards',54.591,-5.68,74),
-	 ('Kendal',54.326,-2.745,74),
-	 ('Cramlington',55.082,-1.585,74),
-	 ('Bromsgrove',52.3353,-2.0579,74);
-INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
-	 ('Pont-y-pŵl',51.703,-3.041,74),
-	 ('Hanwell',51.509,-0.338,74),
-	 ('Frome',51.2279,-2.3215,74),
-	 ('Wood Green',51.5981,-0.1149,74),
-	 ('Darlaston',52.5708,-2.0457,74),
-	 ('Ashington',55.181,-1.568,74),
-	 ('Longton',52.9877,-2.1327,74),
-	 ('Melton Mowbray',52.7661,-0.886,74),
-	 ('Aldridge',52.606,-1.9179,74),
-	 ('Farnworth',53.5452,-2.3999,74);
-INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
-	 ('Highbury',51.552,-0.097,74),
-	 ('Cheadle Hulme',53.3761,-2.1897,74),
-	 ('Newton Aycliffe',54.62,-1.58,74),
-	 ('Bournville',52.4299,-1.9355,74),
-	 ('Shenley Brook End',52.009,-0.789,74),
-	 ('Consett',54.85,-1.83,74),
-	 ('Coulsdon',51.3211,-0.1386,74),
-	 ('Bilston',52.566,-2.0728,74),
-	 ('Wellington',52.7001,-2.5157,74),
-	 ('Bishop Auckland',54.663,-1.676,74);
-INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
-	 ('Longbridge',52.395,-1.979,74),
-	 ('Bloxwich',52.614,-2.004,74),
-	 ('Upminster',51.5557,0.2512,74),
-	 ('Rhyl',53.321,-3.48,74),
-	 ('Droitwich',52.267,-2.153,74),
-	 ('Hindley',53.5355,-2.5658,74),
-	 ('Westhoughton',53.549,-2.529,74),
-	 ('Broadstairs',51.3589,1.4394,74);
+-- INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
+-- 	 ('London',51.5072,-0.1275,74),
+-- 	 ('Birmingham',52.48,-1.9025,74),
+-- 	 ('Portsmouth',50.8058,-1.0872,74),
+-- 	 ('Southampton',50.9025,-1.4042,74),
+-- 	 ('Nottingham',52.9561,-1.1512,74),
+-- 	 ('Bristol',51.4536,-2.5975,74),
+-- 	 ('Manchester',53.479,-2.2452,74),
+-- 	 ('Liverpool',53.4094,-2.9785,74),
+-- 	 ('Leicester',52.6344,-1.1319,74),
+-- 	 ('Worthing',50.8147,-0.3714,74);
+-- INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
+-- 	 ('Coventry',52.4081,-1.5106,74),
+-- 	 ('Belfast',54.5964,-5.93,74),
+-- 	 ('Bradford',53.8,-1.75,74),
+-- 	 ('Derby',52.9247,-1.478,74),
+-- 	 ('Plymouth',50.3714,-4.1422,74),
+-- 	 ('Westminster',51.4947,-0.1353,74),
+-- 	 ('Wolverhampton',52.5833,-2.1333,74),
+-- 	 ('Northampton',52.2304,-0.8938,74),
+-- 	 ('Norwich',52.6286,1.2928,74),
+-- 	 ('Luton',51.8783,-0.4147,74);
+-- INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
+-- 	 ('Solihull',52.413,-1.778,74),
+-- 	 ('Islington',51.544,-0.1027,74),
+-- 	 ('Aberdeen',57.15,-2.11,74),
+-- 	 ('Croydon',51.3727,-0.1099,74),
+-- 	 ('Bournemouth',50.72,-1.88,74),
+-- 	 ('Basildon',51.58,0.49,74),
+-- 	 ('Maidstone',51.272,0.529,74),
+-- 	 ('Ilford',51.5575,0.0858,74),
+-- 	 ('Warrington',53.39,-2.59,74),
+-- 	 ('Oxford',51.75,-1.25,74);
+-- INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
+-- 	 ('Harrow',51.5836,-0.3464,74),
+-- 	 ('West Bromwich',52.519,-1.995,74),
+-- 	 ('Gloucester',51.8667,-2.25,74),
+-- 	 ('York',53.96,-1.08,74),
+-- 	 ('Blackpool',53.8142,-3.0503,74),
+-- 	 ('Stockport',53.4083,-2.1494,74),
+-- 	 ('Sale',53.424,-2.322,74),
+-- 	 ('Tottenham',51.5975,-0.0681,74),
+-- 	 ('Cambridge',52.2053,0.1192,74),
+-- 	 ('Romford',51.5768,0.1801,74);
+-- INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
+-- 	 ('Colchester',51.8917,0.903,74),
+-- 	 ('High Wycombe',51.6287,-0.7482,74),
+-- 	 ('Gateshead',54.9556,-1.6,74),
+-- 	 ('Slough',51.5084,-0.5881,74),
+-- 	 ('Blackburn',53.748,-2.482,74),
+-- 	 ('Chelmsford',51.73,0.48,74),
+-- 	 ('Rochdale',53.61,-2.16,74),
+-- 	 ('Rotherham',53.43,-1.357,74),
+-- 	 ('Walthamstow',51.584,-0.021,74),
+-- 	 ('Basingstoke',51.2667,-1.0876,74);
+-- INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
+-- 	 ('Salford',53.483,-2.2931,74),
+-- 	 ('Hounslow',51.4668,-0.375,74),
+-- 	 ('Wembley',51.5528,-0.2979,74),
+-- 	 ('Worcester',52.1911,-2.2206,74),
+-- 	 ('Hammersmith',51.4928,-0.2229,74),
+-- 	 ('Rayleigh',51.5864,0.6049,74),
+-- 	 ('Hemel Hempstead',51.7526,-0.4692,74),
+-- 	 ('Bath',51.38,-2.36,74),
+-- 	 ('Hayes',51.5127,-0.4211,74),
+-- 	 ('Darlington',54.527,-1.5526,74);
+-- INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
+-- 	 ('Hove',50.8352,-0.1758,74),
+-- 	 ('Hastings',50.85,0.57,74),
+-- 	 ('Watford',51.655,-0.3957,74),
+-- 	 ('Stevenage',51.9017,-0.2019,74),
+-- 	 ('Hartlepool',54.69,-1.21,74),
+-- 	 ('Chester',53.19,-2.89,74),
+-- 	 ('Fulham',51.4828,-0.195,74),
+-- 	 ('Nuneaton',52.523,-1.468,74),
+-- 	 ('Ealing',51.5175,-0.2988,74),
+-- 	 ('Aylesbury',51.8168,-0.8124,74);
+-- INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
+-- 	 ('Edmonton',51.6154,-0.0708,74),
+-- 	 ('Saint Albans',51.755,-0.336,74),
+-- 	 ('Burnley',53.789,-2.248,74),
+-- 	 ('Batley',53.7167,-1.6356,74),
+-- 	 ('Scunthorpe',53.5809,-0.6502,74),
+-- 	 ('Dudley',52.508,-2.089,74),
+-- 	 ('Brixton',51.4575,-0.1175,74),
+-- 	 ('Southall',51.5111,-0.3756,74),
+-- 	 ('Paisley',55.8456,-4.4239,74),
+-- 	 ('Chatham',51.37,0.52,74);
+-- INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
+-- 	 ('East Ham',51.5323,0.0554,74),
+-- 	 ('Weston-super-Mare',51.346,-2.977,74),
+-- 	 ('Carlisle',54.8947,-2.9364,74),
+-- 	 ('South Shields',54.995,-1.43,74),
+-- 	 ('East Kilbride',55.7644,-4.1769,74),
+-- 	 ('Burton upon Trent',52.8019,-1.6367,74),
+-- 	 ('Harrogate',53.9919,-1.5378,74),
+-- 	 ('Crewe',53.099,-2.44,74),
+-- 	 ('Lowestoft',52.48,1.75,74),
+-- 	 ('Rugby',52.37,-1.26,74);
+-- INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
+-- 	 ('Chingford',51.623,0.009,74),
+-- 	 ('Uxbridge',51.5404,-0.4778,74),
+-- 	 ('Walsall',52.58,-1.98,74),
+-- 	 ('Grays',51.475,0.33,74),
+-- 	 ('Walton upon Thames',51.3868,-0.4133,74),
+-- 	 ('Thornton Heath',51.4002,-0.1086,74),
+-- 	 ('Finchley',51.599,-0.187,74),
+-- 	 ('Kensington',51.5,-0.19,74),
+-- 	 ('Boston',52.974,-0.0214,74),
+-- 	 ('Paignton',50.4353,-3.5625,74);
+-- INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
+-- 	 ('Waterlooville',50.88,-1.03,74),
+-- 	 ('Guiseley',53.875,-1.706,74),
+-- 	 ('Hornchurch',51.5565,0.2128,74),
+-- 	 ('Mitcham',51.4009,-0.1517,74),
+-- 	 ('Feltham',51.4496,-0.4089,74),
+-- 	 ('Stourbridge',52.4575,-2.1479,74),
+-- 	 ('Rochester',51.375,0.5,74),
+-- 	 ('Dewsbury',53.691,-1.633,74),
+-- 	 ('Acton',51.5135,-0.2707,74),
+-- 	 ('Twickenham',51.449,-0.337,74);
+-- INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
+-- 	 ('Wrecsam',53.046,-2.993,74),
+-- 	 ('Ellesmere Port',53.279,-2.897,74),
+-- 	 ('Bangor',54.66,-5.67,74),
+-- 	 ('Taunton',51.019,-3.1,74),
+-- 	 ('Loughborough',52.7725,-1.2078,74),
+-- 	 ('Barking',51.54,0.08,74),
+-- 	 ('Edgware',51.6185,-0.2729,74),
+-- 	 ('Littlehampton',50.8094,-0.5409,74),
+-- 	 ('Ruislip',51.576,-0.433,74),
+-- 	 ('Streatham',51.4279,-0.1235,74);
+-- INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
+-- 	 ('Royal Tunbridge Wells',51.132,0.263,74),
+-- 	 ('Bebington',53.35,-3.003,74),
+-- 	 ('Macclesfield',53.25,-2.13,74),
+-- 	 ('Wellingborough',52.3028,-0.6944,74),
+-- 	 ('Kettering',52.3931,-0.7229,74),
+-- 	 ('Braintree',51.878,0.55,74),
+-- 	 ('Royal Leamington Spa',52.2919,-1.5358,74),
+-- 	 ('Barrow in Furness',54.1108,-3.2261,74),
+-- 	 ('Dunfermline',56.0719,-3.4393,74),
+-- 	 ('Altrincham',53.3838,-2.3547,74);
+-- INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
+-- 	 ('Lancaster',54.0489,-2.8014,74),
+-- 	 ('Crosby',53.4872,-3.0343,74),
+-- 	 ('Bootle',53.4457,-2.9891,74),
+-- 	 ('Stratford',51.5423,-0.0026,74),
+-- 	 ('Folkestone',51.0792,1.1794,74),
+-- 	 ('Cumbernauld',55.945,-3.994,74),
+-- 	 ('Andover',51.208,-1.48,74),
+-- 	 ('Neath',51.66,-3.81,74),
+-- 	 ('Rowley Regis',52.488,-2.05,74),
+-- 	 ('Scarborough',54.2825,-0.4,74);
+-- INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
+-- 	 ('Leith',55.98,-3.17,74),
+-- 	 ('Yeovil',50.9452,-2.637,74),
+-- 	 ('Eltham',51.451,0.052,74),
+-- 	 ('Hampstead',51.5541,-0.1744,74),
+-- 	 ('Sutton in Ashfield',53.125,-1.261,74),
+-- 	 ('Morden',51.4015,-0.1949,74),
+-- 	 ('Barnet',51.6444,-0.1997,74),
+-- 	 ('Stretford',53.4466,-2.3086,74),
+-- 	 ('Beckenham',51.408,-0.022,74),
+-- 	 ('Greenford',51.5299,-0.3488,74);
+-- INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
+-- 	 ('Cheshunt',51.702,-0.035,74),
+-- 	 ('Kirkby',53.48,-2.89,74),
+-- 	 ('Salisbury',51.07,-1.79,74),
+-- 	 ('Ashton',53.4897,-2.0952,74),
+-- 	 ('Surbiton',51.394,-0.307,74),
+-- 	 ('Castleford',53.716,-1.356,74),
+-- 	 ('Catford',51.4452,-0.0207,74),
+-- 	 ('Worksop',53.3042,-1.1244,74),
+-- 	 ('Morley',53.7492,-1.6023,74),
+-- 	 ('Merthyr Tudful',51.743,-3.378,74);
+-- INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
+-- 	 ('Middleton',53.555,-2.187,74),
+-- 	 ('Fleet',51.2834,-0.8456,74),
+-- 	 ('Fareham',50.85,-1.18,74),
+-- 	 ('Urmston',53.4487,-2.3747,74),
+-- 	 ('Sutton',51.3656,-0.1963,74),
+-- 	 ('Caerphilly',51.578,-3.218,74),
+-- 	 ('Bridgwater',51.128,-2.993,74),
+-- 	 ('Newbury',51.401,-1.323,74),
+-- 	 ('Welling',51.4594,0.1097,74),
+-- 	 ('Kingswood',51.46,-2.505,74);
+-- INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
+-- 	 ('Dunstable',51.886,-0.521,74),
+-- 	 ('Ramsgate',51.336,1.416,74),
+-- 	 ('Strood',51.393,0.478,74),
+-- 	 ('Cleethorpes',53.5533,-0.0215,74),
+-- 	 ('Pinner',51.5932,-0.3894,74),
+-- 	 ('Great Yarmouth',52.606,1.729,74),
+-- 	 ('Ilkeston',52.9711,-1.3092,74),
+-- 	 ('Chorley',53.653,-2.632,74),
+-- 	 ('Herne Bay',51.37,1.13,74),
+-- 	 ('Bishops Stortford',51.872,0.1725,74);
+-- INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
+-- 	 ('Arnold',53.005,-1.127,74),
+-- 	 ('Coalville',52.724,-1.369,74),
+-- 	 ('Bletchley',51.994,-0.732,74),
+-- 	 ('Leighton Buzzard',51.9165,-0.6617,74),
+-- 	 ('Airdrie',55.86,-3.98,74),
+-- 	 ('Blyth',55.126,-1.514,74),
+-- 	 ('Laindon',51.574,0.4181,74),
+-- 	 ('Llanelli',51.684,-4.163,74),
+-- 	 ('Beeston',52.927,-1.215,74),
+-- 	 ('Small Heath',52.4629,-1.8542,74);
+-- INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
+-- 	 ('Whitley Bay',55.0456,-1.4443,74),
+-- 	 ('Denton',53.4554,-2.1122,74),
+-- 	 ('West Bridgford',52.932,-1.127,74),
+-- 	 ('Borehamwood',51.6578,-0.2722,74),
+-- 	 ('Falkirk',56.0011,-3.7835,74),
+-- 	 ('Walkden',53.5239,-2.3991,74),
+-- 	 ('Kenton',51.5878,-0.3086,74),
+-- 	 ('Bridlington',54.0819,-0.1923,74),
+-- 	 ('Billingham',54.61,-1.27,74),
+-- 	 ('Grantham',52.918,-0.638,74);
+-- INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
+-- 	 ('North Shields',55.0097,-1.4448,74),
+-- 	 ('Hitchin',51.947,-0.283,74),
+-- 	 ('Spalding',52.7858,-0.1529,74),
+-- 	 ('Rainham',51.36,0.61,74),
+-- 	 ('Letchworth',51.978,-0.23,74),
+-- 	 ('Wickford',51.6114,0.5207,74),
+-- 	 ('Huyton',53.4111,-2.8403,74),
+-- 	 ('Abingdon',51.6717,-1.2783,74),
+-- 	 ('Trowbridge',51.32,-2.208,74),
+-- 	 ('Wigston Magna',52.5812,-1.093,74);
+-- INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
+-- 	 ('Didcot',51.606,-1.241,74),
+-- 	 ('Earley',51.433,-0.933,74),
+-- 	 ('Bexleyheath',51.459,0.138,74),
+-- 	 ('Ecclesfield',53.4429,-1.4698,74),
+-- 	 ('Darwen',53.698,-2.461,74),
+-- 	 ('Prestwich',53.5333,-2.2833,74),
+-- 	 ('Pontypridd',51.602,-3.342,74),
+-- 	 ('Rutherglen',55.828,-4.214,74),
+-- 	 ('Dover',51.1295,1.3089,74),
+-- 	 ('Chichester',50.8365,-0.7792,74);
+-- INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
+-- 	 ('Deal',51.2226,1.4006,74),
+-- 	 ('Bicester',51.9,-1.15,74),
+-- 	 ('Northolt',51.5467,-0.37,74),
+-- 	 ('Wishaw',55.7742,-3.9183,74),
+-- 	 ('Carshalton',51.3652,-0.1676,74),
+-- 	 ('Bulwell',53.001,-1.197,74),
+-- 	 ('Newtownards',54.591,-5.68,74),
+-- 	 ('Kendal',54.326,-2.745,74),
+-- 	 ('Cramlington',55.082,-1.585,74),
+-- 	 ('Bromsgrove',52.3353,-2.0579,74);
+-- INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
+-- 	 ('Pont-y-pŵl',51.703,-3.041,74),
+-- 	 ('Hanwell',51.509,-0.338,74),
+-- 	 ('Frome',51.2279,-2.3215,74),
+-- 	 ('Wood Green',51.5981,-0.1149,74),
+-- 	 ('Darlaston',52.5708,-2.0457,74),
+-- 	 ('Ashington',55.181,-1.568,74),
+-- 	 ('Longton',52.9877,-2.1327,74),
+-- 	 ('Melton Mowbray',52.7661,-0.886,74),
+-- 	 ('Aldridge',52.606,-1.9179,74),
+-- 	 ('Farnworth',53.5452,-2.3999,74);
+-- INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
+-- 	 ('Highbury',51.552,-0.097,74),
+-- 	 ('Cheadle Hulme',53.3761,-2.1897,74),
+-- 	 ('Newton Aycliffe',54.62,-1.58,74),
+-- 	 ('Bournville',52.4299,-1.9355,74),
+-- 	 ('Shenley Brook End',52.009,-0.789,74),
+-- 	 ('Consett',54.85,-1.83,74),
+-- 	 ('Coulsdon',51.3211,-0.1386,74),
+-- 	 ('Bilston',52.566,-2.0728,74),
+-- 	 ('Wellington',52.7001,-2.5157,74),
+-- 	 ('Bishop Auckland',54.663,-1.676,74);
+-- INSERT INTO reference.city ("name",latitude,longitude,country_id) VALUES
+-- 	 ('Longbridge',52.395,-1.979,74),
+-- 	 ('Bloxwich',52.614,-2.004,74),
+-- 	 ('Upminster',51.5557,0.2512,74),
+-- 	 ('Rhyl',53.321,-3.48,74),
+-- 	 ('Droitwich',52.267,-2.153,74),
+-- 	 ('Hindley',53.5355,-2.5658,74),
+-- 	 ('Westhoughton',53.549,-2.529,74),
+-- 	 ('Broadstairs',51.3589,1.4394,74);
 
 -- =========================================================
 -- =========================================================
