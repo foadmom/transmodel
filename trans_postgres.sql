@@ -3,6 +3,23 @@
 -- for postgres docker:
 -- sudo docker pull postgis/postgis:latest
 -- cat ./trans_postgres.sql | sudo docker exec -i postgres psql -h localhost -U postgres -f-
+-- ----------------------------------------------------------------
+-- below are the commands to export the reference data to .csv files, 
+-- which can be used to import into the docker instance of postgres, 
+-- as the docker instance cannot access the local file system directly.
+-- \c transmodel
+-- copy reference.city ("name","latitude","longitude","country_id","zone")
+-- to '/var/lib/postgresql/18/docker/cities.csv'
+-- delimiters ',' csv;
+
+-- copy reference.country ("iso2","latitude","longitude","name")
+-- to '/var/lib/postgresql/18/docker/countries.csv'
+-- delimiters ',' csv;
+
+-- copy reference.language ("iso_639_2_code_b","iso_639_2_code_t","iso_639_1_code","english_name","french_name")
+-- to '/var/lib/postgresql/18/docker/languages.csv'
+-- delimiters ',' csv;
+-- ----------------------------------------------------------------
 -- ===============================================================================
 \c postgres;
 DROP DATABASE IF EXISTS transmodel WITH (FORCE);
@@ -21,14 +38,14 @@ CREATE SCHEMA IF NOT EXISTS tracking;
 --SHOW search_path;
 SET search_path TO common;
 
-CREATE TYPE TRANSPORT_MODE AS ENUM ('BUS','COACH','TRAIN');
-CREATE TYPE STOP_TYPE AS ENUM ('STATION','TERMINAL','STOP');
+CREATE TYPE TRANSPORT_MODE    AS ENUM ('BUS','COACH','TRAIN');
+CREATE TYPE STOP_TYPE         AS ENUM ('STATION','TERMINAL','STOP');
 CREATE TYPE SERVICE_DIRECTION AS ENUM ('OUTBOUND','INBOUND');
 CREATE TYPE COMPASS_DIRECTION AS ENUM ('N','NE','E','SE','S','SW','W','NW');
-CREATE TYPE EXCEPTION_TYPE AS ENUM ('ADDED','REMOVED');
-CREATE TYPE REALTIME_STATUS AS ENUM ('ON_TIME','DELAYED','CANCELLED','SKIPPED');
-CREATE TYPE JOURNEY_STATUS AS ENUM ('PLANNED','IN_PROGRESS','COMPLETED','CANCELLED');
-CREATE TYPE FUEL_TYPE AS ENUM ('PETROL', 'DIESEL', 'GAS', 'ELECTRIC');
+CREATE TYPE EXCEPTION_TYPE    AS ENUM ('ADDED','REMOVED');
+CREATE TYPE REALTIME_STATUS   AS ENUM ('ON_TIME','DELAYED','CANCELLED','SKIPPED');
+CREATE TYPE JOURNEY_STATUS    AS ENUM ('PLANNED','IN_PROGRESS','COMPLETED','CANCELLED');
+CREATE TYPE FUEL_TYPE         AS ENUM ('PETROL', 'DIESEL', 'GAS', 'ELECTRIC');
 
 
 CREATE EXTENSION IF NOT EXISTS postgis;
@@ -1503,7 +1520,7 @@ CREATE INDEX idx_line_operator_id ON network.line (operator_id);
 --    compass_direction, NE
 -- The Service is the end to end dfinition, of one service in a line,
 -- eg Bristol to London. The service here is for a single 
---    direction and return service would be a differenc service_code
+--    direction and return service would be a different service_code
 -- not sure what value 'line' adds.
 -- =========================================================
 CREATE TABLE network.service (
@@ -2320,16 +2337,16 @@ $$ LANGUAGE plpgsql;
 -- =========================================================
 -- 
 -- =========================================================
-create or replace function network.insert_stop(p_code VARCHAR, p_name VARCHAR, p_type common.STOP_TYPE, p_zone_id BIGINT, p_post_code VARCHAR, p_geo common.geography, p_additional_info VARCHAR, p_updated_by VARCHAR DEFAULT CURRENT_USER) RETURNS BIGINT AS $$
-DECLARE
-	v_id BIGINT;
-BEGIN
-	INSERT INTO network.stop(code, name, type, zone_id, post_code, geo, additional_info, created_at, updated_at, updated_by)
-	VALUES (p_code, p_name, p_type, p_zone_id, p_post_code, p_geo, p_additional_info, now(), now(), p_updated_by)
-	RETURNING id INTO v_id;
-	RETURN v_id;
-END;
-$$ LANGUAGE plpgsql;
+-- create or replace function network.insert_stop(p_code VARCHAR, p_name VARCHAR, p_type common.STOP_TYPE, p_zone_id BIGINT, p_post_code VARCHAR, p_geo common.geography, p_additional_info VARCHAR, p_updated_by VARCHAR DEFAULT CURRENT_USER) RETURNS BIGINT AS $$
+-- DECLARE
+-- 	v_id BIGINT;
+-- BEGIN
+-- 	INSERT INTO network.stop(code, name, type, zone_id, post_code, geo, additional_info, created_at, updated_at, updated_by)
+-- 	VALUES (p_code, p_name, p_type, p_zone_id, p_post_code, p_geo, p_additional_info, now(), now(), p_updated_by)
+-- 	RETURNING id INTO v_id;
+-- 	RETURN v_id;
+-- END;
+-- $$ LANGUAGE plpgsql;
 
 
 -- =========================================================
@@ -4508,6 +4525,7 @@ CREATE OR REPLACE FUNCTION network.service_link_insert (input json) RETURNS text
         RETURN _result;
     END;
 $$ LANGUAGE plpgsql;
+
 
 
 -- =========================================================
