@@ -2132,6 +2132,21 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+
+-- =========================================================
+-- input {"name": "London"}
+-- =========================================================
+CREATE OR REPLACE FUNCTION network.Jget_zone_by_name (input json) RETURNS text AS $$
+    DECLARE
+        v_name TEXT := input::json->>'name';
+        _result TEXT;
+    BEGIN
+        -- function body here
+   	    SELECT row_to_json(row) from (SELECT network.get_zone_by_name (v_name)) row INTO _result;
+        RETURN _result;
+    END;
+$$ LANGUAGE plpgsql;
+
 -- =========================================================
 -- 
 -- =========================================================
@@ -2155,6 +2170,20 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+
+-- =========================================================
+-- 
+-- =========================================================
+CREATE OR REPLACE FUNCTION network.Jget_all_zones () RETURNS text AS $$
+    DECLARE
+        _result TEXT;
+    BEGIN
+--   	    SELECT row_to_json(row) from (SELECT network.get_all_zones()) row INTO _result;
+        SELECT array_agg(row) FROM (SELECT network.get_all_zones()) row INTO _result;
+        RETURN _result;
+    END;
+$$ LANGUAGE plpgsql;
+
 -- =========================================================
 -- 
 -- =========================================================
@@ -2169,6 +2198,22 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+
+-- =========================================================
+-- 
+-- =========================================================
+CREATE OR REPLACE FUNCTION network.Jinsert_zone (input json) RETURNS text AS $$
+    DECLARE
+        v_code TEXT := input::json->>'code';
+        v_name TEXT := input::json->>'name';
+        v_updated_by TEXT := input::json->>'updated_by';
+        _result TEXT;
+    BEGIN
+        -- function body here
+	    SELECT row_to_json(row) from (SELECT network.insert_zone (v_code, v_name, v_updated_by)) row INTO _result;
+        RETURN _result;
+    END;
+$$ LANGUAGE plpgsql;
 
 -- =========================================================
 -- 
@@ -4575,6 +4620,7 @@ SELECT common.function_wrapper ('network.zone_insert', '{"code": "WMID", "name":
 SELECT common.function_wrapper ('network.zone_insert', '{"code": "LON",  "name": "London"}');
 SELECT common.function_wrapper ('network.zone_insert', '{"code": "BUCK",  "name": "Buckingham"}');
 SELECT common.function_wrapper ('network.zone_insert', '{"code": "NORT",  "name": "Northmapton"}');
+SELECT common.function_wrapper ('network.Jinsert_zone', '{"code": "NWLS", "name": "North Wales", "updated_by": "postgres"}');
 
 SELECT common.function_wrapper ('network.insert_stop', 
     '{"code": "DGBT", "name": "Digbeth Coach Station", "type": "STATION", "zone_code":"WMID", "post_code":"B5 6DD", "geo": "POINT(-1.888361  52.475453)"}');
@@ -4602,8 +4648,8 @@ SELECT common.function_wrapper ('network.service_link_insert',
 
 -- =========================================================
 -- =========================================================
-
-
+SELECT common.function_wrapper ('network.Jget_all_zones', ''); 
+            
 -- =========================================================
 -- =========================================================
 -- =========================================================
